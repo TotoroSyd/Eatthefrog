@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body class="container">
+    <h1 class="text-center">Task Planner!</h1>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskModal">
+        Create
+      </button>
+
+    <h4 class="my-4">Today - Tue 14 Jul</h4>
+
+    <div class="card">
+        <div class="card-body">
+        <h5 class="card-title">Service Car</h5>
+        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, iure iusto expedita praesentium a animi deleniti magnam repellat corrupti quisquam et possimus suscipit placeat reiciendis accusamus aut molestiae itaque libero.</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Assignee: Mohammad</li>
+        <li class="list-group-item">Time: 9:00am</li>
+        <li class="list-group-item">Status: Done</li>
+        <li class="list-group-item">
+            <button class="btn btn-primary">Edit</button>
+        </li>
+    </ul>
+    </div>
+
+
+    <div class="modal fade" id="taskModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create Task</h5>
+                    <button class="close" data-dismiss="modal">
+                        <span>@times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <!-- task name  -->
+                        <div class="form-group">
+                            <label for=""taskName"">Task Name</label>
+                            <input type="text" class="form-control" id="taskName" placeholder="taskName">
+                        </div>
+                        <!-- Task Description  -->
+                        <div class="form-group">
+                            <label for="taskDescription">Description</label>
+                            <textarea class="form-control" id="taskDescription" rows="3"></textarea>
+                          </div>
+                          <!-- Date -->
+                         
+                          <div class="form-group">
+                            <label for="date" class="col-2 col-form-label">Date</label>
+                            <div class="col-6">
+                              <input class="form-control" type="date" value="14/07/2020" id="date">
+                            </div>
+                          </div>
+                          <!-- Time  -->
+                          <div class="form-group">
+                            <label for="time" class="col-2 col-form-label">Time</label>
+                            <div class="col-6">
+                              <input class="form-control" type="time" value="13:45:00" id="time">
+                            </div>
+                        
+                          <!-- assigned  -->
+                        <div class="form-group">
+                            <label for="assigned">Assigned To</label>
+                            <input type="text" class="form-control" id="assigned" placeholder="assigned">
+                        </div>
+                        <!-- Status  -->
+                        <div class="form-group col-md-16">
+                            <label for="status">Status</label>
+                            <select id="status" class="form-control">
+                              <option selected>Choose...</option>
+                              <option>Start</option>
+                              <option>Complete</option>
+                            </select>
+                          </div>
+                        <!-- Category  -->
+                        <div class="form-group col-md-16">
+                            <label for="category">Category</label>
+                            <select id="category" class="form-control">
+                              <option selected>Choose...</option>
+                              <option>Work</option>
+                              <option>Home</option>
+                              <option>Family</option>
+                              <option>Friends</option>
+                            </select>
+                          </div>
+
+                        <!-- Priority  -->
+                        <div class="form-group col-md-16">
+                            <label for="priority">Priority</label>
+                            <select id="priority" class="form-control">
+                              <option selected>Choose...</option>
+                              <option>High</option>
+                              <option>Moderate</option>
+                              <option>Low</option>
+                              <option>Optional</option>
+                            </select>
+                          </div>
+
+                        
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" data-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </body>
+</html>

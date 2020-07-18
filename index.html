@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Eat The Frog!</title>
   </head>
   <body class="container">
     <h1 class="text-center">Task Planner!</h1>
@@ -40,7 +40,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title">Create Task</h5>
                     <button class="close" data-dismiss="modal">
-                        <span>@times;</span>
+                        <span>&times;</span>
                     </button>
                 </div>
 
@@ -54,31 +54,35 @@
                         <!-- Task Description  -->
                         <div class="form-group">
                             <label for="taskDescription">Description</label>
-                            <textarea class="form-control" id="taskDescription" rows="3"></textarea>
+                            <textarea class="form-control" id="taskDescription" rows="2"></textarea>
                           </div>
                           <!-- Date -->
-                         
-                          <div class="form-group">
-                            <label for="date" class="col-2 col-form-label">Date</label>
-                            <div class="col-6">
+                         <div class="row">
+                          <div class="col-6">
+                            <label for="date" class="col-6 col-form-label">Date</label>
+                            <div>
                               <input class="form-control" type="date" value="14/07/2020" id="date">
                             </div>
                           </div>
                           <!-- Time  -->
-                          <div class="form-group">
-                            <label for="time" class="col-2 col-form-label">Time</label>
-                            <div class="col-6">
+                          <div class="col-6">
+                            <label for="time" class="col-4  col-form-label">Time</label>
+                            <div>
                               <input class="form-control" type="time" value="13:45:00" id="time">
                             </div>
+                          </div>
+                          
                         
                           <!-- assigned  -->
-                        <div class="form-group">
+                        <div class="form-group col-12">
                             <label for="assigned">Assigned To</label>
                             <input type="text" class="form-control" id="assigned" placeholder="assigned">
                         </div>
+
+                        <div class="row">
                         <!-- Status  -->
-                        <div class="form-group col-md-16">
-                            <label for="status">Status</label>
+                        <div class="col-4">
+                            <label for="status" class="col-4 col-form-label">Status</label>
                             <select id="status" class="form-control">
                               <option selected>Choose...</option>
                               <option>Start</option>
@@ -86,20 +90,21 @@
                             </select>
                           </div>
                         <!-- Category  -->
-                        <div class="form-group col-md-16">
-                            <label for="category">Category</label>
+                        <div class="col-4">
+                            <label for="category" class="col-4 col-form-label">Category</label>
                             <select id="category" class="form-control">
                               <option selected>Choose...</option>
                               <option>Work</option>
                               <option>Home</option>
                               <option>Family</option>
                               <option>Friends</option>
+                              <option>Create...</option>
                             </select>
                           </div>
-
+                        
                         <!-- Priority  -->
-                        <div class="form-group col-md-16">
-                            <label for="priority">Priority</label>
+                        <div class="col-4 ">
+                            <label for="priority" class="col-4 col-form-label">Priority</label>
                             <select id="priority" class="form-control">
                               <option selected>Choose...</option>
                               <option>High</option>
@@ -108,12 +113,14 @@
                               <option>Optional</option>
                             </select>
                           </div>
+                        </div> <!-- status and category row -->
+                        </div>
 
                         
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <!-- <button class="btn btn-secondary" data-dismiss="modal">Cancel</button> -->
                     <button class="btn btn-primary" data-dismiss="modal">Save</button>
                 </div>
             </div>

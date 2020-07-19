@@ -12,7 +12,8 @@ h6 {
   color: #f68121;
 }
 nav {
-  background-color: #f68121;
+  background-image: linear-gradient(to bottom right, #f68121, #ffdf74);
+  /* background-color: #f68121; */
 }
 
 main {

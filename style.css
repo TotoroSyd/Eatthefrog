@@ -18,3 +18,21 @@ main {
   /* border: black solid 2px; */
   margin-top: 5rem;
 }
+
+#taskName,
+#assigned-to,
+#date,
+#time,
+#assigned-to,
+#status,
+#category,
+#priority {
+  background-color: #fcbb30;
+}
+
+.btn {
+  border-radius: 30px;
+  background-color: #f68121;
+  text-decoration: none;
+  color: aliceblue;
+}

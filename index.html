@@ -38,13 +38,58 @@
     <div class="task-group">
       <h4>Mon, Jul 20</h4>
       <div class="task-list row">
-        
+        <div class="col-4">
+          <p class="text-center">Task List</p>
+        </div>
+        <div class="col">
+          <p class="text-center">Due Date</p>
+        </div>
+        <div class="col-2">
+          <p class="text-center">Countdown</p>
+        </div>
+        <div class="col">
+          <p class="text-center">Status</p>
+        </div>
+        <div class="col">
+          <p class="text-center">Owner</p>
+        </div>
       </div>
+
+      <div class="task-list row">
+        <div class="col-4">
+          <div class="card">
+            <div class="card-body">
+              This is some text within a card body.
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card-body"></div>
+            This is some text within a card body.
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="card-body"></div>
+            This is some text within a card body.
+          </div>
+        </div>
+        <div class="col">
+          <div class="card-body"></div>
+            3 days
+          </div>
+        </div>
+        <div class="col">
+          <div class="card-body"></div>
+            Tim, Phoebe
+          </div>
+        </div>
+      </div>
+      
     </div>
 
     <section style="margin-top: 5rem;">
 
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskModal">
+      <button type="button" class="btn" data-toggle="modal" data-target="#taskModal">
         Create
       </button>
 
@@ -61,7 +106,7 @@
               <li class="list-group-item">Time: 9:00am</li>
               <li class="list-group-item">Status: Done</li>
               <li class="list-group-item">
-                  <button class="btn btn-primary">Edit</button>
+                  <button type="button" class="btn">Edit</button>
               </li>
             </ul>
           </div>
@@ -83,84 +128,99 @@
 
 
       <div class="modal fade" id="taskModal">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title">Create Task</h5>
-                      <button class="close" data-dismiss="modal">
-                          <span>@times;</span>
-                      </button>
-                  </div>
-
-                  <div class="modal-body">
-                      <form>
-                          <!-- task name  -->
-                          <div class="form-group">
-                              <label for=""taskName"">Task Name</label>
-                              <input type="text" class="form-control" id="taskName" placeholder="taskName">
-                          </div>
-                          <!-- Time  -->
-                          <div class="col-6">
-                            <label for="time" class="col-4  col-form-label">Time</label>
-                            <div>
-                              <input class="form-control" type="time" value="13:45:00" id="time">
-                            </div>
-                          </div>
-                          
-                        
-                          <!-- assigned  -->
-                        <div class="form-group col-12">
-                            <label for="assigned">Assigned To</label>
-                            <input type="text" class="form-control" id="assigned" placeholder="assigned">
-                        </div>
-
-                        <div class="row">
-                        <!-- Status  -->
-                        <div class="col-4">
-                            <label for="status" class="col-4 col-form-label">Status</label>
-                            <select id="status" class="form-control">
-                              <option selected>Choose...</option>
-                              <option>Start</option>
-                              <option>Complete</option>
-                            </select>
-                          </div>
-                        <!-- Category  -->
-                        <div class="col-4">
-                            <label for="category" class="col-4 col-form-label">Category</label>
-                            <select id="category" class="form-control">
-                              <option selected>Choose...</option>
-                              <option>Work</option>
-                              <option>Home</option>
-                              <option>Family</option>
-                              <option>Friends</option>
-                              <option>Create...</option>
-                            </select>
-                          </div>
-                        
-                        <!-- Priority  -->
-                        <div class="col-4 ">
-                            <label for="priority" class="col-4 col-form-label">Priority</label>
-                            <select id="priority" class="form-control">
-                              <option selected>Choose...</option>
-                              <option>High</option>
-                              <option>Moderate</option>
-                              <option>Low</option>
-                              <option>Optional</option>
-                            </select>
-                          </div>
-                        </div> <!-- status and category row -->
-                        </div>
-
-                        
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <!-- <button class="btn btn-secondary" data-dismiss="modal">Cancel</button> -->
-                    <button class="btn btn-primary" data-dismiss="modal">Save</button>
-                </div>
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Create Task</h5>
+              <button class="close" data-dismiss="modal">
+                  <span>&times;</span>
+              </button>
             </div>
+
+            <div class="modal-body">
+              <form>
+                <!-- task name  -->
+                <div class="form-group">
+                    <label for="taskName">Task Name</label>
+                    <input type="text" class="form-control" id="taskName" placeholder="Pick up HelloFresh box">
+                </div>
+
+                <!-- assigned  -->
+                <div class="form-group">
+                  <label for="assigned">Assigned To</label>
+                  <input type="text" class="form-control" id="assigned-to" placeholder="Mohammad">
+                </div>
+
+                <!-- Date and Time row -->   
+                <div class="row form-group">
+                  <!-- Date  -->
+                  <div class="col-7">
+                    <label for="date" class="col-4 col-form-label">Date</label>
+                    <div>
+                      <input class="form-control" type="date" value="20/07/2020" id="date">
+                    </div>
+                  </div>
+                  
+                  <!-- Time  -->
+                  <div class="col-5">
+                    <label for="time" class="col-4  col-form-label">Time</label>
+                    <div>
+                      <input class="form-control" type="time" value="13:45:00" id="time">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Status, Category, Priority row -->   
+                <div class="row form-group">
+                  <!-- Status  -->
+                  <div class="col-4">
+                    <label for="status" class="col-4 col-form-label">Status</label>
+                    <select id="status" class="form-control">
+                      <option selected>Choose...</option>
+                      <option>Start</option>
+                      <option>Complete</option>
+                    </select>
+                  </div>
+                  <!-- Category  -->
+                  <div class="col-4">
+                    <label for="category" class="col-4 col-form-label">Category</label>
+                    <select id="category" class="form-control">
+                      <option selected>Choose...</option>
+                      <option>Work</option>
+                      <option>Home</option>
+                      <option>Family</option>
+                      <option>Friends</option>
+                      <option>Create...</option>
+                    </select>
+                  </div>
+                  
+                  <!-- Priority  -->
+                  <div class="col-4 ">
+                    <label for="priority" class="col-4 col-form-label">Priority</label>
+                    <select id="priority" class="form-control">
+                      <option selected>Choose...</option>
+                      <option>High</option>
+                      <option>Moderate</option>
+                      <option>Low</option>
+                      <option>Optional</option>
+                    </select>
+                  </div>
+                </div>     
+              </form>
+            </div>
+            <div class="modal-footer">
+                <!-- <button class="btn btn-secondary" data-dismiss="modal">Cancel</button> -->
+                <button class="btn" data-dismiss="modal">Save</button>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
+        
+          
+          
+            
+ 
+    
     
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

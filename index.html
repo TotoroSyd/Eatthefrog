@@ -7,62 +7,97 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-    <title>Eat The Frog!</title>
+    <link rel="stylesheet" href="style.css" type="text/css" media="all">
+    <link rel="icon" type="image/png" href="image/logo-orangebg.svg" />
+    <title>Eatthefrog</title>
   </head>
-  <body class="container">
-    <h1 class="text-center">Task Planner!</h1>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskModal">
+  <body>
+    
+    <header>
+      <nav class="navbar navbar-light navbar-expand-lg fixed-top" role="navigation">
+        
+        <a href="#" class="navbar-brand" style="color:  #f68121; font-weight: 400;">
+          <img src="image/frog.svg" alt="frog black and white icon" width="40" height="40" class="d-inline-block align-top">
+          Eatthefrog
+        </a>
+      </nav>
+    </header>
+
+    <main class="container">
+    <!--View Group-->
+    <div class="view d-flex flex-row justify-content-end align-items-center">
+      <a class="p-2" href="#" data-toggle="tooltip" title="Month View"><img src="image/view-month-orange.svg" alt="month view icon" width="30" height="30"></a>
+      <a class="p-2" href="#" data-toggle="tooltip" title="Week View"><img src="image/view-week-orange.svg" alt="week view icon" width="30" height="30"></a>
+      <a class="p-2" href="#" data-toggle="tooltip" title="Agenda View"><img src="image/view-agenda-orange.svg" alt="agenda view icon" width="30" height="30"></a>
+      <a class="p-2" href="#" data-toggle="tooltip" title="Previous"><img src="image/arrow-left-black.svg" alt="black arrow pointer left icon" width="10" height="10"></a>
+      <span class="year p-2">2020</span>
+      <a class="p-2" href="#" data-toggle="tooltip" title="Next" ><img src="image/arrow-right-black.svg" alt="black arrow pointer right icon" width="10" height="10"></a>
+    </div>
+    
+    <!--Task details display-->
+    <div class="task-group">
+      <h4>Mon, Jul 20</h4>
+      <div class="task-list row">
+        
+      </div>
+    </div>
+
+    <section style="margin-top: 5rem;">
+
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskModal">
         Create
       </button>
 
-    <h4 class="my-4">Today - Tue 14 Jul</h4>
+      <div class="row">
+        <!--Task item column-->
+        <div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Service Car</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, iure iusto expedita praesentium a animi deleniti magnam repellat corrupti quisquam et possimus suscipit placeat reiciendis accusamus aut molestiae itaque libero.</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Assignee: Mohammad</li>
+              <li class="list-group-item">Time: 9:00am</li>
+              <li class="list-group-item">Status: Done</li>
+              <li class="list-group-item">
+                  <button class="btn btn-primary">Edit</button>
+              </li>
+            </ul>
+          </div>
 
-    <div class="card">
-        <div class="card-body">
-        <h5 class="card-title">Service Car</h5>
-        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, iure iusto expedita praesentium a animi deleniti magnam repellat corrupti quisquam et possimus suscipit placeat reiciendis accusamus aut molestiae itaque libero.</p>
-    </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">Assignee: Mohammad</li>
-        <li class="list-group-item">Time: 9:00am</li>
-        <li class="list-group-item">Status: Done</li>
-        <li class="list-group-item">
-            <button class="btn btn-primary">Edit</button>
-        </li>
-    </ul>
-    </div>
+        </div>
+
+      </div>
+      
 
 
-    <div class="modal fade" id="taskModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Create Task</h5>
-                    <button class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
-                </div>
 
-                <div class="modal-body">
-                    <form>
-                        <!-- task name  -->
-                        <div class="form-group">
-                            <label for=""taskName"">Task Name</label>
-                            <input type="text" class="form-control" id="taskName" placeholder="taskName">
-                        </div>
-                        <!-- Task Description  -->
-                        <div class="form-group">
-                            <label for="taskDescription">Description</label>
-                            <textarea class="form-control" id="taskDescription" rows="2"></textarea>
-                          </div>
-                          <!-- Date -->
-                         <div class="row">
-                          <div class="col-6">
-                            <label for="date" class="col-6 col-form-label">Date</label>
-                            <div>
-                              <input class="form-control" type="date" value="14/07/2020" id="date">
-                            </div>
+
+
+
+
+
+
+
+
+
+      <div class="modal fade" id="taskModal">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title">Create Task</h5>
+                      <button class="close" data-dismiss="modal">
+                          <span>@times;</span>
+                      </button>
+                  </div>
+
+                  <div class="modal-body">
+                      <form>
+                          <!-- task name  -->
+                          <div class="form-group">
+                              <label for=""taskName"">Task Name</label>
+                              <input type="text" class="form-control" id="taskName" placeholder="taskName">
                           </div>
                           <!-- Time  -->
                           <div class="col-6">
@@ -127,7 +162,6 @@
         </div>
     </div>
     
-    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

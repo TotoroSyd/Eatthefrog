@@ -25,7 +25,7 @@
 
     <main class="container">
     <!--View Group-->
-    <div class="view d-flex flex-row justify-content-end align-items-center">
+    <div class="view d-flex flex-row justify-content-end align-items-center" style="position: sticky;">
       <a class="p-2" href="#" data-toggle="tooltip" title="Month View"><img src="image/view-month-orange.svg" alt="month view icon" width="30" height="30"></a>
       <a class="p-2" href="#" data-toggle="tooltip" title="Week View"><img src="image/view-week-orange.svg" alt="week view icon" width="30" height="30"></a>
       <a class="p-2" href="#" data-toggle="tooltip" title="Agenda View"><img src="image/view-agenda-orange.svg" alt="agenda view icon" width="30" height="30"></a>
@@ -35,198 +35,313 @@
     </div>
     
     <!--Task details display-->
-    <div class="task-group">
-      <div>
-        <h4>Mon, Jul 20</h4>
-        <!--Header of Task list table-->
-        <div class="task-list row">
-          <div class="col-4">
-            <p class="text-center">Task List</p>
-          </div>
-          <div class="col-2">
-            <p class="text-center">Due Date</p>
-          </div>
-          <div class="col-2">
-            <p class="text-center">Countdown</p>
-          </div>
-          <div class="col-2">
-            <p class="text-center">Status</p>
-          </div>
-          <div class="col-2">
-            <p class="text-center">Owner</p>
-          </div>
+    <h3>What's on?</h3>
+    <div id="accordion">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Mon, Jul 20
+          </h5>
         </div>
-  
-        <!--Task 1-->
-        <div class="task-list row">
-          <!--Task-->
-          <div class="col-4">
-            <p style="border: solid thin grey; border-radius: 10px; text-indent: 0.5em;">Grocery shopping</p>
-            <!-- <div class="card">
-              <div class="card-body">
-                Buy milk
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            <!--Header of Task list table-->
+            <div class="task-list row">
+              <div class="col-2">
+                <p class="text-center">Task Name</p>
               </div>
-            </div> -->
-          </div>
-          <!--Duedate-->
-          <div class="col-2">
-            <p class="text-center" style="border: solid thin grey; border-radius: 10px;">Wed, Jul 22</p>
-          </div>
-          <!--Countdown-->
-          <div class="col-2">
-            <p class="text-center" style="border: solid thin grey; border-radius: 10px;">3 day(s)</p>
-          </div>
-          <!--Status-->
-          <div class="col-2">
-            <p class="text-center" style="border: solid thin grey; border-radius: 10px;">Doing</p>
-            <!-- <select class="d-flex justify-content-center">
-              <option selected>Choose...</option>
-              <option>Not Start</option>                
-              <option>Started</option>
-              <option>Doing</option>
-              <option>Completed</option>
-            </select> -->
-          </div>
-          <!--Owner-->
-          <div class="col-2">
-            <p class="text-center" style="border: solid thin grey; border-radius: 10px;">...</p>
-          </div>
-        </div>
-  
-        <!--Task 2-->
-        <div class="task-list row">
-          <!--Task-->
-          <div class="col-4">
-            <p style="border: solid thin grey; border-radius: 10px; text-indent: 0.5em;">Book tickets for Sept trip</p>
-            <!-- <div class="card">
-              <div class="card-body">
-                Buy milk
+              <div class="col-4">
+                <p class="text-center">Description</p>
               </div>
-            </div> -->
+              <div class="col-2">
+                <p class="text-center">Owner</p>
+              </div>
+              <div class="col-2">
+                <p class="text-center">Date</p>
+              </div>
+              <div class="col-2">
+                <p class="text-center">Status</p>
+              </div>
+            </div>
+
+            <!--Task 1-->
+            <div class="task-list row">
+              <!--Task-->
+              <div class="col-2">
+                <p class="text-left">Add description field in Create box</p>
+              </div>
+
+              <!--Description-->
+              <div class="col-4">
+                <p class="text-left">Check figma and update CSS at the same time</p>
+              </div>
+
+              <!--Owner-->
+              <div class="col-2">
+                <p class="text-center">Mohammad</p>
+              </div>
+
+              <!--Duedate-->
+              <div class="col-2">
+                <p class="text-center">Mon, Jul 20</p>
+              </div>
+
+              <!-- Countdown
+              <div class="col-2">
+                <p class="text-center" style="border: solid thin grey; border-radius: 10px;">3 day(s)</p>
+              </div> -->
+
+              <!--Status-->
+              <div class="col-2">
+                <!-- <p class="text-center">Doing</p> -->
+                <select class="text-center">
+                  <option selected>Choose...</option>
+                  <option>To Do</option>                
+                  <option>In Progress</option>
+                  <option>Review</option>
+                  <option>Done</option>
+                </select>
+              </div>
+            </div>
+            <hr class="mt-0">
+            <!--Task 2-->
+            <div class="task-list row">
+              <!--Task-->
+              <div class="col-2">
+                <p class="text-left">Fix wireframe design</p>
+              </div>
+
+              <!--Description-->
+              <div class="col-4">
+                <p class="text-left"></p>
+              </div>
+
+              <!--Owner-->
+              <div class="col-2">
+                <p class="text-center">Mohammad</p>
+              </div>
+
+              <!--Duedate-->
+              <div class="col-2">
+                <p class="text-center">Mon, Jul 20</p>
+              </div>
+
+              <!-- Countdown
+              <div class="col-2">
+                <p class="text-center" style="border: solid thin grey; border-radius: 10px;">3 day(s)</p>
+              </div> -->
+
+              <!--Status-->
+              <div class="col-2">
+                <!-- <p class="text-center">Doing</p> -->
+                <select class="text-center">
+                  <option selected>Choose...</option>
+                  <option>Done</option>
+                  <option>To Do</option>                
+                  <option>In Progress</option>
+                  <option>Review</option>
+                </select>
+              </div>
+            </div>
+            <hr class="mt-0">
+            <!--Task 3-->
+            <div class="task-list row">
+              <!--Task-->
+              <div class="col-2">
+                <p class="text-left">Change status option</p>
+              </div>
+
+              <!--Description-->
+              <div class="col-4">
+                <p class="text-left">Follow the requirements</p>
+              </div>
+
+              <!--Owner-->
+              <div class="col-2">
+                <p class="text-center">Mohammad</p>
+              </div>
+
+              <!--Duedate-->
+              <div class="col-2">
+                <p class="text-center">Mon, Jul 20</p>
+              </div>
+
+              <!-- Countdown
+              <div class="col-2">
+                <p class="text-center" style="border: solid thin grey; border-radius: 10px;">3 day(s)</p>
+              </div> -->
+
+              <!--Status-->
+              <div class="col-2">
+                <!-- <p class="text-center">Doing</p> -->
+                <select class="text-center">
+                  <option selected>Choose...</option>
+                  <option>Done</option>
+                  <option>To Do</option>                
+                  <option>In Progress</option>
+                  <option>Review</option>
+                </select>
+              </div>
+            </div>
           </div>
-          <!--Duedate-->
-          <div class="col-2">
-            <p class="text-center" style="border: solid thin grey; border-radius: 10px;">Thu, Jul 23</p>
-          </div>
-          <!--Countdown-->
-          <div class="col-2">
-            <p class="text-center" style="border: solid thin grey; border-radius: 10px;">4 day(s)</p>
-          </div>
-          <!--Status-->
-          <div class="col-2">
-            <p class="text-center" style="border: solid thin grey; border-radius: 10px;">Doing</p>
-            <!-- <select class="d-flex justify-content-center">
-              <option selected>Choose...</option>
-              <option>Not Start</option>                
-              <option>Started</option>
-              <option>Doing</option>
-              <option>Completed</option>
-            </select> -->
         </div>
-          <!--Owner-->
-          <div class="col-2">
-            <p class="text-center" style="border: solid thin grey; border-radius: 10px;">Emma</p>
-          </div>
-        </div>  
       </div>
 
-      <div>
-        <h4>Tue, Jul 21</h4>
-        <!--Header of Task list table-->
-        <div class="task-list row">
-          <div class="col-4">
-            <p class="text-center">Task List</p>
-          </div>
-          <div class="col-2">
-            <p class="text-center">Due Date</p>
-          </div>
-          <div class="col-2">
-            <p class="text-center">Countdown</p>
-          </div>
-          <div class="col-2">
-            <p class="text-center">Status</p>
-          </div>
-          <div class="col-2">
-            <p class="text-center">Owner</p>
-          </div>
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            Tue, Jul 21
+          </h5>
         </div>
-  
-        <!--Task 1-->
-        <div class="task-list row">
-          <!--Task-->
-          <div class="col-4">
-            <p style="border: solid thin grey; border-radius: 10px; text-indent: 0.5em;">.......... </p>
-            <!-- <div class="card">
-              <div class="card-body">
-                Buy milk
+
+        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+          <div class="card-body">
+            <!--Header of Task list table-->
+            <div class="task-list row">
+              <div class="col-2">
+                <p class="text-center">Task Name</p>
               </div>
-            </div> -->
-          </div>
-          <!--Duedate-->
-          <div class="col-2">
-            <p class="text-center" style="border: solid thin grey; border-radius: 10px;">........</p>
-          </div>
-          <!--Countdown-->
-          <div class="col-2">
-            <p class="text-center" style="border: solid thin grey; border-radius: 10px;">.......</p>
-          </div>
-          <!--Status-->
-          <div class="col-2">
-            <p class="text-center" style="border: solid thin grey; border-radius: 10px;">.......</p>
-            <!-- <select class="d-flex justify-content-center">
-              <option selected>Choose...</option>
-              <option>Not Start</option>                
-              <option>Started</option>
-              <option>Doing</option>
-              <option>Completed</option>
-            </select> -->
-          </div>
-          <!--Owner-->
-          <div class="col-2">
-            <p class="text-center" style="border: solid thin grey; border-radius: 10px;">....</p>
-          </div>
-        </div>
-  
-        <!--Task 2-->
-        <div class="task-list row">
-          <!--Task-->
-          <div class="col-4">
-            <p style="border: solid thin grey; border-radius: 10px; text-indent: 0.5em;">.....</p>
-            <!-- <div class="card">
-              <div class="card-body">
-                Buy milk
+              <div class="col-4">
+                <p class="text-center">Description</p>
               </div>
-            </div> -->
+              <div class="col-2">
+                <p class="text-center">Owner</p>
+              </div>
+              <div class="col-2">
+                <p class="text-center">Date</p>
+              </div>
+              <div class="col-2">
+                <p class="text-center">Status</p>
+              </div>
+            </div>
+
+            <!--Task 1-->
+            <div class="task-list row">
+              <!--Task-->
+              <div class="col-2">
+                <p class="text-left">Make the font-size responsive in mobile mode</p>
+              </div>
+
+              <!--Description-->
+              <div class="col-4">
+                <p class="text-left">Media query, breakpoints</p>
+              </div>
+
+              <!--Owner-->
+              <div class="col-2">
+                <p class="text-center">Phoebe</p>
+              </div>
+
+              <!--Duedate-->
+              <div class="col-2">
+                <p class="text-center">Tue, Jul 21</p>
+              </div>
+
+              <!-- Countdown
+              <div class="col-2">
+                <p class="text-center" style="border: solid thin grey; border-radius: 10px;">3 day(s)</p>
+              </div> -->
+
+              <!--Status-->
+              <div class="col-2">
+                <!-- <p class="text-center">Doing</p> -->
+                <select class="text-center">
+                  <option selected>Choose...</option>
+                  <option>To Do</option>                
+                  <option>In Progress</option>
+                  <option>Review</option>
+                  <option>Done</option>
+                </select>
+              </div>
+            </div>
+            <hr class="mt-0">
+            <!--Task 2-->
+            <div class="task-list row">
+              <!--Task-->
+              <div class="col-2">
+                <p class="text-left">Create Edit feature</p>
+              </div>
+
+              <!--Description-->
+              <div class="col-4">
+                <p class="text-left"></p>
+              </div>
+
+              <!--Owner-->
+              <div class="col-2">
+                <p class="text-center">Mohammad</p>
+              </div>
+
+              <!--Duedate-->
+              <div class="col-2">
+                <p class="text-center">Tue, Jul 21</p>
+              </div>
+
+              <!-- Countdown
+              <div class="col-2">
+                <p class="text-center" style="border: solid thin grey; border-radius: 10px;">3 day(s)</p>
+              </div> -->
+
+              <!--Status-->
+              <div class="col-2">
+                <!-- <p class="text-center">Doing</p> -->
+                <select class="text-center">
+                  <option selected>Choose...</option>
+                  <option>Done</option>
+                  <option>To Do</option>                
+                  <option>In Progress</option>
+                  <option>Review</option>
+                </select>
+              </div>
+            </div>
+            <hr class="mt-0">
+            <!--Task 3-->
+            <div class="task-list row">
+              <!--Task-->
+              <div class="col-2">
+                <p class="text-left">Finalize solution for Summary box appearing from the right</p>
+              </div>
+
+              <!--Description-->
+              <div class="col-4">
+                <p class="text-left">Need discussion</p>
+              </div>
+
+              <!--Owner-->
+              <div class="col-2">
+                <p class="text-center">Phoebe, Mohammad</p>
+              </div>
+
+              <!--Duedate-->
+              <div class="col-2">
+                <p class="text-center">Wed, Jul 22</p>
+              </div>
+
+              <!-- Countdown
+              <div class="col-2">
+                <p class="text-center" style="border: solid thin grey; border-radius: 10px;">3 day(s)</p>
+              </div> -->
+
+              <!--Status-->
+              <div class="col-2">
+                <!-- <p class="text-center">Doing</p> -->
+                <select class="text-center">
+                  <option selected>Choose...</option>
+                  <option>Done</option>
+                  <option>To Do</option>                
+                  <option>In Progress</option>
+                  <option>Review</option>
+                </select>
+              </div>
+            </div>
           </div>
-          <!--Duedate-->
-          <div class="col-2">
-            <p class="text-center" style="border: solid thin grey; border-radius: 10px;">....</p>
-          </div>
-          <!--Countdown-->
-          <div class="col-2">
-            <p class="text-center" style="border: solid thin grey; border-radius: 10px;">......</p>
-          </div>
-          <!--Status-->
-          <div class="col-2">
-            <p class="text-center" style="border: solid thin grey; border-radius: 10px;">.....</p>
-            <!-- <select class="d-flex justify-content-center">
-              <option selected>Choose...</option>
-              <option>Not Start</option>                
-              <option>Started</option>
-              <option>Doing</option>
-              <option>Completed</option>
-            </select> -->
         </div>
-          <!--Owner-->
-          <div class="col-2">
-            <p class="text-center" style="border: solid thin grey; border-radius: 10px;">.........</p>
-          </div>
-        </div>  
       </div>
     </div>
 
     <!--Create button-->
-    <button type="button" class="btn" data-toggle="modal" data-target="#taskModal">+</button>
+    <button type="button" class="btn" data-toggle="modal" data-target="#taskModal" id="create-btn">+</button>
 
     <!--Summary box-->
       <!--Todo-->
@@ -247,7 +362,7 @@
               <!-- task name  -->
               <div class="form-group">
                   <label for="taskName">Task Name</label>
-                  <input type="text" class="form-control" id="taskName" placeholder="Pick up HelloFresh box">
+                  <input type="text" class="form-control" id="taskName" placeholder="Delete cancel button">
               </div>
               <!-- Task Description -->
               <div class="form-group">
@@ -287,7 +402,7 @@
                   <label for="status" class="col-4 col-form-label">Status</label>
                   <select id="status" class="form-control">
                     <option selected>Choose...</option>
-                    <option>To DO</option>                
+                    <option>To Do</option>                
                     <option>In Progress</option>
                     <option>Review</option>
                     <option>Done</option>

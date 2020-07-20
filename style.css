@@ -39,3 +39,15 @@ main {
   text-decoration: none;
   color: aliceblue;
 }
+
+#create-btn {
+  margin: 1em 1em;
+}
+
+.card-header {
+  background-color: #f68121;
+}
+
+.card-header > h5 {
+  color: aliceblue;
+}

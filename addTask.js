@@ -9,7 +9,7 @@ function saveButtonClicked() {
   //   console.log("Save Button Clicked");
   const name = document.querySelector("#taskName").value;
   const description = document.querySelector("#description").value;
-  const assignee = document.querySelector("#assigned-to").value;
+  const assignee = document.querySelector("#assigned").value;
   const date = document.querySelector("#date").value;
   const time = document.querySelector("#time").value;
   const status = document.querySelector("#status").value;

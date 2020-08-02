@@ -11,3 +11,10 @@ create_btn.onclick = function () {
   modal_title.innerText = "Create Task";
   modal_title.value = modal_title.innerText;
 };
+
+// function getAllTasks();
+// function getTasksWithStatus(status);
+// function addTask(task);
+// function deleteTask(task);
+// function updateTask(taskId, status);
+// function assignTask(taskId, assignee);

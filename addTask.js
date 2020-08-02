@@ -2,7 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", getAllTasks);
 function getAllTasks() {
-  id_arr = JSON.parse(localStorage.getItem("id_arr"));
+  let id_arr = JSON.parse(localStorage.getItem("id_arr"));
   const l = id_arr.length;
   for (let i = 0; i < l; i++) {
     let post_json_taskObj = JSON.parse(localStorage.getItem(id_arr[i]));

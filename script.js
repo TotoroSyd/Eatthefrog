@@ -1,3 +1,4 @@
+"use strict";
 let edit_btn = document.querySelector("#edit_btn");
 let create_btn = document.querySelector("#create_btn");
 let modal_title = document.querySelector("#modal_title");

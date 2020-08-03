@@ -161,18 +161,32 @@
                 <span>&times;</span>
             </button>
           </div>
-
-          <div class="modal-body">
-            <form>
+<!-- ======================================================= Modal Body============================================== -->
+          <div class="modal-body" id="task-modal">
+            <form id="task-form" class="form">
               <!-- task name  -->
               <div class="form-group">
                   <label for="taskName">Task Name</label>
-                  <input type="text" class="form-control" id="taskName" placeholder="Delete cancel button">
+                  <input type="text" class="form-control" id="taskName" placeholder="Enter Task Name">
+                  <!-- <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                  <div class="invalid-feedback">
+                    Task name can't be empty, minimun 8 character!
+                  </div> -->
+                  <p id="err"></p>
               </div>
               <!-- Task Description -->
               <div class="form-group">
                 <label for="exampleFormControlTextarea1">Description</label>
                 <textarea class="form-control" id="description" rows="2"></textarea>
+                <p id="err"></p>
+                <!-- <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  Task description can't be empty, minimum 15 character!
+                </div> -->
               </div>
 
 
@@ -180,6 +194,13 @@
               <div class="form-group">
                 <label for="assigned">Assigned To</label>
                 <input type="text" class="form-control" id="assigned" placeholder="Mohammad">
+                <!-- <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  Assigned to can't be empty, minimum 8 character!
+                </div> -->
+                <p id="err"></p>
               </div>
 
               <!-- Date and Time row -->   
@@ -188,7 +209,14 @@
                 <div class="col-7">
                   <label for="date" class="col-4 col-form-label">Date</label>
                   <div>
-                    <input class="form-control" type="date" value="20/07/2020" id="date">
+                    <input class="form-control form-group" type="date" value="20/07/2020" id="date">
+                    <p id="err"></p>
+                    <!-- <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                      Date can't be empty!
+                    </div> -->
                   </div>
                 </div>
                 
@@ -213,6 +241,12 @@
                     <option>Review</option>
                     <option>Done</option>
                   </select>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                  <div class="invalid-feedback">
+                    Select a status!
+                  </div>
                 </div>
                 <!-- Category  -->
                 <div class="col-4">
@@ -243,7 +277,7 @@
           </div>
           <div class="modal-footer">
               <!-- <button class="btn btn-secondary" data-dismiss="modal">Cancel</button> -->
-              <button class="btn" data-dismiss="modal" id="task-modal-save">Save</button>
+              <button class="btn" data-dismiss="modal" id="task-modal-save" type="submit">Save</button>
           </div>
         </div>
       </div>
@@ -253,7 +287,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <script src=script.js></script>
-    <script src=addTask.js></script>
+    <script src="script.js"></script>
+    <script src="valid.js"></script>
+    <script src="addTask.js"></script>
   </body>
 </html>

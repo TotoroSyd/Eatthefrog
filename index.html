@@ -145,12 +145,38 @@
 
     <!--Create button-->
     <button type="button" class="btn" data-toggle="modal" data-target="#taskModal" id="create_btn">+</button>
-    <!--Create button-->
-    <button type="button" class="btn" data-toggle="modal" id="fiter_btn">Filter</button>  
+    <!--Filter button-->
+    <button type="button" class="btn" data-toggle="modal" id="filter_btn">Filter</button>  
 
     <!--Summary box-->
       <!--Todo-->
-    <!--Filter  -->
+    <!-- Filter Dialog
+    <div class="modal fade" id="taskModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal_title">Filter</h5>
+            <button class="close" data-dismiss="modal">
+                <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="task-modal">
+            <form id="task-form" class="form">
+              <div class="form-group">
+                <label for="status" class="col-4 col-form-label">Status Filter</label>
+                <select id="status" class="form-control">
+                  <option>To Do</option>                
+                  <option>In Progress</option>
+                  <option>Review</option>
+                  <option>Done</option>
+                </select>
+              </div>
+              <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" id="task-modal-save" type="submit">Save</button>
+              </div>
+            </form>
+          </div> -->
+
     <!--Create Dialog-->
     <div class="modal fade" id="taskModal">
       <div class="modal-dialog">
@@ -289,6 +315,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script src="script.js"></script>
     <script src="valid.js"></script>
-    <script src="addTask.js"></script>
+    <!-- <script src="addTask.js"></script> -->
+    <script src="deleteTask.js"></script>
   </body>
 </html>

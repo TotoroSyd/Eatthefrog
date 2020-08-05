@@ -1,15 +1,23 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", getAllTasks);
+document.addEventListener("DOMContentLoaded", function () {
+  getAllTasks();
+  const taskFilterButton = document.querySelector("#filter_btn");
+  taskFilterButton.addEventListener("click", function () {
+    getTasksWithStatus("Review");
+  });
+});
+
 function getAllTasks() {
   let id_arr = JSON.parse(localStorage.getItem("id_arr"));
   const l = id_arr.length;
   for (let i = 0; i < l; i++) {
     let post_json_taskObj = JSON.parse(localStorage.getItem(id_arr[i]));
     // renderTask(post_json_taskObj[i]) // can only use this when taskObj is a global class. Now it only exists when the Save button is call
+    //data-task-id=${id}
     const html = `
     <hr class="mt-0">
-    <div class="task-list row">
+    <div class="task-list row"> 
         <div class="col-2">
         <p class="text-left">${post_json_taskObj["name"]}</p>
         </div>
@@ -38,13 +46,24 @@ function getAllTasks() {
               post_json_taskObj["status"] === "Done" ? "selected" : ""
             }>Done</option>
         </select>
+        <button type="button" class="btn btn-warning edit">Edit</button>
         </div>
     </div>`;
     const taskElement = document.createRange().createContextualFragment(html);
+    console.log(taskElement);
+    const edit = taskElement.querySelector("button.edit");
+    edit.addEventListener("click", editTask)
     taskContainer.append(taskElement);
   }
 }
-
+// Eidt function 
+function editTask(event){
+  console.log("It works");
+  $('#taskModal').modal('show');
+  // const taskElement = 
+  event.target.closest(".task-list");
+  
+}
 const taskContainer = document.querySelector("#tasks");
 // create
 const taskModalSaveButton = document.querySelector("#task-modal-save");
@@ -135,28 +154,30 @@ function renderTask(taskObj) {
 // /.Add task class
 
 // Get all Tasks with a given status
-// const taskFilterButton = document.querySelector("#filter_btn");
-// // taskFilterButton.addEventListener("click", getTasksWithStatus);
-// let status2 = "To Do";
-// function getTasksWithStatus(status2) {
-//   // if status = To Do, In Progress, Review, Done
-//   let task_byStatus = [];
-//   id_arr = JSON.parse(localStorage.getItem("id_arr"));
-//   const l = id_arr.length;
-//   for (let i = 0; i < l; i++) {
-//     let post_json_taskByStatus = JSON.parse(localStorage.getItem(id_arr[i]));
-//     if (post_json_taskByStatus["status"] === status2) {
-//       task_byStatus.push(post_json_taskByStatus);
-//     }
-//   }
-//   taskContainer.append("");
-//   for (let j = 0; j < task_byStatus.length; j++) {
-//     renderTask(task_byStatus[j]);
-//   }
-//   console.log(task_byStatus);
 
-//   // if status = All
-//   // show all
-// }
+// let status2 = "Review";
+function getTasksWithStatus(status2) {
+  console.log(status2);
+  // if status = To Do, In Progress, Review, Done
+  let task_byStatus = [];
+  id_arr = JSON.parse(localStorage.getItem("id_arr"));
+  const l = id_arr.length;
+  console.log(id_arr);
+  for (let i = 0; i < l; i++) {
+    let post_json_taskByStatus = JSON.parse(localStorage.getItem(id_arr[i]));
+    if (post_json_taskByStatus["status"] === status2) {
+      task_byStatus.push(post_json_taskByStatus);
+    }
+  }
+  console.log(task_byStatus);
+  taskContainer.innerHTML = "";
+
+  for (let j = 0; j < task_byStatus.length; j++) {
+    renderTask(task_byStatus[j]);
+  }
+
+  // if status = All
+  // show all
+}
 
 // getTasksWithStatus(status2);

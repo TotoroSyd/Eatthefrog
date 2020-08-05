@@ -1,81 +1,81 @@
 const form = document.querySelector("#task-form");
-const taskNameInput = document.querySelector("#taskName");
-const descriptionInput = document.querySelector("#description");
-const assignedInput = document.querySelector("#assigned");
-const dateInput = document.querySelector("#date");
+const name = document.querySelector("#taskName");
+const description = document.querySelector("#description");
+const assignee = document.querySelector("#assigned");
+const date = document.querySelector("#date");
 const statusInput = document.querySelector("#status");
 
 
 window.addEventListener("load" , disableSubmit);
-taskNameInput.addEventListener("blur" ,validate);
-descriptionInput.addEventListener("blur" ,validate);
-assignedInput.addEventListener("blur" ,validate);
-dateInput.addEventListener("blur" ,checkDate);
+name.addEventListener("focus" ,validate);
+description.addEventListener("focus" ,validate);
+assignee.addEventListener("focus" ,validate);
+date.addEventListener("focus" ,validate);
 
 function disableSubmit(){
   
     document.querySelector("#task-modal-save").disabled = true;
   }
 
-
 //    ============================ Validate from===============================
   function validate() {
   
-    const taskName = taskNameInput.value.trim();
-    const description = descriptionInput.value.trim();
-    const assigne = assignedInput.value.trim();
+    const taskName = name.value.trim();
+    const descriptionInput = description.value.trim();
+    const assigne = assignee.value.trim();
 
 // =============================Task name validation========================  
     if (taskName == "" ||
     taskName.length <8) 
       {
-        error(taskNameInput , 'Enter a task name with 8 or more char');
+        error(name , 'Enter a task name with 8 or more char');
       }
      else{
-     submit(taskNameInput);
+     submit(name);
    };
 
    // =============================Description validation========================
-   if (description == "" ||
+   if (descriptionInput == "" ||
    description.length <15) 
       {
-        error(descriptionInput , 'Enter task description with 15 or more char');
+        error(description , 'Enter task description with 15 or more char');
       }
      else{
-     submit(descriptionInput);
+     submit(description);
    };
 
    // =============================Assignee validation========================
    if (assigne == "" ||
    assigne.length <4) 
       {
-        error(assignedInput , 'Enter assignee name with more than 4 cha');
+        error(assignee , 'Enter assignee name with more than 4 cha');
       }
      else{
-     submit(assignedInput);
+     submit(assignee);
    };
 
    // =============================Date validation========================
-  };
-
-
-  function checkDate(){
- 
-    const date = dateInput.value;
-    var todayDate = new Date().toISOString().slice(0,10);
+   const dateInpute = date.value;
+    var currentDate = new Date().toISOString().slice(0,10);
     
     console.log(date);
-    if (date == null || date == ''){
-        error(dateInput , 'Task must have a due date');
+    if (dateInpute == null || dateInpute == ''){
+        error(date , 'Task must have a due date');
       }
-   else if(date < todayDate){
-    error(dateInput , 'Task cannot be created in past date');
+   else if(dateInpute < currentDate){
+    error(date , 'Task cannot be created in past date');
     }
    
   else{
-    submit(dateInput);
+    submit(date);
     }
   };
+
+
+  // function checkDate(){
+ 
+    
+  // };
     // if(isFutureDate(date.value)){
     //     resultDiv.innerHTML = "Entered date is a future date";
     //     resultDiv.style.color = "red";
@@ -105,7 +105,7 @@ function disableSubmit(){
     document.querySelector("#task-modal-save").disabled = false;};
 
 
-// taskNameInput.addEventListener("input", function(event){
+// name.addEventListener("input", function(event){
 //     if(event.target.value && event.target.value.length >=8){
 //         event.target.classList.remove("is-invalid");
 //         event.target.classList.add("is-valid");
@@ -127,7 +127,7 @@ function disableSubmit(){
 
 // });
 
-// assignedInput.addEventListener("input", function(event){
+// assignee.addEventListener("input", function(event){
 //     if(event.target.value && event.target.value.length >=8){
 //         event.target.classList.remove("is-invalid");
 //         event.target.classList.add("is-valid");
@@ -138,7 +138,7 @@ function disableSubmit(){
 
 // });
 
-// dateInput.addEventListener("input", function(event){
+// date.addEventListener("input", function(event){
 //     if(event.target.value && event.target.value.length >=8){
 //         event.target.classList.remove("is-invalid");
 //         event.target.classList.add("is-valid");

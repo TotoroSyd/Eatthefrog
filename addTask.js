@@ -98,7 +98,7 @@ function addItemLocalStorage(taskObj) {
 function renderTask(taskObj) {
   const html = `
     <hr class="mt-0">
-    <div class="task-list row">
+    <div id=${taskObj["id"]} class="task-list row">
         <div class="col-2">
         <p class="text-left">${taskObj["name"]}</p>
         </div>

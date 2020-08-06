@@ -46,15 +46,14 @@ function getAllTasks() {
               post_json_taskObj["status"] === "Done" ? "selected" : ""
             }>Done</option>
         </select>
-        <button type="button" class="btn btn-warning editButton">Edit</button>
+        <button type="button" class="btn btn-warning edit">Edit</button>
         </div>
     </div>`;
     const taskElement = document.createRange().createContextualFragment(html);
     console.log(taskElement);
-    const edit = taskElement.querySelector(".editButton");
+    const edit = taskElement.querySelector("button.edit");
     
-      modal_title.innerText = "Edit Task";
-      modal_title.value = modal_title.innerText;
+      
   
     edit.addEventListener("click", editTask)
     taskContainer.append(taskElement);
@@ -63,13 +62,23 @@ function getAllTasks() {
 // Eidt function 
 function editTask(event){
   console.log("It works");
+  modal_title.innerText = "Edit Task";
+      modal_title.value = modal_title.innerText;
   const editButton = event.target;
-const taskElement = editButton.target.closest(".newtask-list");
-const task = this.tasks.find((_t) => taskElement.id === )
+// const taskElement = editButton.target.closest(".newtask-list");
+// const task = this.tasks.find((_t) => taskElement.id === )
   $('#taskModal').modal('show');
   
   
 }
+
+// Change Title to "create Task"
+create_btn.onclick = function () {
+  modal_title.innerText = "Create Task";
+  modal_title.value = modal_title.innerText;
+};
+
+
 const taskContainer = document.querySelector("#tasks");
 // create
 const taskModalSaveButton = document.querySelector("#task-modal-save");

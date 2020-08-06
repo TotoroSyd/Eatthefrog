@@ -17,7 +17,7 @@ function getAllTasks() {
     //data-task-id=${id}
     const html = `
     <hr class="mt-0">
-    <div class="task-list row"> 
+    <div class="newtask-list row"> 
         <div class="col-2">
         <p class="text-left">${post_json_taskObj["name"]}</p>
         </div>
@@ -46,12 +46,16 @@ function getAllTasks() {
               post_json_taskObj["status"] === "Done" ? "selected" : ""
             }>Done</option>
         </select>
-        <button type="button" class="btn btn-warning edit">Edit</button>
+        <button type="button" class="btn btn-warning editButton">Edit</button>
         </div>
     </div>`;
     const taskElement = document.createRange().createContextualFragment(html);
     console.log(taskElement);
-    const edit = taskElement.querySelector("button.edit");
+    const edit = taskElement.querySelector(".editButton");
+    
+      modal_title.innerText = "Edit Task";
+      modal_title.value = modal_title.innerText;
+  
     edit.addEventListener("click", editTask)
     taskContainer.append(taskElement);
   }
@@ -59,9 +63,11 @@ function getAllTasks() {
 // Eidt function 
 function editTask(event){
   console.log("It works");
+  const editButton = event.target;
+const taskElement = editButton.target.closest(".newtask-list");
+const task = this.tasks.find((_t) => taskElement.id === )
   $('#taskModal').modal('show');
-  // const taskElement = 
-  event.target.closest(".task-list");
+  
   
 }
 const taskContainer = document.querySelector("#tasks");

@@ -1,211 +1,286 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css" type="text/css" media="all">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" type="text/css" media="all" />
     <link rel="icon" type="image/png" href="image/logo-orangebg.svg" />
     <title>Eatthefrog</title>
   </head>
   <body>
-    
     <header>
-      <nav class="navbar navbar-light navbar-expand-lg fixed-top" role="navigation">
-        
-        <a href="#" class="navbar-brand" style="color: aliceblue; font-weight: 500;">
-          <img src="image/frog.svg" alt="frog black and white icon" width="40" height="40" class="d-inline-block align-top">
+      <nav
+        class="navbar navbar-light navbar-expand-lg fixed-top"
+        role="navigation"
+      >
+        <a
+          href="#"
+          class="navbar-brand"
+          style="color: aliceblue; font-weight: 500;"
+        >
+          <img
+            src="image/frog.svg"
+            alt="frog black and white icon"
+            width="40"
+            height="40"
+            class="d-inline-block align-top"
+          />
           Eatthefrog
         </a>
       </nav>
     </header>
 
     <main class="container">
-    <!--View Group-->
-    <div class="view d-flex flex-row justify-content-end align-items-center" style="position: sticky;">
-      <a class="p-2" href="#" data-toggle="tooltip" title="Month View"><img src="image/view-month-orange.svg" alt="month view icon" width="30" height="30"></a>
-      <a class="p-2" href="#" data-toggle="tooltip" title="Week View"><img src="image/view-week-orange.svg" alt="week view icon" width="30" height="30"></a>
-      <a class="p-2" href="#" data-toggle="tooltip" title="Agenda View"><img src="image/view-agenda-orange.svg" alt="agenda view icon" width="30" height="30"></a>
-      <a class="p-2" href="#" data-toggle="tooltip" title="Previous"><img src="image/arrow-left-black.svg" alt="black arrow pointer left icon" width="10" height="10"></a>
-      <span class="year p-2">2020</span>
-      <a class="p-2" href="#" data-toggle="tooltip" title="Next" ><img src="image/arrow-right-black.svg" alt="black arrow pointer right icon" width="10" height="10"></a>
-    </div>
-    
-    <!--Task details display-->
-    <h3>What's on?</h3>
-    <div id="accordion">
-      <div class="card">
-        <div class="card-header" id="headingOne">
-          <h5 data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Mon, Jul 20
-          </h5>
-        </div>
+      <!--View Group-->
+      <div
+        class="view d-flex flex-row justify-content-end align-items-center"
+        style="position: sticky;"
+      >
+        <a class="p-2" href="#" data-toggle="tooltip" title="Month View"
+          ><img
+            src="image/view-month-orange.svg"
+            alt="month view icon"
+            width="30"
+            height="30"
+        /></a>
+        <a class="p-2" href="#" data-toggle="tooltip" title="Week View"
+          ><img
+            src="image/view-week-orange.svg"
+            alt="week view icon"
+            width="30"
+            height="30"
+        /></a>
+        <a class="p-2" href="#" data-toggle="tooltip" title="Agenda View"
+          ><img
+            src="image/view-agenda-orange.svg"
+            alt="agenda view icon"
+            width="30"
+            height="30"
+        /></a>
+        <a class="p-2" href="#" data-toggle="tooltip" title="Previous"
+          ><img
+            src="image/arrow-left-black.svg"
+            alt="black arrow pointer left icon"
+            width="10"
+            height="10"
+        /></a>
+        <span class="year p-2">2020</span>
+        <a class="p-2" href="#" data-toggle="tooltip" title="Next"
+          ><img
+            src="image/arrow-right-black.svg"
+            alt="black arrow pointer right icon"
+            width="10"
+            height="10"
+        /></a>
+      </div>
 
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-          <div class="card-body" id="tasks"> 
-            <!--Header of Task list table-->
-            <div class="task-list row" >
-              <div class="col-2">
-                <p class="text-center">Task Name</p>
-              </div>
-              <div class="col-4">
-                <p class="text-center">Description</p>
-              </div>
-              <div class="col-2">
-                <p class="text-center">Owner</p>
-              </div>
-              <div class="col-2">
-                <p class="text-center">Date</p>
-              </div>
-              <div class="col-2">
-                <p class="text-center">Status</p>
+      <!--Task details display-->
+      <h3>What's on?</h3>
+      <div id="accordion">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5
+              data-toggle="collapse"
+              data-target="#collapseOne"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+            >
+              Mon, Jul 20
+            </h5>
+          </div>
+
+          <div
+            id="collapseOne"
+            class="collapse show"
+            aria-labelledby="headingOne"
+            data-parent="#accordion"
+          >
+            <div class="card-body" id="tasks">
+              <!--Header of Task list table-->
+              <div class="task-list row">
+                <div class="col-2">
+                  <p class="text-center">Task Name</p>
+                </div>
+                <div class="col-4">
+                  <p class="text-center">Description</p>
+                </div>
+                <div class="col-2">
+                  <p class="text-center">Owner</p>
+                </div>
+                <div class="col-2">
+                  <p class="text-center">Date</p>
+                </div>
+                <div class="col-2">
+                  <p class="text-center">Status</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="card">
-        <div class="card-header" id="headingTwo">
-          <h5 data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            Tue, Jul 21
-          </h5>
-        </div>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h5
+              data-toggle="collapse"
+              data-target="#collapseTwo"
+              aria-expanded="true"
+              aria-controls="collapseTwo"
+            >
+              Tue, Jul 21
+            </h5>
+          </div>
 
-        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
-          <div class="card-body">
-            <!--Header of Task list table-->
-            <div class="task-list row">
-              <div class="col-2">
-                <p class="text-center">Task Name</p>
-              </div>
-              <div class="col-4">
-                <p class="text-center">Description</p>
-              </div>
-              <div class="col-2">
-                <p class="text-center">Owner</p>
-              </div>
-              <div class="col-2">
-                <p class="text-center">Date</p>
-              </div>
-              <div class="col-2">
-                <p class="text-center">Status</p>
-              </div>
-            </div>
-
-            <!--Task 1-->
-            <div class="task-list row">
-              <!--Task-->
-              <div class="col-2">
-                <p class="text-left">Make the font-size responsive in mobile mode</p>
-              </div>
-
-              <!--Description-->
-              <div class="col-4">
-                <p class="text-left">Media query, breakpoints</p>
+          <div
+            id="collapseTwo"
+            class="collapse show"
+            aria-labelledby="headingTwo"
+            data-parent="#accordion"
+          >
+            <div class="card-body">
+              <!--Header of Task list table-->
+              <div class="task-list row">
+                <div class="col-2">
+                  <p class="text-center">Task Name</p>
+                </div>
+                <div class="col-4">
+                  <p class="text-center">Description</p>
+                </div>
+                <div class="col-2">
+                  <p class="text-center">Owner</p>
+                </div>
+                <div class="col-2">
+                  <p class="text-center">Date</p>
+                </div>
+                <div class="col-2">
+                  <p class="text-center">Status</p>
+                </div>
               </div>
 
-              <!--Owner-->
-              <div class="col-2">
-                <p class="text-center">Phoebe</p>
-              </div>
+              <!--Task 1-->
+              <div class="task-list row">
+                <!--Task-->
+                <div class="col-2">
+                  <p class="text-left">
+                    Make the font-size responsive in mobile mode
+                  </p>
+                </div>
 
-              <!--Duedate-->
-              <div class="col-2">
-                <p class="text-center">Tue, Jul 21</p>
-              </div>
+                <!--Description-->
+                <div class="col-4">
+                  <p class="text-left">Media query, breakpoints</p>
+                </div>
 
-              <!-- Countdown
+                <!--Owner-->
+                <div class="col-2">
+                  <p class="text-center">Phoebe</p>
+                </div>
+
+                <!--Duedate-->
+                <div class="col-2">
+                  <p class="text-center">Tue, Jul 21</p>
+                </div>
+
+                <!-- Countdown
               <div class="col-2">
                 <p class="text-center" style="border: solid thin grey; border-radius: 10px;">3 day(s)</p>
               </div> -->
 
-              <!--Status-->
-              <div class="col-2">
-                <!-- <p class="text-center">Doing</p> -->
-                <select class="text-center">
-                  <option selected>Choose...</option>
-                  <option>To Do</option>                
-                  <option>In Progress</option>
-                  <option>Review</option>
-                  <option>Done</option>
-                </select>
+                <!--Status-->
+                <div class="col-2">
+                  <!-- <p class="text-center">Doing</p> -->
+                  <select class="text-center">
+                    <option selected>Choose...</option>
+                    <option>To Do</option>
+                    <option>In Progress</option>
+                    <option>Review</option>
+                    <option>Done</option>
+                  </select>
+                </div>
               </div>
-            </div>
-            <hr class="mt-0">
+              <hr class="mt-0" />
 
-            <div><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#taskModal" id="edit_btn">Edit</button></div>
+              <!-- <div>
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  data-toggle="modal"
+                  data-target="#taskModal"
+                  id="edit_btn"
+                >
+                  Edit
+                </button>
+              </div> -->
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-    <!--Create button-->
-    <button type="button" class="btn" data-toggle="modal" data-target="#taskModal" id="create_btn">+</button>
-    <!--Filter button-->
-    <button type="button" class="btn" data-toggle="modal" id="filter_btn">Filter</button>  
-
-    <!--Summary box-->
-      <!--Todo-->
-    <!-- Filter Dialog
-    <div class="modal fade" id="taskModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modal_title">Filter</h5>
-            <button class="close" data-dismiss="modal">
-                <span>&times;</span>
-            </button>
-          </div>
-          <div class="modal-body" id="task-modal">
-            <form id="task-form" class="form">
-              <div class="form-group">
-                <label for="status" class="col-4 col-form-label">Status Filter</label>
-                <select id="status" class="form-control">
-                  <option>To Do</option>                
-                  <option>In Progress</option>
-                  <option>Review</option>
-                  <option>Done</option>
-                </select>
-              </div>
-              <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" id="task-modal-save" type="submit">Save</button>
-              </div>
-            </form>
-          </div> -->
-
+      <!--Create button-->
+      <button
+        type="button"
+        class="btn"
+        data-toggle="modal"
+        data-target="#taskModal"
+        id="create_btn"
+      >
+        +
+      </button>
+      <!--Create button-->
+      <button type="button" class="btn" data-toggle="modal" id="filter_btn">
+        Filter
+      </button>
+    </main>
     <!--Create Dialog-->
+    <!-- ======================================================= Modal Body============================================== -->
     <div class="modal fade" id="taskModal">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="modal_title">Create Task</h5>
             <button class="close" data-dismiss="modal">
-                <span>&times;</span>
+              <span>&times;</span>
             </button>
           </div>
-<!-- ======================================================= Modal Body============================================== -->
+
           <div class="modal-body" id="task-modal">
             <form id="task-form" class="form">
               <!-- task name  -->
               <div class="form-group">
-                  <label for="taskName">Task Name</label>
-                  <input type="text" class="form-control" id="taskName" placeholder="Enter Task Name">
-                  <!-- <div class="valid-feedback">
+                <label for="taskName">Task Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="taskName"
+                  placeholder="Enter Task Name"
+                />
+                <!-- <div class="valid-feedback">
                     Looks good!
                   </div>
                   <div class="invalid-feedback">
                     Task name can't be empty, minimun 8 character!
                   </div> -->
-                  <p id="err"></p>
+                <p id="err"></p>
               </div>
               <!-- Task Description -->
               <div class="form-group">
                 <label for="exampleFormControlTextarea1">Description</label>
-                <textarea class="form-control" id="description" rows="2"></textarea>
+                <textarea
+                  class="form-control"
+                  id="description"
+                  rows="2"
+                ></textarea>
                 <p id="err"></p>
                 <!-- <div class="valid-feedback">
                   Looks good!
@@ -215,11 +290,15 @@
                 </div> -->
               </div>
 
-
               <!-- assigned  -->
               <div class="form-group">
                 <label for="assigned">Assigned To</label>
-                <input type="text" class="form-control" id="assigned" placeholder="Mohammad">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="assigned"
+                  placeholder="Mohammad"
+                />
                 <!-- <div class="valid-feedback">
                   Looks good!
                 </div>
@@ -229,13 +308,18 @@
                 <p id="err"></p>
               </div>
 
-              <!-- Date and Time row -->   
+              <!-- Date and Time row -->
               <div class="row form-group">
                 <!-- Date  -->
                 <div class="col-7">
                   <label for="date" class="col-4 col-form-label">Date</label>
                   <div>
-                    <input class="form-control form-group" type="date" value="20/07/2020" id="date">
+                    <input
+                      class="form-control form-group"
+                      type="date"
+                      value="20/07/2020"
+                      id="date"
+                    />
                     <p id="err"></p>
                     <!-- <div class="valid-feedback">
                       Looks good!
@@ -245,24 +329,31 @@
                     </div> -->
                   </div>
                 </div>
-                
+
                 <!-- Time  -->
                 <div class="col-5">
-                  <label for="time" class="col-4  col-form-label">Time</label>
+                  <label for="time" class="col-4 col-form-label">Time</label>
                   <div>
-                    <input class="form-control" type="time" value="13:45:00" id="time">
+                    <input
+                      class="form-control"
+                      type="time"
+                      value="13:45:00"
+                      id="time"
+                    />
                   </div>
                 </div>
               </div>
 
-              <!-- Status, Category, Priority row -->   
+              <!-- Status, Category, Priority row -->
               <div class="row form-group">
                 <!-- Status  -->
                 <div class="col-4">
-                  <label for="status" class="col-4 col-form-label">Status</label>
+                  <label for="status" class="col-4 col-form-label"
+                    >Status</label
+                  >
                   <select id="status" class="form-control">
                     <option selected>Choose...</option>
-                    <option>To Do</option>                
+                    <option>To Do</option>
                     <option>In Progress</option>
                     <option>Review</option>
                     <option>Done</option>
@@ -276,7 +367,9 @@
                 </div>
                 <!-- Category  -->
                 <div class="col-4">
-                  <label for="category" class="col-4 col-form-label">Category</label>
+                  <label for="category" class="col-4 col-form-label"
+                    >Category</label
+                  >
                   <select id="category" class="form-control">
                     <option selected>Choose...</option>
                     <option>Work</option>
@@ -286,10 +379,12 @@
                     <option>Create...</option>
                   </select>
                 </div>
-                
+
                 <!--Priority-->
-                <div class="col-4 ">
-                  <label for="priority" class="col-4 col-form-label">Priority</label>
+                <div class="col-4">
+                  <label for="priority" class="col-4 col-form-label"
+                    >Priority</label
+                  >
                   <select id="priority" class="form-control">
                     <option selected>Choose...</option>
                     <option>High</option>
@@ -298,21 +393,40 @@
                     <option>Optional</option>
                   </select>
                 </div>
-              </div>     
+              </div>
             </form>
           </div>
           <div class="modal-footer">
-              <!-- <button class="btn btn-secondary" data-dismiss="modal">Cancel</button> -->
-              <button class="btn" data-dismiss="modal" id="task-modal-save" type="submit">Save</button>
+            <!-- <button class="btn btn-secondary" data-dismiss="modal">Cancel</button> -->
+            <button
+              class="btn"
+              data-dismiss="modal"
+              id="task-modal-save"
+              type="submit"
+            >
+              Save
+            </button>
           </div>
         </div>
       </div>
     </div>
-    
+
     <!-- JS, Popper.js, and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
     <script src="script.js"></script>
     <script src="valid.js"></script>
     <!-- <script src="addTask.js"></script> -->

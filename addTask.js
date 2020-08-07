@@ -45,7 +45,7 @@ function getAllTasks() {
         </div>
     </div>`;
     const taskElement = document.createRange().createContextualFragment(html);
-    console.log(taskElement);
+    // console.log(taskElement);
 
     const edit = taskElement.querySelector("button.edit"); 
     edit.addEventListener("click", editTask)  
@@ -54,24 +54,22 @@ function getAllTasks() {
   }
 }
 //  Edit function  
-   
 
 function editTask(event){
   console.log("It works");
-  // console.log(id.value);
+ 
   $('#taskModal').modal('show');
   modal_title.innerText = "Edit Task";
   modal_title.value = modal_title.innerText;
-//   // const editButton = event.target;
-  // const taskElement = editButton.target.closest(".newtask-list");
-//   // const task = this.tasks.find((t) => taskElement.id === taskObj["id"]);
 
-//   // let task;
-//   // for(let i = 0; i <this.tasks.length; i++){
-//   //   if (taskElement.id === this.tasks[i].id){
-//   //     task = this.tasks[i];
-//   //     break
-//     }
+  const edit = event.target;
+  const taskElement = edit.closest(".newtask-list");
+  // const task = this.tasks.find((t) => taskElement.id === t.id);
+  
+  console.log(taskElement);
+  console.log(taskElement.id);
+
+
   }
 
   

@@ -1,12 +1,6 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", function () {
-  getAllTasks();
-  const taskFilterButton = document.querySelector("#filter_btn");
-  taskFilterButton.addEventListener("click", function () {
-    getTasksWithStatus("Review");
-  });
-});
+document.addEventListener("DOMContentLoaded", getAllTasks);
 
 function getAllTasks() {
   let id_arr = JSON.parse(localStorage.getItem("id_arr"));
@@ -21,7 +15,7 @@ function getAllTasks() {
         <div class="col-2">
         <p class="text-left">${post_json_taskObj["name"]}</p>
         </div>
-        <div class="col-4">
+        <div class="col-2">
         <p class="text-left">${post_json_taskObj["description"]}</p>
         </div>
         <div class="col-2">
@@ -31,7 +25,6 @@ function getAllTasks() {
         <p class="text-center">${post_json_taskObj["date"]}</p>
         </div>
         <div class="col-2">
-        <!-- <p class="text-center">Doing</p> -->
         <select class="text-center">
             <option ${
               post_json_taskObj["status"] === "To Do" ? "selected" : ""
@@ -46,30 +39,28 @@ function getAllTasks() {
               post_json_taskObj["status"] === "Done" ? "selected" : ""
             }>Done</option>
         </select>
+        </div>
+        <div class="col-2">
         <button type="button" class="btn btn-warning edit">Edit</button>
         </div>
     </div>`;
     const taskElement = document.createRange().createContextualFragment(html);
     console.log(taskElement);
     const edit = taskElement.querySelector("button.edit");
-    
-      
-  
-    edit.addEventListener("click", editTask)
+
+    edit.addEventListener("click", editTask);
     taskContainer.append(taskElement);
   }
 }
-// Eidt function 
-function editTask(event){
+// Eidt function
+function editTask(event) {
   console.log("It works");
   modal_title.innerText = "Edit Task";
-      modal_title.value = modal_title.innerText;
+  modal_title.value = modal_title.innerText;
   const editButton = event.target;
-// const taskElement = editButton.target.closest(".newtask-list");
-// const task = this.tasks.find((_t) => taskElement.id === )
-  $('#taskModal').modal('show');
-  
-  
+  // const taskElement = editButton.target.closest(".newtask-list");
+  // const task = this.tasks.find((_t) => taskElement.id === )
+  $("#taskModal").modal("show");
 }
 
 // Change Title to "create Task"
@@ -77,7 +68,6 @@ create_btn.onclick = function () {
   modal_title.innerText = "Create Task";
   modal_title.value = modal_title.innerText;
 };
-
 
 const taskContainer = document.querySelector("#tasks");
 // create

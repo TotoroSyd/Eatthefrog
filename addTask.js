@@ -52,17 +52,16 @@ function getAllTasks() {
     const taskElement = document.createRange().createContextualFragment(html);
     console.log(taskElement);
     const edit = taskElement.querySelector("button.edit");
-    edit.addEventListener("click", editTask)
+    edit.addEventListener("click", editTask);
     taskContainer.append(taskElement);
   }
 }
-// Eidt function 
-function editTask(event){
+// Eidt function
+function editTask(event) {
   console.log("It works");
-  $('#taskModal').modal('show');
-  // const taskElement = 
+  $("#taskModal").modal("show");
+  // const taskElement =
   event.target.closest(".task-list");
-  
 }
 const taskContainer = document.querySelector("#tasks");
 // create

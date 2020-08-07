@@ -1,12 +1,6 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", function () {
-  getAllTasks();
-  const taskFilterButton = document.querySelector("#filter_btn");
-  taskFilterButton.addEventListener("click", function () {
-    getTasksWithStatus("Review");
-  });
-});
+document.addEventListener("DOMContentLoaded", getAllTasks);
 
 function getAllTasks() {
   let id_arr = JSON.parse(localStorage.getItem("id_arr"));
@@ -21,7 +15,7 @@ function getAllTasks() {
         <div class="col-2">
         <p class="text-left">${post_json_taskObj["name"]}</p>
         </div>
-        <div class="col-4">
+        <div class="col-2">
         <p class="text-left">${post_json_taskObj["description"]}</p>
         </div>
         <div class="col-2">
@@ -31,7 +25,6 @@ function getAllTasks() {
         <p class="text-center">${post_json_taskObj["date"]}</p>
         </div>
         <div class="col-2">
-        <!-- <p class="text-center">Doing</p> -->
         <select class="text-center">
             <option ${
               post_json_taskObj["status"] === "To Do" ? "selected" : ""
@@ -46,19 +39,22 @@ function getAllTasks() {
               post_json_taskObj["status"] === "Done" ? "selected" : ""
             }>Done</option>
         </select>
+        </div>
+        <div class="col-2">
         <button type="button" class="btn btn-warning edit">Edit</button>
         </div>
     </div>`;
     const taskElement = document.createRange().createContextualFragment(html);
     console.log(taskElement);
+
     const edit = taskElement.querySelector("button.edit"); 
-    edit.addEventListener("click", editTask)
+    edit.addEventListener("click", editTask)  
     taskContainer.append(taskElement);
     
   }
 }
 //  Edit function  
-    
+   
 
 function editTask(event){
   console.log("It works");
@@ -76,18 +72,14 @@ function editTask(event){
 //   //     task = this.tasks[i];
 //   //     break
 //     }
-//   }
+  }
 
   
-  
-}
-
-// Change Title to "create Task"
+  // Change Title to "create Task"
 create_btn.onclick = function () {
   modal_title.innerText = "Create Task";
   modal_title.value = modal_title.innerText;
 };
-
 
 const taskContainer = document.querySelector("#tasks");
 // create

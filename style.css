@@ -21,6 +21,16 @@ main {
   margin-top: 5rem;
 }
 
+.filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.filter > select {
+  width: 10rem;
+}
+
 #taskName,
 #description,
 #assigned-to,

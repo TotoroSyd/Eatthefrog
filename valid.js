@@ -58,7 +58,7 @@ function disableSubmit(){
    const dateInpute = date.value;
     var currentDate = new Date().toISOString().slice(0,10);
     
-    console.log(date);
+    // console.log(date);
     if (dateInpute == null || dateInpute == ''){
         error(date , 'Task must have a due date');
       }

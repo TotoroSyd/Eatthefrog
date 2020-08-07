@@ -17,7 +17,7 @@ function getAllTasks() {
     //data-task-id=${id}
     const html = `
     <hr class="mt-0">
-    <div class="newtask-list row"> 
+    <div id=${post_json_taskObj["id"]} class="newtask-list row"> 
         <div class="col-2">
         <p class="text-left">${post_json_taskObj["name"]}</p>
         </div>
@@ -51,23 +51,33 @@ function getAllTasks() {
     </div>`;
     const taskElement = document.createRange().createContextualFragment(html);
     console.log(taskElement);
-    const edit = taskElement.querySelector("button.edit");
-    
-      
-  
+    const edit = taskElement.querySelector("button.edit"); 
     edit.addEventListener("click", editTask)
     taskContainer.append(taskElement);
+    
   }
 }
-// Eidt function 
+//  Edit function  
+    
+
 function editTask(event){
   console.log("It works");
-  modal_title.innerText = "Edit Task";
-      modal_title.value = modal_title.innerText;
-  const editButton = event.target;
-// const taskElement = editButton.target.closest(".newtask-list");
-// const task = this.tasks.find((_t) => taskElement.id === )
+  // console.log(id.value);
   $('#taskModal').modal('show');
+  modal_title.innerText = "Edit Task";
+  modal_title.value = modal_title.innerText;
+//   // const editButton = event.target;
+  // const taskElement = editButton.target.closest(".newtask-list");
+//   // const task = this.tasks.find((t) => taskElement.id === taskObj["id"]);
+
+//   // let task;
+//   // for(let i = 0; i <this.tasks.length; i++){
+//   //   if (taskElement.id === this.tasks[i].id){
+//   //     task = this.tasks[i];
+//   //     break
+//     }
+//   }
+
   
   
 }
@@ -132,7 +142,7 @@ function addItemLocalStorage(taskObj) {
 function renderTask(taskObj) {
   const html = `
     <hr class="mt-0">
-    <div id=${taskObj["id"]} class="task-list row">
+    <div id=${taskObj["id"]} class="newtask-list row">
         <div class="col-2">
         <p class="text-left">${taskObj["name"]}</p>
         </div>
@@ -161,6 +171,7 @@ function renderTask(taskObj) {
               taskObj["status"] === "Done" ? "selected" : ""
             }>Done</option>
         </select>
+        <button type="button" class="btn btn-warning edit">Edit</button>
         </div>
     </div>`;
   const taskElement = document.createRange().createContextualFragment(html);

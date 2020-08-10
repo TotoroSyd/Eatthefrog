@@ -46,34 +46,32 @@ function getAllTasks() {
     </div>`;
     const taskElement = document.createRange().createContextualFragment(html);
     // console.log(taskElement);
-
-    const edit = taskElement.querySelector("button.edit"); 
-    edit.addEventListener("click", editTask)  
+    const edit = taskElement.querySelector("button.edit");
+    edit.addEventListener("click", editTask);
     taskContainer.append(taskElement);
-    
   }
 }
-//  Edit function  
+//  Edit function
 
-function editTask(event){
+function editTask(event) {
   console.log("It works");
- 
-  $('#taskModal').modal('show');
+  $("#taskModal").modal("show");
+  // const taskElement =
+  event.target.closest(".task-list");
+
   modal_title.innerText = "Edit Task";
   modal_title.value = modal_title.innerText;
+  // // const taskElement = editButton.target.closest(".newtask-list");
+  // // const task = this.tasks.find((_t) => taskElement.id === )
+  // const edit = event.target;
+  // const taskElement = edit.closest(".newtask-list");
+  // // const task = this.tasks.find((t) => taskElement.id === t.id);
 
-  const edit = event.target;
-  const taskElement = edit.closest(".newtask-list");
-  // const task = this.tasks.find((t) => taskElement.id === t.id);
-  
   console.log(taskElement);
   console.log(taskElement.id);
+}
 
-
-  }
-
-  
-  // Change Title to "create Task"
+// Change Title to "create Task"
 create_btn.onclick = function () {
   modal_title.innerText = "Create Task";
   modal_title.value = modal_title.innerText;

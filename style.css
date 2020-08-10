@@ -31,6 +31,12 @@ main {
   width: 10rem;
 }
 
+.task-header {
+  text-align: center;
+  color: aliceblue;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
 #taskName,
 #description,
 #assigned-to,

@@ -11,7 +11,7 @@ function getAllTasks() {
     //data-task-id=${id}
     const html = `
     <hr class="mt-0">
-    <div class="newtask-list row"> 
+    <div id=${post_json_taskObj["id"]} class="newtask-list row"> 
         <div class="col-2">
         <p class="text-left">${post_json_taskObj["name"]}</p>
         </div>
@@ -45,39 +45,30 @@ function getAllTasks() {
         </div>
     </div>`;
     const taskElement = document.createRange().createContextualFragment(html);
-    console.log(taskElement);
+    // console.log(taskElement);
     const edit = taskElement.querySelector("button.edit");
-<<<<<<< HEAD
     edit.addEventListener("click", editTask);
-||||||| 9f97baf
-    edit.addEventListener("click", editTask)
-=======
-
-    edit.addEventListener("click", editTask);
->>>>>>> 065c774575cda2e35a25d15e54f2295f978eaa4b
     taskContainer.append(taskElement);
   }
 }
-// Eidt function
+//  Edit function
+
 function editTask(event) {
   console.log("It works");
-<<<<<<< HEAD
   $("#taskModal").modal("show");
   // const taskElement =
   event.target.closest(".task-list");
-||||||| 9f97baf
-  $('#taskModal').modal('show');
-  // const taskElement = 
-  event.target.closest(".task-list");
-  
-=======
+
   modal_title.innerText = "Edit Task";
   modal_title.value = modal_title.innerText;
-  const editButton = event.target;
-  // const taskElement = editButton.target.closest(".newtask-list");
-  // const task = this.tasks.find((_t) => taskElement.id === )
-  $("#taskModal").modal("show");
->>>>>>> 065c774575cda2e35a25d15e54f2295f978eaa4b
+  // // const taskElement = editButton.target.closest(".newtask-list");
+  // // const task = this.tasks.find((_t) => taskElement.id === )
+  // const edit = event.target;
+  // const taskElement = edit.closest(".newtask-list");
+  // // const task = this.tasks.find((t) => taskElement.id === t.id);
+
+  console.log(taskElement);
+  console.log(taskElement.id);
 }
 
 // Change Title to "create Task"
@@ -139,7 +130,7 @@ function addItemLocalStorage(taskObj) {
 function renderTask(taskObj) {
   const html = `
     <hr class="mt-0">
-    <div id=${taskObj["id"]} class="task-list row">
+    <div id=${taskObj["id"]} class="newtask-list row">
         <div class="col-2">
         <p class="text-left">${taskObj["name"]}</p>
         </div>
@@ -168,6 +159,7 @@ function renderTask(taskObj) {
               taskObj["status"] === "Done" ? "selected" : ""
             }>Done</option>
         </select>
+        <button type="button" class="btn btn-warning edit">Edit</button>
         </div>
     </div>`;
   const taskElement = document.createRange().createContextualFragment(html);

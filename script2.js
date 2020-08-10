@@ -1,11 +1,13 @@
 "use strict";
+document.addEventListener("DOMContentLoaded", getAllTasks);
 
 class TaskManager {
   constructor() {
     this.id_arr = [];
     this.taskList = [];
+    // this.id_arr = [];
   }
-
+  getAllTasks() {}
   addTask() {
     const name = document.querySelector("#taskName").value;
     const description = document.querySelector("#description").value;
@@ -181,9 +183,19 @@ class Task {
   }
 }
 
-function add_render_task() {
+function getAllTasks() {
+  taskManager.getAllTasks();
+}
+
+function add_render_task(event) {
+  event.preventDefault();
   const taskObj = taskManager.addTask();
   taskManager.renderTask(taskObj);
+  taskManager.toLocalStorage(taskObj);
+}
+
+function validation() {
+  taskManager.validation();
 }
 
 // function editTaskClicked(event) {

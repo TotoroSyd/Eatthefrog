@@ -102,41 +102,29 @@
       <div id="accordion">
         <div class="card">
           <div class="card-header" id="headingOne">
-            <h5
-              data-toggle="collapse"
-              data-target="#collapseOne"
-              aria-expanded="true"
-              aria-controls="collapseOne"
-            >
-              Mon, Jul 20
-            </h5>
+            <!--Header of Task list table-->
+            <div class="task-header row" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <div class="col-2">
+                <p class="text-center">Task Name</p>
+              </div>
+              <div class="col-3">
+                <p class="text-center">Description</p>
+              </div>
+              <div class="col-2">
+                <p class="text-center">Owner</p>
+              </div>
+              <div class="col-2">
+                <p class="text-center">Date</p>
+              </div>
+              <div class="col-2">
+                <p class="text-center">Status</p>
+              </div>
+            </div>
           </div>
 
-          <div
-            id="collapseOne"
-            class="collapse show"
-            aria-labelledby="headingOne"
-            data-parent="#accordion"
-          >
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body" id="tasks">
-              <!--Header of Task list table-->
-              <div class="task-list row">
-                <div class="col-2">
-                  <p class="text-center">Task Name</p>
-                </div>
-                <div class="col-3">
-                  <p class="text-center">Description</p>
-                </div>
-                <div class="col-2">
-                  <p class="text-center">Owner</p>
-                </div>
-                <div class="col-2">
-                  <p class="text-center">Date</p>
-                </div>
-                <div class="col-2">
-                  <p class="text-center">Status</p>
-                </div>
-              </div>
+              <!-- renderTask here -->
             </div>
           </div>
         </div>
@@ -263,7 +251,7 @@
                     >Status</label
                   >
                   <select id="status" class="form-control">
-                    <option selected>Choose...</option>
+                    <!-- <option selected>Choose...</option> -->
                     <option>To Do</option>
                     <option>In Progress</option>
                     <option>Review</option>
@@ -282,12 +270,11 @@
                     >Category</label
                   >
                   <select id="category" class="form-control">
-                    <option selected>Choose...</option>
+                    <!-- <option selected>Choose...</option> -->
+                    <option>Personal</option>
                     <option>Work</option>
-                    <option>Home</option>
                     <option>Family</option>
-                    <option>Friends</option>
-                    <option>Create...</option>
+                    <!-- <option>Create...</option> -->
                   </select>
                 </div>
 
@@ -297,7 +284,7 @@
                     >Priority</label
                   >
                   <select id="priority" class="form-control">
-                    <option selected>Choose...</option>
+                    <!-- <option selected>Choose...</option> -->
                     <option>High</option>
                     <option>Moderate</option>
                     <option>Low</option>

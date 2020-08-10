@@ -2,18 +2,18 @@
 
 class TaskManager {
   constructor() {
-    this.id_arr = [];
+    this.id_arr = JSON.parse(localStorage.getItem("id_arr"));
     // this.taskList = [];
     this.name = document.querySelector("#taskName");
     this.description = document.querySelector("#description");
     this.assignee = document.querySelector("#assigned");
     this.date = document.querySelector("#date");
     this.status = document.querySelector("#status");
+    this.taskContainer = document.querySelector("#tasks");
   }
 
-  getAllTasks() {
-    this.id_arr = JSON.parse(localStorage.getItem("id_arr"));
-    // console.log(id_ar);
+  refreshPage() {
+    // this.id_arr = JSON.parse(localStorage.getItem("id_arr"));
     if (this.id_arr === null) {
       this.id_arr = [];
     }
@@ -31,9 +31,8 @@ class TaskManager {
     const date = this.date.value;
     const status = this.status.value;
     const task = new Task(name, description, assignee, date, status);
-    // console.log(task);
-    // this.taskList.push(task);
-    // console.log(this.taskList);
+    modal_title.innerText = "Create Task";
+    modal_title.value = modal_title.innerText;
     return task;
   }
 
@@ -73,11 +72,11 @@ class TaskManager {
     </div>`;
 
     // console.log(html);
-    const taskContainer = document.querySelector("#tasks");
+    // const taskContainer = document.querySelector("#tasks");
     // console.log(taskContainer);
     const taskElement = document.createRange().createContextualFragment(html);
     // console.log(taskElement);
-    taskContainer.appendChild(taskElement);
+    this.taskContainer.appendChild(taskElement);
     // taskContainer.insertAdjacentHTML("beforeend", html);
     const edit = document.querySelector(".edit");
     edit.addEventListener("click", editTask);
@@ -113,23 +112,49 @@ class TaskManager {
     localStorage.setItem(task["id"], json_task);
   }
 
+  filterTask(stt) {
+    const taskByStatus = [];
+    for (let i = 0; i < this.id_arr.length; i++) {
+      let post_json_taskByStatus = JSON.parse(
+        localStorage.getItem(this.id_arr[i])
+      );
+      if (post_json_taskByStatus["status"] === stt) {
+        taskByStatus.push(post_json_taskByStatus);
+      } else if (stt === "All") {
+        taskByStatus.push(post_json_taskByStatus);
+      }
+    }
+    // console.log(taskByStatus);
+    this.taskContainer.innerHTML = "";
+    for (let j = 0; j < taskByStatus.length; j++) {
+      this.renderTask(taskByStatus[j]);
+    }
+  }
+
+  resetForm() {
+    document.querySelector("#task-form").reset();
+  }
+
+  disableBtn() {
+    document.querySelector("#task-modal-save").disabled = true;
+  }
+
   validation() {
     const name = this.name;
     const description = this.description;
     const assignee = this.assignee;
     const date = this.date;
 
-    window.addEventListener("load", disableSubmit);
+    // window.addEventListener("load", () => {
+    //   document.querySelector("#task-modal-save").disabled = true;
+    // });
+    // window.addEventListener("load", disableSubmit);
     name.addEventListener("focus", validate);
     description.addEventListener("focus", validate);
     assignee.addEventListener("focus", validate);
     date.addEventListener("change", validate);
 
-    function disableSubmit() {
-      document.querySelector("#task-modal-save").disabled = true;
-    }
-
-    //    ============================ Validate from===============================
+    //    ============================ Validate form===============================
     function validate() {
       const taskName = name.value.trim();
       const descriptionInput = description.value.trim();
@@ -221,22 +246,6 @@ function editTask() {
   taskManager.editTask();
 }
 
-create_btn.onclick = function () {
-  modal_title.innerText = "Create Task";
-  modal_title.value = modal_title.innerText;
-};
-
-function getAllTasks() {
-  taskManager.getAllTasks();
-}
-
-function add_render_task(event) {
-  event.preventDefault();
-  const taskObj = taskManager.addTask();
-  taskManager.renderTask(taskObj);
-  taskManager.toLocalStorage(taskObj);
-}
-
 // function editTaskClicked(event) {
 //   // clearValidation(); // What does this line mean?
 
@@ -260,14 +269,31 @@ function updateTask(id, name, description, assignee, date, status) {
 }
 
 // Execution
-document.addEventListener("DOMContentLoaded", getAllTasks);
+document.addEventListener("DOMContentLoaded", function () {
+  taskManager.refreshPage();
+  filter_dropDown.value = "All";
+});
+
 const taskCreateButton = document.querySelector("#create_btn");
 const taskModalSaveButton = document.querySelector("#task-modal-save");
 const taskManager = new TaskManager();
+const filter_dropDown = document.querySelector(".filter_dropDown");
 // const edit = document.querySelector(".edit");
 // edit.addEventListener("click", editTask);
 
 taskCreateButton.addEventListener("click", function () {
-  taskManager.validation();
+  // taskManager.disableBtn();
+  taskManager.resetForm();
+  // taskManager.validation();
 });
-taskModalSaveButton.addEventListener("click", add_render_task);
+
+taskModalSaveButton.addEventListener("click", function () {
+  const taskObj = taskManager.addTask();
+  taskManager.renderTask(taskObj);
+  taskManager.toLocalStorage(taskObj);
+  console.log(taskManager.id_arr);
+});
+
+filter_dropDown.addEventListener("click", function () {
+  taskManager.filterTask(filter_dropDown.value);
+});

@@ -2,6 +2,7 @@
 
 class TaskManager {
   constructor() {
+    // refresh id_arr to keep track tasks that were created
     this.id_arr = JSON.parse(localStorage.getItem("id_arr"));
     // this.taskList = [];
     this.name = document.querySelector("#taskName");
@@ -13,26 +14,29 @@ class TaskManager {
   }
 
   refreshPage() {
-    // this.id_arr = JSON.parse(localStorage.getItem("id_arr"));
+    // clear everything on the page before loading content
+    this.taskContainer.innerHTML = "";
+    // in case id_arr in the local storage is empty, set it as an empty array. Otherwise, id_arr becomes null => break the program
     if (this.id_arr === null) {
       this.id_arr = [];
     }
-    const l = this.id_arr.length;
-    for (let i = 0; i < l; i++) {
-      let postJsonTask = JSON.parse(localStorage.getItem(this.id_arr[i]));
+    // run through the id_arr's element = key to look for task in local storage. For each id element, go to localStorage and getItem and parse it.
+    this.id_arr.forEach((id) => {
+      let postJsonTask = JSON.parse(localStorage.getItem(id));
+      // debugger;
+      // once the task is parsed from localstorage, it is an input to go to renderTask()
       this.renderTask(postJsonTask);
-    }
+    });
   }
 
-  addTask() {
+  createTask() {
     const name = this.name.value;
     const description = this.description.value;
     const assignee = this.assignee.value;
     const date = this.date.value;
     const status = this.status.value;
     const task = new Task(name, description, assignee, date, status);
-    modal_title.innerText = "Create Task";
-    modal_title.value = modal_title.innerText;
+    // return a task object which will be an input for renderTask()
     return task;
   }
 
@@ -42,99 +46,150 @@ class TaskManager {
     // console.log(task);
     const html = `
     <div id='${task["id"]}' class="task-list row">
-      <div class="col-2">
-        <p class="text-left">${task["name"]}</p>
-      </div>
-      <div class="col-3">
-        <p class="text-left">${task["description"]}</p>
-      </div>
-      <div class="col-2">
-        <p class="text-center">${task["assignee"]}</p>
-      </div>
-      <div class="col-2">
-        <p class="text-center">${task["date"]}</p>
-      </div>
-      <div class="col-2">
-        <select class="text-center">
-          <option ${task["status"] === "To Do" ? "selected" : ""}>To Do</option>
-          <option ${
-            task["status"] === "In Progress" ? "selected" : ""
-          }>In Progress</option>
-          <option ${
-            task["status"] === "Review" ? "selected" : ""
-          }>Review</option>
-          <option ${task["status"] === "Done" ? "selected" : ""}>Done</option>
-        </select>
-      </div>
-      <div class="col-1">
-        <button type="button" class="btn btn-warning edit">Edit</button>
-      </div>
+      <p class="col-2 text-left">${task["name"]}</p>
+      <p class="col-3 text-left">${task["description"]}</p>
+      <p class=" col-2 text-center">${task["assignee"]}</p>
+      <p class="text-center col-2">${task["date"]}</p>
+      <p class="col-2 text-center">${task["status"]}</p>
+      <a href="#" data-toggle="tooltip" title="Edit" class="edit-btn" data-task-id='${task["id"]}'><img src="image/pencil-edit-button.svg" alt="pencil-edit-button" width="15" height="15"/></a>
+      <a href="#" data-toggle="tooltip" title="Delete" class="delete-btn" data-task-id='${task["id"]}'><img src="image/trash.svg" alt="delete-button" width="15" height="15"/></a>
     </div>`;
 
-    // console.log(html);
-    // const taskContainer = document.querySelector("#tasks");
-    // console.log(taskContainer);
+    //   <div class="col-2">
+    //   <select class="text-center">
+    //     <option ${task["status"] === "To Do" ? "selected" : ""}>To Do</option>
+    //     <option ${
+    //       task["status"] === "In Progress" ? "selected" : ""
+    //     }>In Progress</option>
+    //     <option ${
+    //       task["status"] === "Review" ? "selected" : ""
+    //     }>Review</option>
+    //     <option ${task["status"] === "Done" ? "selected" : ""}>Done</option>
+    //   </select>
+    // </div>
+
     const taskElement = document.createRange().createContextualFragment(html);
-    // console.log(taskElement);
     this.taskContainer.appendChild(taskElement);
     // taskContainer.insertAdjacentHTML("beforeend", html);
-    const edit = document.querySelector(".edit");
-    edit.addEventListener("click", editTask);
-  }
-
-  editTask(event) {
-    console.log("It works");
-    $("#taskModal").modal("show");
-    // const taskElement =
-    // event.target.closest(".task-list");
-
-    modal_title.innerText = "Edit Task";
-    modal_title.value = modal_title.innerText;
-    const taskElement = edit.target.closest(".task-list");
-    // // const task = this.tasks.find((_t) => taskElement.id === )
-    // const edit = event.target;
-    // // const task = this.tasks.find((t) => taskElement.id === t.id);
-
-    // console.log(taskElement);
-    console.log(taskElement.id);
   }
 
   toLocalStorage(task) {
-    // console.log(task);
+    // Push new id to id_arr
     this.id_arr.push(task["id"]);
     // console.log(this.id_arr);
     // serialize the id_arr into string format to save in localstorage
     let json_id_arr = JSON.stringify(this.id_arr);
     // serialize the taskObj into string format to save in localstorage
     let json_task = JSON.stringify(task);
-    // save the string.taskObj into localstorage
+    // save to the local storage the id_arr containing all task id
     localStorage.setItem("id_arr", json_id_arr);
+    // save to the local storage the task object
     localStorage.setItem(task["id"], json_task);
   }
 
+  //  const edit = document.querySelector(".edit");
+  //  edit.addEventListener("click", editTask);
+
+  editTask(event) {
+    console.log("It works");
+    const edit = document.querySelector(".edit");
+    $("#taskModal").modal("show");
+    modal_title.innerText = "Edit Task";
+    modal_title.value = modal_title.innerText;
+    const taskElement = edit.target.closest("#id");
+    // const edit = event.target;
+    // // const task = this.tasks.find((t) => taskElement.id === t.id);
+
+    // console.log(taskElement.id);
+
+    // const task = taskManager.taskList.find((t) => taskElement.id === t.id); // What does this line mean?
+
+    // taskIdInput.value = task.id;
+    // taskNameInput.value = task.name;
+    // taskDescriptionInput.value = task.description;
+    // taskAssigneeInput.value = task.assignee;
+    // taskDateInput.value = task.date;
+    // // taskTimeInput.value = task.time;
+    // taskStatusInput.value = task.status;
+
+    // $("#task-modal").modal("show"); // What does this line mean?    //   const taskElement = event.target.closest(".task-list"); // What does this line mean?
+
+    // console.log(taskElement);
+  }
+
   filterTask(stt) {
-    const taskByStatus = [];
-    for (let i = 0; i < this.id_arr.length; i++) {
-      let post_json_taskByStatus = JSON.parse(
-        localStorage.getItem(this.id_arr[i])
-      );
-      if (post_json_taskByStatus["status"] === stt) {
-        taskByStatus.push(post_json_taskByStatus);
-      } else if (stt === "All") {
-        taskByStatus.push(post_json_taskByStatus);
-      }
+    let post_json_taskByStatus = [];
+    this.id_arr.forEach(function (id) {
+      post_json_taskByStatus.push(JSON.parse(localStorage.getItem(id)));
+    });
+
+    // When filter status = All
+    if (stt === "All") {
+      // taskByStatus = post_json_taskByStatus;
+      post_json_taskByStatus.forEach((task) => {
+        this.renderTask(task);
+      });
     }
-    // console.log(taskByStatus);
-    this.taskContainer.innerHTML = "";
-    for (let j = 0; j < taskByStatus.length; j++) {
-      this.renderTask(taskByStatus[j]);
+    // When filter status = To Do, In Progress, Review, Done
+    else {
+      this.taskContainer.innerHTML = "";
+      post_json_taskByStatus.forEach((task) => {
+        if (task["status"] === stt) {
+          this.renderTask(task);
+        }
+      });
     }
   }
 
+  deleteButtonnClicked() {
+    /* Because the Delete Icon doesnt exist in HTML so we have to capture the event 
+    (which is created by clicking to the Delete icon) 
+    on the parent container (which exists in the HTML).
+    This is due to the Event Bubbling.*/
+    const container_del = document.querySelector("#accordion");
+    // Parent container listens to the "click" event from the children and run the function
+    container_del.addEventListener("click", (event) => {
+      // debugger;
+
+      /* When the event is listened, go find (target) the closest .delete-btn. 
+      The closest() method traverses the Element and its parents (heading toward the document root) 
+      until it finds a node that matches the provided selector string. 
+      Will return itself or the matching ancestor. If no such element exists, it returns null. */
+      const del_btn = event.target.closest(".delete-btn");
+
+      /* If there is a .delete-del_btn, wrap the attribute called "data-task-id" = id of the particular task.
+      "data-task-id" = input to run deleteTask() */
+      if (del_btn) {
+        const id_del = del_btn.getAttribute("data-task-id");
+        this.deleteTask(id_del);
+      }
+    });
+  }
+
+  deleteTask(id_del) {
+    // console.log(id_del);
+    // console.log("deleteTask func works");
+    localStorage.removeItem(id_del);
+    this.id_arr = this.id_arr.filter((element) => {
+      // debugger;
+      return element !== id_del;
+    });
+
+    localStorage.setItem("id_arr", JSON.stringify(this.id_arr));
+    // console.log(this.id_arr);
+
+    this.refreshPage();
+    // this.id_arr.forEach((id) => {
+    //   this.renderTask(JSON.parse(localStorage.getItem(id)));
+    // });
+  }
+
+  // To clear the old content in the form fields
   resetForm() {
     document.querySelector("#task-form").reset();
   }
 
+  // To disable the Save button in the form until certain validation requirements are met
   disableBtn() {
     document.querySelector("#task-modal-save").disabled = true;
   }
@@ -145,10 +200,6 @@ class TaskManager {
     const assignee = this.assignee;
     const date = this.date;
 
-    // window.addEventListener("load", () => {
-    //   document.querySelector("#task-modal-save").disabled = true;
-    // });
-    // window.addEventListener("load", disableSubmit);
     name.addEventListener("focus", validate);
     description.addEventListener("focus", validate);
     assignee.addEventListener("focus", validate);
@@ -233,17 +284,13 @@ class TaskManager {
 
 class Task {
   constructor(name, description, assignee, date, status) {
-    this.id = Date.now();
+    this.id = Date.now().toString();
     this.name = name;
     this.description = description;
     this.assignee = assignee;
     this.date = date;
     this.status = status;
   }
-}
-
-function editTask() {
-  taskManager.editTask();
 }
 
 // function editTaskClicked(event) {
@@ -269,31 +316,31 @@ function updateTask(id, name, description, assignee, date, status) {
 }
 
 // Execution
+// use "DOMContentLoaded" for safety, to ensure all the neccessary content is loaded.
 document.addEventListener("DOMContentLoaded", function () {
+  const taskManager = new TaskManager();
+  const taskCreateButton = document.querySelector("#create_btn");
+  const taskModalSaveButton = document.querySelector("#task-modal-save");
+  const filter_dropDown = document.querySelector(".filter_dropDown");
+
   taskManager.refreshPage();
+  taskManager.deleteButtonnClicked();
   filter_dropDown.value = "All";
-});
 
-const taskCreateButton = document.querySelector("#create_btn");
-const taskModalSaveButton = document.querySelector("#task-modal-save");
-const taskManager = new TaskManager();
-const filter_dropDown = document.querySelector(".filter_dropDown");
-// const edit = document.querySelector(".edit");
-// edit.addEventListener("click", editTask);
+  taskCreateButton.addEventListener("click", function () {
+    taskManager.disableBtn();
+    taskManager.resetForm();
+    taskManager.validation();
+  });
 
-taskCreateButton.addEventListener("click", function () {
-  // taskManager.disableBtn();
-  taskManager.resetForm();
-  // taskManager.validation();
-});
+  taskModalSaveButton.addEventListener("click", function () {
+    const taskObj = taskManager.createTask();
+    taskManager.renderTask(taskObj);
+    taskManager.toLocalStorage(taskObj);
+    // console.log(taskManager.id_arr);
+  });
 
-taskModalSaveButton.addEventListener("click", function () {
-  const taskObj = taskManager.addTask();
-  taskManager.renderTask(taskObj);
-  taskManager.toLocalStorage(taskObj);
-  console.log(taskManager.id_arr);
-});
-
-filter_dropDown.addEventListener("click", function () {
-  taskManager.filterTask(filter_dropDown.value);
+  filter_dropDown.addEventListener("click", function () {
+    taskManager.filterTask(filter_dropDown.value);
+  });
 });

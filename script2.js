@@ -24,8 +24,9 @@ class TaskManager {
     this.id_arr.forEach((id) => {
       let postJsonTask = JSON.parse(localStorage.getItem(id));
       // debugger;
-      // once the task is parsed from localstorage, it is an input to go to renderTask()
-      this.renderTask(postJsonTask);
+      // once the task is parsed from localstorage, it is an input to go to toHTML(), renderTask()
+      const html = this.toHTML(postJsonTask);
+      this.renderTask(html);
     });
   }
 
@@ -36,11 +37,11 @@ class TaskManager {
     const date = this.date.value;
     const status = this.status.value;
     const task = new Task(name, description, assignee, date, status);
-    // return a task object which will be an input for renderTask()
+    // return a task object which will be an input for toHTML(), renderTask()
     return task;
   }
 
-  renderTask(task) {
+  toHTML(task) {
     // 'https://www.designcise.com/web/tutorial/how-to-append-an-html-string-to-an-existing-dom-element-using-javascript'
     // 'https://grrr.tech/posts/create-dom-node-from-html-string/'
     // console.log(task);
@@ -54,20 +55,10 @@ class TaskManager {
       <a href="#" data-toggle="tooltip" title="Edit" class="edit-btn" data-task-id='${task["id"]}'><img src="image/pencil-edit-button.svg" alt="pencil-edit-button" width="15" height="15"/></a>
       <a href="#" data-toggle="tooltip" title="Delete" class="delete-btn" data-task-id='${task["id"]}'><img src="image/trash.svg" alt="delete-button" width="15" height="15"/></a>
     </div>`;
+    return html;
+  }
 
-    //   <div class="col-2">
-    //   <select class="text-center">
-    //     <option ${task["status"] === "To Do" ? "selected" : ""}>To Do</option>
-    //     <option ${
-    //       task["status"] === "In Progress" ? "selected" : ""
-    //     }>In Progress</option>
-    //     <option ${
-    //       task["status"] === "Review" ? "selected" : ""
-    //     }>Review</option>
-    //     <option ${task["status"] === "Done" ? "selected" : ""}>Done</option>
-    //   </select>
-    // </div>
-
+  renderTask(html) {
     const taskElement = document.createRange().createContextualFragment(html);
     //  const edit = taskElement.querySelector(".edit");
     //  edit.addEventListener("click", editTask);
@@ -127,7 +118,8 @@ class TaskManager {
       // taskByStatus = post_json_taskByStatus;
       this.taskContainer.innerHTML = "";
       post_json_taskByStatus.forEach((task) => {
-        this.renderTask(task);
+        const html = this.toHTML(task);
+        this.renderTask(html);
       });
     }
     // When filter status = To Do, In Progress, Review, Done
@@ -135,7 +127,8 @@ class TaskManager {
       this.taskContainer.innerHTML = "";
       post_json_taskByStatus.forEach((task) => {
         if (task["status"] === stt) {
-          this.renderTask(task);
+          const html = this.toHTML(task);
+          this.renderTask(html);
         }
       });
     }
@@ -335,7 +328,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   taskModalSaveButton.addEventListener("click", function () {
     const taskObj = taskManager.createTask();
-    taskManager.renderTask(taskObj);
+    const html = taskManager.toHTML(taskObj);
+    taskManager.renderTask(html);
     taskManager.toLocalStorage(taskObj);
     // console.log(taskManager.id_arr);
   });

@@ -69,6 +69,8 @@ class TaskManager {
     // </div>
 
     const taskElement = document.createRange().createContextualFragment(html);
+    //  const edit = taskElement.querySelector(".edit");
+    //  edit.addEventListener("click", editTask);
     this.taskContainer.appendChild(taskElement);
     // taskContainer.insertAdjacentHTML("beforeend", html);
   }
@@ -86,9 +88,6 @@ class TaskManager {
     // save to the local storage the task object
     localStorage.setItem(task["id"], json_task);
   }
-
-  //  const edit = document.querySelector(".edit");
-  //  edit.addEventListener("click", editTask);
 
   editTask(event) {
     console.log("It works");
@@ -126,6 +125,7 @@ class TaskManager {
     // When filter status = All
     if (stt === "All") {
       // taskByStatus = post_json_taskByStatus;
+      this.taskContainer.innerHTML = "";
       post_json_taskByStatus.forEach((task) => {
         this.renderTask(task);
       });

@@ -2,7 +2,30 @@
 
 describe("create task", () => {
   beforeEach(function () {
-    TaskManager = new TaskManager();
+    taskManager = new TaskManager();
+    task = new Task();
+  });
+
+  it("task obj is created", () => {
+    // because Date.now() calculate to millisec. Assign it to a var will make sure id is the same
+    let id = Date.now().toString();
+
+    taskManager.id = { value: id };
+    taskManager.name = { value: "task_name" };
+    taskManager.description = { value: "task_description" };
+    taskManager.assignee = { value: "task_assignee" };
+    taskManager.date = { value: "task_date" };
+    taskManager.status = { value: "done" };
+
+    task.id = id;
+    task.name = "task_name";
+    task.description = "task_description";
+    task.assignee = "task_assignee";
+    task.date = "task_date";
+    task.status = "done";
+
+    let actual = taskManager.createTask();
+    expect(actual).toEqual(task);
   });
 
   it(`html string contains all task details`, () => {
@@ -15,7 +38,7 @@ describe("create task", () => {
       date: "task_date",
       status: "done",
     };
-    let html = TaskManager.toHTML(task);
+    let html = taskManager.toHTML(task);
     expect(html).toContain(task.id);
     expect(html).toContain(task.name);
     expect(html).toContain(task.description);

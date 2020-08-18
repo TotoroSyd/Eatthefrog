@@ -1,15 +1,18 @@
 "use strict";
 
 class TaskManager {
-  constructor() {
+  constructor(name, description, assignee, date, status) {
     // refresh id_arr to keep track tasks that were created
     this.id_arr = JSON.parse(localStorage.getItem("id_arr"));
-    // this.taskList = [];
+    /* Method 1 to get input from form field.
     this.name = document.querySelector("#taskName");
-    this.description = document.querySelector("#description");
-    this.assignee = document.querySelector("#assigned");
-    this.date = document.querySelector("#date");
-    this.status = document.querySelector("#status");
+      Method 2 to get input from form field. id and name can be interchanged.
+    https://www.dyn-web.com/tutorials/forms/references.php */
+    this.name = name;
+    this.description = description;
+    this.assignee = assignee;
+    this.date = date;
+    this.status = status;
     this.taskContainer = document.querySelector("#tasks");
   }
 
@@ -311,7 +314,20 @@ function updateTask(id, name, description, assignee, date, status) {
 // Execution
 // use "DOMContentLoaded" for safety, to ensure all the neccessary content is loaded.
 document.addEventListener("DOMContentLoaded", function () {
-  const taskManager = new TaskManager();
+  const form = document.forms["task-form"];
+  // const name = document.querySelector('name')
+  const name = form.taskName;
+  const description = form.description;
+  const assignee = form.assignee;
+  const date = form.date;
+  const status = form.status;
+  const taskManager = new TaskManager(
+    name,
+    description,
+    assignee,
+    date,
+    status
+  );
   const taskCreateButton = document.querySelector("#create_btn");
   const taskModalSaveButton = document.querySelector("#task-modal-save");
   const filter_dropDown = document.querySelector(".filter_dropDown");

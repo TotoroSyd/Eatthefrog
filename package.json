@@ -1,0 +1,28 @@
+{
+  "name": "taskplanner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script2.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mohammad2527/taskPlanner.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mohammad2527/taskPlanner/issues"
+  },
+  "homepage": "https://github.com/Mohammad2527/taskPlanner#readme",
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "babel-jest": "^26.3.0",
+    "jest": "^26.4.0",
+    "parcel-bundler": "^1.12.4"
+  }
+}

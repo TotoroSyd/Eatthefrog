@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Mohammad2527/taskPlanner.git"
+    "url": "git+https://github.com/TotoroSyd/Eatthefrog.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Mohammad2527/taskPlanner/issues"
+    "url": "https://github.com/TotoroSyd/Eatthefrog/issues"
   },
-  "homepage": "https://github.com/Mohammad2527/taskPlanner#readme",
+  "homepage": "https://github.com/TotoroSyd/Eatthefrog#readme",
   "devDependencies": {
     "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.11.0",

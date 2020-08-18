@@ -1,15 +1,18 @@
 "use strict";
 
 class TaskManager {
-  constructor() {
+  constructor(name, description, assignee, date, status) {
     // refresh id_arr to keep track tasks that were created
     this.id_arr = JSON.parse(localStorage.getItem("id_arr"));
-    // this.taskList = [];
-    this.name = document.querySelector("#taskName");
-    this.description = document.querySelector("#description");
-    this.assignee = document.querySelector("#assigned");
-    this.date = document.querySelector("#date");
-    this.status = document.querySelector("#status");
+    /* Method 1 to get input from form field.
+      this.name = document.querySelector("#taskName");
+        Method 2 to get input from form field. id and name can be interchanged.
+      https://www.dyn-web.com/tutorials/forms/references.php */
+    this.name = name;
+    this.description = description;
+    this.assignee = assignee;
+    this.date = date;
+    this.status = status;
     this.taskContainer = document.querySelector("#tasks");
   }
 

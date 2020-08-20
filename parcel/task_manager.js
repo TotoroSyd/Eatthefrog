@@ -1,6 +1,6 @@
 "use strict";
 
-class TaskManager {
+export default class TaskManager {
   constructor(name, description, assignee, date, status) {
     // refresh id_arr to keep track tasks that were created
     this.id_arr = JSON.parse(localStorage.getItem("id_arr"));

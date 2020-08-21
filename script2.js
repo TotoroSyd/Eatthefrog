@@ -63,10 +63,11 @@ class TaskManager {
 
   renderTask(html) {
     const taskElement = document.createRange().createContextualFragment(html);
-    //  const edit = taskElement.querySelector(".edit");
-    //  edit.addEventListener("click", editTask);
     this.taskContainer.appendChild(taskElement);
     // taskContainer.insertAdjacentHTML("beforeend", html);
+    // Broken code:
+    // const parent = taskElement.querySelector(".task-list");
+    // parent.addEventListener("click", this.editTask(event));
   }
 
   toLocalStorage(task) {
@@ -83,33 +84,73 @@ class TaskManager {
     localStorage.setItem(task["id"], json_task);
   }
 
-  editTask(event) {
-    console.log("It works");
-    const edit = document.querySelector(".edit");
+  editButtonnClicked() {
+    /* Because the Edit Icon doesnt exist in HTML so we have to capture the event
+    (which is created by clicking to the Delete icon)
+    on the parent container (which exists in the HTML).
+    This is due to the Event Bubbling.*/
+
+    const container_edit = document.querySelector("#accordion");
+    // Parent container listens to the "click" event from the children and run the function
+
+    container_edit.addEventListener("click", (event) => {
+      // debugger;
+
+      /* When the event is listened, go find (target) the closest .edit-btn.
+      The closest() method traverses the Element and its parents (heading toward the document root)
+      until it finds a node that matches the provided selector string.
+      Will return itself or the matching ancestor. If no such element exists, it returns null. */
+
+      const edit_btn = event.target.closest(".edit-btn");
+
+      /* If there is a edit-btn, wrap the attribute called "data-task-id" = id of the particular task.
+      "data-task-id" = input to run editTask() */
+
+      if (edit_btn) {
+        const id_edit = edit_btn.getAttribute("data-task-id");
+        this.editTask(id_edit);
+      }
+    });
+  }
+
+  editTask(id_edit) {
+    console.log(id_edit);
+    // console.log("It works");
+    // Open and change Modal title to Edit
     $("#taskModal").modal("show");
     modal_title.innerText = "Edit Task";
     modal_title.value = modal_title.innerText;
-    const taskElement = edit.target.closest("#id");
-    // const edit = event.target;
-    // // const task = this.tasks.find((t) => taskElement.id === t.id);
 
-    // console.log(taskElement.id);
+    this.resetForm();
+    const form = document.forms["task-form"];
+    // Get the task object to edit from localStorage
+    const to_edit = JSON.parse(localStorage.getItem(id_edit));
+    // Fetch the task details into the modal
+    form.taskName.value = to_edit.name;
+    form.description.value = to_edit.description;
+    form.assignee.value = to_edit.assignee;
+    form.date.value = to_edit.date;
+    form.status.value = to_edit.status;
 
-    // const task = taskManager.taskList.find((t) => taskElement.id === t.id); // What does this line mean?
-
-    // taskIdInput.value = task.id;
-    // taskNameInput.value = task.name;
-    // taskDescriptionInput.value = task.description;
-    // taskAssigneeInput.value = task.assignee;
-    // taskDateInput.value = task.date;
-    // // taskTimeInput.value = task.time;
-    // taskStatusInput.value = task.status;
-
-    // $("#task-modal").modal("show"); // What does this line mean?    //   const taskElement = event.target.closest(".task-list"); // What does this line mean?
-
-    // console.log(taskElement);
+    //Set attribute for form as edit so when the Save button is clicked, it knows which function to call (create or update)
+    form.setAttribute("data-action", "edit-action");
   }
 
+  // Update task to tasklist
+  updateTask() {
+    // const to_update = to_update_input;
+    // const updated_name = this.name.value;
+    // const updated_description = this.description.value;
+    // const updated_assignee = this.assignee.value;
+    // const updated_date = this.date.value;
+    // const updated_status = this.status.value;
+    // to_update["name"] = updated_name;
+    // to_update["description"] = updated_description;
+    // to_update["assignee"] = updated_assignee;
+    // to_update["date"] = updated_date;
+    // to_update["status"] = updated_status;
+    console.log("update function called: " + id_edit);
+  }
   filterTask(stt) {
     let post_json_taskByStatus = [];
     this.id_arr.forEach(function (id) {
@@ -260,22 +301,6 @@ class TaskManager {
       document.querySelector("#task-modal-save").disabled = false;
     }
   }
-
-  // Update task to tasklist
-  //   updateTask(id, name, description, assignee, date, status) {
-  //     for (let i = 0; i < this.taskList.length; i++) {
-  //       if (this.taskList[i].id === id) {
-  //         this.taskList[i].name = name;
-  //         this.taskList[i].description = description;
-  //         this.taskList[i].assignee = assignee;
-  //         this.taskList[i].date = date;
-  //         // this.taskList[i].time = time;
-  //         this.taskList[i].status = status;
-  //         // this.taskList[i].priority = priority;
-  //         break;
-  //       }
-  //     }
-  //   }
 }
 
 class Task {
@@ -334,6 +359,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   taskManager.refreshPage();
   taskManager.deleteButtonnClicked();
+  taskManager.editButtonnClicked();
   filter_dropDown.value = "All";
 
   taskCreateButton.addEventListener("click", function () {
@@ -343,6 +369,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   taskModalSaveButton.addEventListener("click", function () {
+    // check if the data-action attribute in form is edit-action.
+    if (form.getAttribute("data-action") === "edit-action") {
+      taskManager.updateTask();
+    }
     const taskObj = taskManager.createTask();
     const html = taskManager.toHTML(taskObj);
     taskManager.renderTask(html);

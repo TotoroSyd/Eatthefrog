@@ -13,8 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const assignee = form.assignee;
   const date = form.date;
   const status = form.status;
-  const formManager = new FormManager();
-  const task = new Task();
   const taskManager = new TaskManager(
     name,
     description,
@@ -28,20 +26,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
   taskManager.refreshPage();
   taskManager.deleteButtonnClicked();
+  taskManager.editButtonnClicked();
   filter_dropDown.value = "All";
 
   taskCreateButton.addEventListener("click", function () {
-    formManager.disableBtn();
-    formManager.resetForm();
-    formManager.validation();
+    taskManager.disableBtn();
+    taskManager.resetForm();
+    taskManager.validation();
   });
 
-  taskModalSaveButton.addEventListener("click", function () {
-    const taskObj = taskManager.createTask();
-    const html = task.toHTML(taskObj);
-    taskManager.renderTask(html);
-    taskManager.toLocalStorage(taskObj);
-    // console.log(taskManager.id_arr);
+  taskModalSaveButton.addEventListener("click", function (id_to_update) {
+    // check if the data-action attribute in form is edit-action.
+    if (form.getAttribute("data-action") === "edit-action") {
+      let updated_name = form.taskName.value;
+      let updated_description = form.description.value;
+      let updated_assignee = form.assignee.value;
+      let updated_date = form.date.value;
+      let update_status = form.date.status;
+      let id_to_update = form.getAttribute("id-to-update");
+      taskManager.updateTask(
+        id_to_update,
+        updated_name,
+        updated_description,
+        updated_assignee,
+        updated_date,
+        update_status
+      );
+      taskManager.refreshPage();
+    } else {
+      const taskObj = taskManager.createTask();
+      const html = taskManager.toHTML(taskObj);
+      taskManager.renderTask(html);
+      taskManager.toLocalStorage(taskObj);
+      // console.log(taskManager.id_arr);
+    }
   });
 
   filter_dropDown.addEventListener("click", function () {

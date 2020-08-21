@@ -65,9 +65,6 @@ class TaskManager {
     const taskElement = document.createRange().createContextualFragment(html);
     this.taskContainer.appendChild(taskElement);
     // taskContainer.insertAdjacentHTML("beforeend", html);
-    // Broken code:
-    // const parent = taskElement.querySelector(".task-list");
-    // parent.addEventListener("click", this.editTask(event));
   }
 
   toLocalStorage(task) {
@@ -131,26 +128,23 @@ class TaskManager {
     form.assignee.value = to_edit.assignee;
     form.date.value = to_edit.date;
     form.status.value = to_edit.status;
-
     //Set attribute for form as edit so when the Save button is clicked, it knows which function to call (create or update)
     form.setAttribute("data-action", "edit-action");
+    form.setAttribute("id-to-update", `${id_edit}`);
   }
 
   // Update task to tasklist
-  updateTask() {
-    // const to_update = to_update_input;
-    // const updated_name = this.name.value;
-    // const updated_description = this.description.value;
-    // const updated_assignee = this.assignee.value;
-    // const updated_date = this.date.value;
-    // const updated_status = this.status.value;
-    // to_update["name"] = updated_name;
-    // to_update["description"] = updated_description;
-    // to_update["assignee"] = updated_assignee;
-    // to_update["date"] = updated_date;
-    // to_update["status"] = updated_status;
-    console.log("update function called: " + id_edit);
+  updateTask(id_to_update, name, description, assignee, date, status) {
+    console.log(id_to_update);
+    const to_update = JSON.parse(localStorage.getItem(id_to_update));
+    to_update["name"] = name;
+    to_update["description"] = description;
+    to_update["assignee"] = assignee;
+    to_update["date"] = date;
+    to_update["status"] = status;
+    localStorage.setItem(id_to_update, JSON.stringify(to_update));
   }
+
   filterTask(stt) {
     let post_json_taskByStatus = [];
     this.id_arr.forEach(function (id) {
@@ -314,28 +308,6 @@ class Task {
   }
 }
 
-// function editTaskClicked(event) {
-//   // clearValidation(); // What does this line mean?
-
-//   const taskElement = event.target.closest(".task-list"); // What does this line mean?
-//   const task = taskManager.taskList.find((t) => taskElement.id === t.id); // What does this line mean?
-
-//   taskIdInput.value = task.id;
-//   taskNameInput.value = task.name;
-//   taskDescriptionInput.value = task.description;
-//   taskAssigneeInput.value = task.assignee;
-//   taskDateInput.value = task.date;
-//   // taskTimeInput.value = task.time;
-//   taskStatusInput.value = task.status;
-
-//   $("#task-modal").modal("show"); // What does this line mean?
-// }
-
-// Why cant the arg for this func is the obj task which was created in addTask func?
-function updateTask(id, name, description, assignee, date, status) {
-  taskManager.updateTask(id, name, description, assignee, date, status);
-}
-
 // Execution
 // use "DOMContentLoaded" for safety, to ensure all the neccessary content is loaded.
 document.addEventListener("DOMContentLoaded", function () {
@@ -368,16 +340,31 @@ document.addEventListener("DOMContentLoaded", function () {
     taskManager.validation();
   });
 
-  taskModalSaveButton.addEventListener("click", function () {
+  taskModalSaveButton.addEventListener("click", function (id_to_update) {
     // check if the data-action attribute in form is edit-action.
     if (form.getAttribute("data-action") === "edit-action") {
-      taskManager.updateTask();
+      let updated_name = form.taskName.value;
+      let updated_description = form.description.value;
+      let updated_assignee = form.assignee.value;
+      let updated_date = form.date.value;
+      let update_status = form.date.status;
+      let id_to_update = form.getAttribute("id-to-update");
+      taskManager.updateTask(
+        id_to_update,
+        updated_name,
+        updated_description,
+        updated_assignee,
+        updated_date,
+        update_status
+      );
+      taskManager.refreshPage();
+    } else {
+      const taskObj = taskManager.createTask();
+      const html = taskManager.toHTML(taskObj);
+      taskManager.renderTask(html);
+      taskManager.toLocalStorage(taskObj);
+      // console.log(taskManager.id_arr);
     }
-    const taskObj = taskManager.createTask();
-    const html = taskManager.toHTML(taskObj);
-    taskManager.renderTask(html);
-    taskManager.toLocalStorage(taskObj);
-    // console.log(taskManager.id_arr);
   });
 
   filter_dropDown.addEventListener("click", function () {

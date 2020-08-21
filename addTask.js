@@ -166,32 +166,3 @@ function renderTask(taskObj) {
   taskContainer.append(taskElement);
 }
 // /.Add task class
-
-// Get all Tasks with a given status
-
-// let status2 = "Review";
-function getTasksWithStatus(status2) {
-  console.log(status2);
-  // if status = To Do, In Progress, Review, Done
-  let task_byStatus = [];
-  id_arr = JSON.parse(localStorage.getItem("id_arr"));
-  const l = id_arr.length;
-  console.log(id_arr);
-  for (let i = 0; i < l; i++) {
-    let post_json_taskByStatus = JSON.parse(localStorage.getItem(id_arr[i]));
-    if (post_json_taskByStatus["status"] === status2) {
-      task_byStatus.push(post_json_taskByStatus);
-    }
-  }
-  console.log(task_byStatus);
-  taskContainer.innerHTML = "";
-
-  for (let j = 0; j < task_byStatus.length; j++) {
-    renderTask(task_byStatus[j]);
-  }
-
-  // if status = All
-  // show all
-}
-
-// getTasksWithStatus(status2);

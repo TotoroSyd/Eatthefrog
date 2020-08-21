@@ -118,6 +118,9 @@ class TaskManager {
     modal_title.innerText = "Edit Task";
     modal_title.value = modal_title.innerText;
 
+    task_modal_save.innerText = "Update";
+    task_modal_save.value = task_modal_save.innerText;
+
     this.resetForm();
     const form = document.forms["task-form"];
     // Get the task object to edit from localStorage
@@ -222,7 +225,7 @@ class TaskManager {
 
   // To disable the Save button in the form until certain validation requirements are met
   disableBtn() {
-    document.querySelector("#task-modal-save").disabled = true;
+    document.querySelector("#task_modal_save").disabled = true;
   }
 
   validation() {
@@ -283,7 +286,7 @@ class TaskManager {
       err.innerText = message;
       err.style.color = "red";
       formgroup.className = "form-group error";
-      document.querySelector("#task-modal-save").disabled = true;
+      document.querySelector("#task_modal_save").disabled = true;
     }
 
     function submit(input) {
@@ -292,7 +295,7 @@ class TaskManager {
       err.innerText = "Looks good!";
       err.style.color = "green";
       formgroup.className = "form-group success";
-      document.querySelector("#task-modal-save").disabled = false;
+      document.querySelector("#task_modal_save").disabled = false;
     }
   }
 }
@@ -326,7 +329,7 @@ document.addEventListener("DOMContentLoaded", function () {
     status
   );
   const taskCreateButton = document.querySelector("#create_btn");
-  const taskModalSaveButton = document.querySelector("#task-modal-save");
+  const taskModalSaveButton = document.querySelector("#task_modal_save");
   const filter_dropDown = document.querySelector(".filter_dropDown");
 
   taskManager.refreshPage();
@@ -347,7 +350,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let updated_description = form.description.value;
       let updated_assignee = form.assignee.value;
       let updated_date = form.date.value;
-      let update_status = form.date.status;
+      let update_status = form.status.value;
       let id_to_update = form.getAttribute("id-to-update");
       taskManager.updateTask(
         id_to_update,

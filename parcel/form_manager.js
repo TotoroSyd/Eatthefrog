@@ -16,25 +16,30 @@ export default class FormManager {
 
   // To disable the Save button in the form until certain validation requirements are met
   disableBtn() {
-    document.querySelector("#task-modal-save").disabled = true;
+    document.querySelector("#task_modal_save").disabled = true;
   }
 
-  validation() {
-    const name = this.name;
-    const description = this.description;
-    const assignee = this.assignee;
-    const date = this.date;
+  resetSaveButton() {
+    task_modal_save.innerText = "Save";
+    task_modal_save.value = task_modal_save.innerText;
+  }
 
-    name.addEventListener("focus", validate);
-    description.addEventListener("focus", validate);
-    assignee.addEventListener("focus", validate);
-    date.addEventListener("change", validate);
+  validation(name, description, assignee, date) {
+    const name_tovalidate = name;
+    const description_tovalidate = description;
+    const assignee_tovalidate = assignee;
+    const date_tovalidate = date;
+
+    name_tovalidate.addEventListener("focus", validate);
+    description_tovalidate.addEventListener("focus", validate);
+    assignee_tovalidate.addEventListener("focus", validate);
+    date_tovalidate.addEventListener("change", validate);
 
     //    ============================ Validate form===============================
     function validate() {
-      const taskName = name.value.trim();
-      const descriptionInput = description.value.trim();
-      const assigne = assignee.value.trim();
+      const taskName = name_tovalidate.value.trim();
+      const descriptionInput = description_tovalidate.value.trim();
+      const assigne = assignee_tovalidate.value.trim();
 
       // =============================Task name validation========================
       if (taskName == "" || taskName.length < 8) {
@@ -77,7 +82,7 @@ export default class FormManager {
       err.innerText = message;
       err.style.color = "red";
       formgroup.className = "form-group error";
-      document.querySelector("#task-modal-save").disabled = true;
+      document.querySelector("#task_modal_save").disabled = true;
     }
 
     function submit(input) {
@@ -86,7 +91,7 @@ export default class FormManager {
       err.innerText = "Looks good!";
       err.style.color = "green";
       formgroup.className = "form-group success";
-      document.querySelector("#task-modal-save").disabled = false;
+      document.querySelector("#task_modal_save").disabled = false;
     }
   }
 }

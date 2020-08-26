@@ -33,12 +33,12 @@ class TaskManager {
     });
   }
 
-  createTask() {
-    const name = this.name.value;
-    const description = this.description.value;
-    const assignee = this.assignee.value;
-    const date = this.date.value;
-    const status = this.status.value;
+  createTask(name, description, assignee, date, status) {
+    // const name = this.name;
+    // const description = this.description;
+    // const assignee = this.assignee;
+    // const date = this.date;
+    // const status = this.status;
     const task = new Task(name, description, assignee, date, status);
     // return a task object which will be an input for toHTML(), renderTask()
     return task;
@@ -228,22 +228,22 @@ class TaskManager {
     document.querySelector("#task_modal_save").disabled = true;
   }
 
-  validation() {
-    const name = this.name;
-    const description = this.description;
-    const assignee = this.assignee;
-    const date = this.date;
+  validation(name, description, assignee, date) {
+    const name_tovalidate = name;
+    const description_tovalidate = description;
+    const assignee_tovalidate = assignee;
+    const date_tovalidate = date;
 
-    name.addEventListener("focus", validate);
-    description.addEventListener("focus", validate);
-    assignee.addEventListener("focus", validate);
-    date.addEventListener("change", validate);
+    name_tovalidate.addEventListener("focus", validate);
+    description_tovalidate.addEventListener("focus", validate);
+    assignee_tovalidate.addEventListener("focus", validate);
+    date_tovalidate.addEventListener("change", validate);
 
     //    ============================ Validate form===============================
     function validate() {
-      const taskName = name.value.trim();
-      const descriptionInput = description.value.trim();
-      const assigne = assignee.value.trim();
+      const taskName = name_tovalidate.value.trim();
+      const descriptionInput = description_tovalidate.value.trim();
+      const assigne = assignee_tovalidate.value.trim();
 
       // =============================Task name validation========================
       if (taskName == "" || taskName.length < 8) {
@@ -321,6 +321,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const assignee = form.assignee;
   const date = form.date;
   const status = form.status;
+  console.log(name.value);
   const taskManager = new TaskManager(
     name,
     description,
@@ -338,9 +339,14 @@ document.addEventListener("DOMContentLoaded", function () {
   filter_dropDown.value = "All";
 
   taskCreateButton.addEventListener("click", function () {
+    // refresh Save button
+    if ((task_modal_save.value = "Update")) {
+      task_modal_save.innerText = "Save";
+      task_modal_save.value = task_modal_save.innerText;
+    }
     taskManager.disableBtn();
     taskManager.resetForm();
-    taskManager.validation();
+    taskManager.validation(name, description, assignee, date);
   });
 
   taskModalSaveButton.addEventListener("click", function (id_to_update) {
@@ -362,7 +368,13 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       taskManager.refreshPage();
     } else {
-      const taskObj = taskManager.createTask();
+      const taskObj = taskManager.createTask(
+        name.value,
+        description.value,
+        assignee.value,
+        date.value,
+        status.value
+      );
       const html = taskManager.toHTML(taskObj);
       taskManager.renderTask(html);
       taskManager.toLocalStorage(taskObj);

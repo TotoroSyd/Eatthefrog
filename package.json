@@ -21,8 +21,18 @@
   "devDependencies": {
     "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.11.0",
+    "@testing-library/dom": "^7.22.5",
+    "@testing-library/jest-dom": "^5.11.4",
     "babel-jest": "^26.3.0",
     "jest": "^26.4.0",
     "parcel-bundler": "^1.12.4"
+  },
+  "dependencies": {
+    "jest-localstorage-mock": "^2.4.3"
+  },
+  "jest": {
+    "setupFiles": [
+      "jest-localstorage-mock"
+    ]
   }
 }

@@ -1,14 +1,18 @@
 "use strict";
-import Task from "./parcel/task.js";
+import Task from "../parcel/task.js";
+import FormManager from "./form_manager.js";
 
 export default class TaskManager {
   constructor(name, description, assignee, date, status) {
+    // define localStorage through a variable (this.localStorage) to make testing any function working with localStorage easier
+    // check unit test for toLocalStorage() for example
+    this.localStorage = localStorage;
     // refresh id_arr to keep track tasks that were created
-    this.id_arr = JSON.parse(localStorage.getItem("id_arr"));
+    this.id_arr = JSON.parse(this.localStorage.getItem("id_arr"));
     /* Method 1 to get input from form field.
-      this.name = document.querySelector("#taskName");
-        Method 2 to get input from form field. id and name can be interchanged.
-      https://www.dyn-web.com/tutorials/forms/references.php */
+    this.name = document.querySelector("#taskName");
+      Method 2 to get input from form field. id and name can be interchanged.
+    https://www.dyn-web.com/tutorials/forms/references.php */
     this.name = name;
     this.description = description;
     this.assignee = assignee;
@@ -23,23 +27,25 @@ export default class TaskManager {
     // in case id_arr in the local storage is empty, set it as an empty array. Otherwise, id_arr becomes null => break the program
     if (this.id_arr === null) {
       this.id_arr = [];
+      // let html_no_task = `<p class="text-center" style="color:gray">Yay! No Task For Now</p>`;
+      // this.renderTask(html_no_task);
+      return;
+    } else {
+      // run through the id_arr's element = key to look for task in local storage. For each id element, go to localStorage and getItem and parse it.
+      this.id_arr.forEach((id) => {
+        let postJsonTask = JSON.parse(this.localStorage.getItem(id));
+        let html = this.toHTML(postJsonTask);
+        this.renderTask(html);
+      });
     }
-    // run through the id_arr's element = key to look for task in local storage. For each id element, go to localStorage and getItem and parse it.
-    this.id_arr.forEach((id) => {
-      let postJsonTask = JSON.parse(localStorage.getItem(id));
-      // debugger;
-      // once the task is parsed from localstorage, it is an input to go to toHTML(), renderTask()
-      const html = this.toHTML(postJsonTask);
-      this.renderTask(html);
-    });
   }
 
-  createTask() {
-    const name = this.name.value;
-    const description = this.description.value;
-    const assignee = this.assignee.value;
-    const date = this.date.value;
-    const status = this.status.value;
+  createTask(name, description, assignee, date, status) {
+    // const name = this.name;
+    // const description = this.description;
+    // const assignee = this.assignee;
+    // const date = this.date;
+    // const status = this.status;
     const task = new Task(name, description, assignee, date, status);
     // return a task object which will be an input for toHTML(), renderTask()
     return task;
@@ -49,7 +55,10 @@ export default class TaskManager {
     // 'https://www.designcise.com/web/tutorial/how-to-append-an-html-string-to-an-existing-dom-element-using-javascript'
     // 'https://grrr.tech/posts/create-dom-node-from-html-string/'
     // console.log(task);
-    const html = `
+    if (task === undefined) {
+      return;
+    } else {
+      const html = `
     <div id='${task["id"]}' class="task-list row">
       <p class="col-2 text-left">${task["name"]}</p>
       <p class="col-3 text-left">${task["description"]}</p>
@@ -57,16 +66,22 @@ export default class TaskManager {
       <p class="text-center col-2">${task["date"]}</p>
       <p class="col-2 text-center">${task["status"]}</p>
       <a href="#" data-toggle="tooltip" title="Edit" class="edit-btn" data-task-id='${task["id"]}'><img src="image/pencil-edit-button.svg" alt="pencil-edit-button" width="15" height="15"/></a>
-      <a href="#" data-toggle="tooltip" title="Delete" class="delete-btn" data-task-id='${task["id"]}'><img src="image/trash.svg" alt="delete-button" width="15" height="15"/></a>
+      <a href="#deleteConfirmationModal" data-toggle="tooltip modal" title="Delete" class="delete-btn" data-task-id='${task["id"]}'><img src="image/trash.svg" alt="delete-button" width="15" height="15"/></a>
     </div>`;
-    return html;
+      //data-target="#deleteConfirmationModal" is for button and other elements (<p>)
+      return html;
+    }
   }
   renderTask(html) {
-    const taskElement = document.createRange().createContextualFragment(html);
-    //  const edit = taskElement.querySelector(".edit");
-    //  edit.addEventListener("click", editTask);
-    this.taskContainer.appendChild(taskElement);
-    // taskContainer.insertAdjacentHTML("beforeend", html);
+    if (html === undefined) {
+      return;
+    } else {
+      const taskElement = document.createRange().createContextualFragment(html);
+      //  const edit = taskElement.querySelector(".edit");
+      //  edit.addEventListener("click", editTask);
+      this.taskContainer.appendChild(taskElement);
+      // taskContainer.insertAdjacentHTML("beforeend", html);
+    }
   }
 
   toLocalStorage(task) {
@@ -78,9 +93,9 @@ export default class TaskManager {
     // serialize the taskObj into string format to save in localstorage
     let json_task = JSON.stringify(task);
     // save to the local storage the id_arr containing all task id
-    localStorage.setItem("id_arr", json_id_arr);
+    this.localStorage.setItem("id_arr", json_id_arr);
     // save to the local storage the task object
-    localStorage.setItem(task["id"], json_task);
+    this.localStorage.setItem(task["id"], json_task);
   }
 
   editButtonnClicked() {
@@ -113,17 +128,17 @@ export default class TaskManager {
   }
 
   editTask(id_edit) {
-    console.log(id_edit);
+    // console.log(id_edit);
     // console.log("It works");
     // Open and change Modal title to Edit
     $("#taskModal").modal("show");
     modal_title.innerText = "Edit Task";
     modal_title.value = modal_title.innerText;
-
-    this.resetForm();
+    const formManager = new FormManager();
+    formManager.resetForm();
     const form = document.forms["task-form"];
     // Get the task object to edit from localStorage
-    const to_edit = JSON.parse(localStorage.getItem(id_edit));
+    const to_edit = JSON.parse(this.localStorage.getItem(id_edit));
     // Fetch the task details into the modal
     form.taskName.value = to_edit.name;
     form.description.value = to_edit.description;
@@ -137,14 +152,14 @@ export default class TaskManager {
 
   // Update task to tasklist
   updateTask(id_to_update, name, description, assignee, date, status) {
-    console.log(id_to_update);
-    const to_update = JSON.parse(localStorage.getItem(id_to_update));
+    // console.log(id_to_update);
+    const to_update = JSON.parse(this.localStorage.getItem(id_to_update));
     to_update["name"] = name;
     to_update["description"] = description;
     to_update["assignee"] = assignee;
     to_update["date"] = date;
     to_update["status"] = status;
-    localStorage.setItem(id_to_update, JSON.stringify(to_update));
+    this.localStorage.setItem(id_to_update, JSON.stringify(to_update));
   }
 
   filterTask(stt) {
@@ -190,30 +205,48 @@ export default class TaskManager {
       Will return itself or the matching ancestor. If no such element exists, it returns null. */
       const del_btn = event.target.closest(".delete-btn");
 
-      /* If there is a .delete-del_btn, wrap the attribute called "data-task-id" = id of the particular task.
-      "data-task-id" = input to run deleteTask() */
+      // If there is a .delete-del_btn
+      // Open Delete Confirmation Modal
       if (del_btn) {
+        //When the delete icon clicked, open the modal. instruction from Bootstap Doc
+        $("#deleteConfirmationModal").modal("show");
+        // wrap the attribute called "data-task-id" = id of the particular task,
         const id_del = del_btn.getAttribute("data-task-id");
-        this.deleteTask(id_del);
+        //and setAttribute to the #confirm-to-delete-btn in Delete Confirmation Modal
+        const confirm_to_delete_btn = document.querySelector(
+          "#confirm-to-delete-btn"
+        );
+        confirm_to_delete_btn.setAttribute("data-task-id", `${id_del}`);
       }
     });
+  }
+
+  confirmToDeleteButtonClicked() {
+    $("#deleteConfirmationModal").modal("hide");
+    const confirm_to_delete_btn = document.querySelector(
+      "#confirm-to-delete-btn"
+    );
+    // get value of the attribute "data-task-id"
+    const id_del = confirm_to_delete_btn.getAttribute("data-task-id");
+    // return id_del which is an input to run deleteTask()
+    return id_del;
   }
 
   deleteTask(id_del) {
     // console.log(id_del);
     // console.log("deleteTask func works");
-    localStorage.removeItem(id_del);
+    this.localStorage.removeItem(id_del);
     this.id_arr = this.id_arr.filter((element) => {
       // debugger;
       return element !== id_del;
     });
 
-    localStorage.setItem("id_arr", JSON.stringify(this.id_arr));
+    this.localStorage.setItem("id_arr", JSON.stringify(this.id_arr));
     // console.log(this.id_arr);
 
     this.refreshPage();
     // this.id_arr.forEach((id) => {
-    //   this.renderTask(JSON.parse(localStorage.getItem(id)));
+    //   this.renderTask(JSON.parse(this.localStorage.getItem(id)));
     // });
   }
 }

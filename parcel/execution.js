@@ -6,6 +6,7 @@ import Task from "./task.js";
 // Execution
 // use "DOMContentLoaded" for safety, to ensure all the neccessary content is loaded.
 document.addEventListener("DOMContentLoaded", function () {
+  // $("#summaryModal").modal("show");
   const form = document.forms["task-form"];
   // const name = document.querySelector('name')
   const name = form.taskName;
@@ -20,19 +21,28 @@ document.addEventListener("DOMContentLoaded", function () {
     date,
     status
   );
+  const formManager = new FormManager();
   const taskCreateButton = document.querySelector("#create_btn");
-  const taskModalSaveButton = document.querySelector("#task-modal-save");
+  const taskModalSaveButton = document.querySelector("#task_modal_save");
+
   const filter_dropDown = document.querySelector(".filter_dropDown");
 
+  //Refresh page and display tasks saved in localStorage
   taskManager.refreshPage();
-  taskManager.deleteButtonnClicked();
+  // initiate editButtonClicked()
   taskManager.editButtonnClicked();
+  // reset status filterTask(status) to All
   filter_dropDown.value = "All";
 
   taskCreateButton.addEventListener("click", function () {
-    taskManager.disableBtn();
-    taskManager.resetForm();
-    taskManager.validation();
+    // refresh Save button
+    if ((task_modal_save.value = "Update")) {
+      task_modal_save.innerText = "Save";
+      task_modal_save.value = task_modal_save.innerText;
+    }
+    formManager.disableBtn();
+    formManager.resetForm();
+    formManager.validation(name, description, assignee, date);
   });
 
   taskModalSaveButton.addEventListener("click", function (id_to_update) {
@@ -42,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let updated_description = form.description.value;
       let updated_assignee = form.assignee.value;
       let updated_date = form.date.value;
-      let update_status = form.date.status;
+      let update_status = form.status.value;
       let id_to_update = form.getAttribute("id-to-update");
       taskManager.updateTask(
         id_to_update,
@@ -54,7 +64,13 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       taskManager.refreshPage();
     } else {
-      const taskObj = taskManager.createTask();
+      const taskObj = taskManager.createTask(
+        name.value,
+        description.value,
+        assignee.value,
+        date.value,
+        status.value
+      );
       const html = taskManager.toHTML(taskObj);
       taskManager.renderTask(html);
       taskManager.toLocalStorage(taskObj);
@@ -64,5 +80,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   filter_dropDown.addEventListener("click", function () {
     taskManager.filterTask(filter_dropDown.value);
+  });
+
+  // initiate deleteButtonnClicked() to show Delete Confirmation Modal
+  taskManager.deleteButtonnClicked();
+  const confirmToDeleteButton = document.querySelector(
+    "#confirm-to-delete-btn"
+  );
+  // "Delete" button in the Delete Confirmation Modal triggers confirmToDeleteButtonClicked()
+  // confirmToDeleteButtonClicked() will run deleteTask()
+  confirmToDeleteButton.addEventListener("click", function () {
+    const id_del = taskManager.confirmToDeleteButtonClicked();
+    taskManager.deleteTask(id_del);
   });
 });

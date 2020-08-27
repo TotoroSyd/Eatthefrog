@@ -6,7 +6,6 @@ import Task from "./task.js";
 // Execution
 // use "DOMContentLoaded" for safety, to ensure all the neccessary content is loaded.
 document.addEventListener("DOMContentLoaded", function () {
-  // $("#summaryModal").modal("show");
   const form = document.forms["task-form"];
   // const name = document.querySelector('name')
   const name = form.taskName;

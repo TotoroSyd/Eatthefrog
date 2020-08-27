@@ -128,8 +128,6 @@ export default class TaskManager {
   }
 
   editTask(id_edit) {
-    // console.log(id_edit);
-    // console.log("It works");
     // Open and change Modal title to Edit
     $("#taskModal").modal("show");
     modal_title.innerText = "Edit Task";

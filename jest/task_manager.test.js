@@ -22,8 +22,6 @@ import Task from "../parcel/task.js";
         when page refreshes, tasks from localstorage is secured ???Necessary to test?
 
     Update
-        Modal title changes to Edit
-        Save button changes to Update
         Edit form fields have correct details of a chosen task to edit
         Update button clicked and tasks details are updated
         Updated task overrides old task with the same id in localStorage
@@ -93,8 +91,10 @@ describe("Add task", () => {
     expect(actual).toContain(exp.date);
     expect(actual).toContain(exp.status);
   });
+});
 
-  it("task details exist on DOM as a result of renderTask()", () => {
+describe("DOM manipulation", () => {
+  it("task details exist on DOM as a result of calling refreshPage() > renderTask() or renderTask() itself", () => {
     /* Jest doesnt run on the actual DOM in index.html. 
       So, I have to create a "fake" DOM element I want to test if my content is displayed*/
     const test_div = document.createElement("div");
@@ -116,7 +116,7 @@ describe("Add task", () => {
   });
 });
 
-describe("to localstorage", () => {
+describe("Localstorage", () => {
   beforeEach(() => {
     localStorage.clear();
   });
@@ -144,13 +144,92 @@ describe("to localstorage", () => {
   });
 });
 
-// describe("Edit/Update", () => {
-//   beforeAll(() => {
-//     // localStorage = new LocalStorage();
-//     window.localStorage = localStorage;
-//   });
-//   beforeEach(() => {
-//     localStorage.clear();
-//   });
-//   it("Modal title changes to Edit", () => {});
-// });
+describe("Edit task", () => {
+  it("Task details is updated and saved in localStorage", () => {
+    // Fake a BEFORE task object in the FAKE localStorage
+    let localStorageMock = new LocalStorage();
+    localStorageMock.clear();
+    let key = "same_id";
+    // because when dealing with localStorage, I always JSON.stringify the input before passing it in the localstorage
+    let value = JSON.stringify({
+      name: "before_name",
+      description: "before_description",
+      assignee: "before_assignee",
+      date: "before_date",
+      status: "before_status",
+    });
+    localStorageMock.setItem(key, value);
+
+    // call TaskManager() class
+    let taskManager = new TaskManager();
+    // prepare args for updateTask()
+    let id_to_update = "same_id";
+    let name = "after_name";
+    let description = "after_description";
+    let assignee = "after_assignee";
+    let date = "after_date";
+    let status = "after_status";
+    // override any actions related to localStorage in taskManager with my "fake" localStrage code from localStorage.js
+    taskManager.localStorage = localStorageMock;
+    // call updateTask() to test
+    taskManager.updateTask(
+      id_to_update,
+      name,
+      description,
+      assignee,
+      date,
+      status
+    );
+
+    // set expected result for the test
+    // because data is saved inform of JSON.stringify
+    let exp = {
+      same_id: JSON.stringify({
+        name: "after_name",
+        description: "after_description",
+        assignee: "after_assignee",
+        date: "after_date",
+        status: "after_status",
+      }),
+    };
+    expect(localStorageMock.store).toEqual(exp);
+  });
+});
+
+describe("Delete task", () => {
+  it("removing a task deleted from the localStorage", () => {
+    // Fake a BEFORE DELETE task object in the FAKE localStorage
+    let localStorageMock = new LocalStorage();
+    localStorageMock.clear();
+    let key = "same_id";
+    // because when dealing with localStorage, I always JSON.stringify the input before passing it in the localstorage
+    let value = JSON.stringify({
+      detail: "hello",
+    });
+    localStorageMock.setItem(key, value);
+
+    // call TaskManager() class
+    let taskManager = new TaskManager();
+    // prepare args for deleteTask()
+    let id_del = "same_id";
+    // override/create a fake this.id_arr in the deleteTask()
+    taskManager.id_arr = ["same_id"];
+    // override any actions related to localStorage in taskManager with my "fake" localStrage code from localStorage.js
+    taskManager.localStorage = localStorageMock;
+
+    // refreshPage() is called within deleteTask() so I need to prepare a fake DOM div for Jest to work on
+    const test_div = document.createElement("div");
+    taskManager.taskContainer = test_div;
+
+    // call deleteTask() to test
+    taskManager.deleteTask(id_del);
+
+    // set expected result for the test
+    expect(localStorageMock.store).toEqual({ id_arr: "[]" });
+  });
+
+  it("removing a task deleted from the HTML list component group", () => {
+    // refreshPage() is called inside deleteTask()
+    // I tested separatedly DOM manipulation and renderTask() behaves correctly
+  });
+});

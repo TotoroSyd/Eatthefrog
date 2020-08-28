@@ -19,6 +19,9 @@ nav {
   background-image: linear-gradient(to bottom right, #f68121, #ffdf74);
   /* background-color: #f68121; */
 }
+.navbar-brand {
+  margin-left: 2rem;
+}
 
 main {
   /* border: black solid 2px; */

@@ -17,91 +17,107 @@
       type="text/css"
     />
     <link rel="stylesheet" href="style.css" type="text/css" media="all" />
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <link rel="icon" type="image/png" href="image/logo-orangebg.svg" />
     <title>Eatthefrog</title>
   </head>
   <body>
-    <header>
-      <nav
-        class="navbar navbar-light navbar-expand-lg fixed-top"
-        role="navigation"
+    <nav
+      class="navbar navbar-light navbar-expand-lg fixed-top flex-md-nowrap p-0 shadow"
+      role="navigation"
+    >
+      <a
+        href="#"
+        class="navbar-brand"
+        style="color: aliceblue; font-weight: 500"
       >
-        <a
-          href="#"
-          class="navbar-brand"
-          style="color: aliceblue; font-weight: 500;"
-        >
-          <img
-            src="image/frog.svg"
-            alt="frog black and white icon"
-            width="40"
-            height="40"
-            class="d-inline-block align-top"
-          />
-          Eatthefrog
-        </a>
-      </nav>
-    </header>
-
-    <main class="container">
-
-      <!--Task details display-->
-      <div class='filter'>
-        <h3>What's on?</h3>
-        <select class="text-center filter_dropDown">
-          <option selected>All</option>
-          <option>To Do</option>
-          <option>In Progress</option>
-          <option>Review</option>
-          <option>Done</option>
-        </select>
-      </div>
-      
-
-      <div id="accordion">
-        <div class="card">
-          <div class="card-header" id="headingOne">
-            <!--Header of Task list table-->
-            <div class="task-header row" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              <div class="col-2">
-                <p class="text-center">Task Name</p>
-              </div>
-              <div class="col-3">
-                <p class="text-center">Description</p>
-              </div>
-              <div class="col-2">
-                <p class="text-center">Owner</p>
-              </div>
-              <div class="col-2">
-                <p class="text-center">Date</p>
-              </div>
-              <div class="col-2">
-                <p class="text-center">Status</p>
-              </div>
-            </div>
-          </div>
-
-          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-            <div class="card-body" id="tasks">
-              <!-- renderTask here -->
-            </div>
-          </div>
+        <img
+          src="image/frog.svg"
+          alt="frog black and white icon"
+          width="40"
+          height="40"
+          class="d-inline-block align-top"
+        />
+        Eatthefrog
+      </a>
+    </nav>
+    <!-- <div>
+      <div class="sidebar-left">
+        <ul>
+          <li>
+            <a href="#"><i class="far fa-calendar">Today</i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fas fa-bullseye">To Do</i></a>
+          </li>
+        </ul>
+      </div> -->
+      <main role="main-content" class="container">
+        <!--Task details display-->
+        <div class="filter">
+          <h3>What's on</h3>
+          <select class="text-center filter_dropDown">
+            <option selected>All</option>
+            <option>To Do</option>
+            <option>In Progress</option>
+            <option>Review</option>
+            <option>Done</option>
+          </select>
         </div>
-      </div>
-    </div>
-      <!--Create button-->
-      <button
-        type="button"
-        class="btn"
-        data-toggle="modal"
-        data-target="#taskModal"
-        id="create_btn"
-      >
-        +
-      </button>
 
-    </main>
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <!--Header of Task list table-->
+              <div
+                class="task-header row"
+                data-toggle="collapse"
+                data-target="#collapseOne"
+                aria-expanded="true"
+                aria-controls="collapseOne"
+              >
+                <div class="col-2">
+                  <p class="text-center">Task Name</p>
+                </div>
+                <div class="col-3">
+                  <p class="text-center">Description</p>
+                </div>
+                <div class="col-2">
+                  <p class="text-center">Owner</p>
+                </div>
+                <div class="col-2">
+                  <p class="text-center">Date</p>
+                </div>
+                <div class="col-2">
+                  <p class="text-center">Status</p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              id="collapseOne"
+              class="collapse show"
+              aria-labelledby="headingOne"
+              data-parent="#accordion"
+            >
+              <div class="card-body" id="tasks">
+                <!-- renderTask here -->
+              </div>
+            </div>
+          </div>
+
+          <!--Create button-->
+          <button
+            type="button"
+            class="btn"
+            data-toggle="modal"
+            data-target="#taskModal"
+            id="create_btn"
+          >
+            +
+          </button>
+        </div>
+      </main>
+    </div>
     <!--Create Dialog-->
     <!-- ======================================================= Modal Body============================================== -->
     <div class="modal fade" id="taskModal">
@@ -218,12 +234,8 @@
                     <option>Review</option>
                     <option>Done</option>
                   </select>
-                  <div class="valid-feedback">
-                    Looks good!
-                  </div>
-                  <div class="invalid-feedback">
-                    Select a status!
-                  </div>
+                  <div class="valid-feedback">Looks good!</div>
+                  <div class="invalid-feedback">Select a status!</div>
                 </div>
                 <!-- Category  -->
                 <div class="col-4">
@@ -241,7 +253,9 @@
 
                 <!--Priority-->
                 <div class="col-4">
-                  <label for="priority" class="col-4 col-form-label">Priority</label>
+                  <label for="priority" class="col-4 col-form-label"
+                    >Priority</label
+                  >
                   <select id="priority" class="form-control">
                     <!-- <option selected>Choose...</option> -->
                     <option>High</option>
@@ -277,33 +291,37 @@
               <i class="material-icons">&#xE5CD;</i>
               <img  class="material-icons" src="image/trash.svg" alt="delete-button" width="30" height="30"/>
             </div>				 -->
-            <h4 class="modal-title">Are you sure?</h4>	
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Are you sure?</h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-hidden="true"
+            >
+              &times;
+            </button>
           </div>
           <div class="modal-body">
-            <p>Do you really want to delete this record? This process cannot be undone.</p>
+            <p>
+              Do you really want to delete this record? This process cannot be
+              undone.
+            </p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-danger" id="confirm-to-delete-btn">Delete</button>
+            <button type="button" class="btn btn-info" data-dismiss="modal">
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              id="confirm-to-delete-btn"
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>
-    </div>     
-    
-
-    <!-- Summary Sidebar -->
-    <div class="sidebar">
-      <div id="summaryModal" >
-      <div>
-        <div>
-          <h6>Today<span class="badge badge-success">New</span></h6>
-
-        </div>
-      </div>
-      </div>
     </div>
-
 
     <!-- JS, Popper.js, and jQuery -->
     <script
@@ -324,6 +342,7 @@
     <!-- <script src="addTask.js"></script> -->
     <!-- <script src="script2.js"></script> -->
     <!-- <script src="deleteTask.js"></script> -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script type="module" src="./parcel/execution.js"></script>
   </body>
 </html>

@@ -54,7 +54,7 @@
       <main role="main-content" class="container">
         <!--Task details display-->
         <div class="filter">
-          <h3>What's on</h3>
+          <h3 id="today">......</h3>
           <select class="text-center filter_dropDown">
             <option selected>All</option>
             <option>To Do</option>
@@ -206,7 +206,7 @@
                   </div>
                 </div>
 
-                <!-- Time  -->
+                <!-- Time 
                 <div class="col-5">
                   <label for="time" class="col-4 col-form-label">Time</label>
                   <div>
@@ -217,13 +217,10 @@
                       id="time"
                     />
                   </div>
-                </div>
-              </div>
+                </div> -->
 
-              <!-- Status, Category, Priority row -->
-              <div class="row form-group">
                 <!-- Status  -->
-                <div class="col-4">
+                <div class="col-5">
                   <label for="status" class="col-4 col-form-label"
                     >Status</label
                   >
@@ -237,8 +234,13 @@
                   <div class="valid-feedback">Looks good!</div>
                   <div class="invalid-feedback">Select a status!</div>
                 </div>
+              </div>
+
+              <!-- Status, Category, Priority row -->
+              <div class="row form-group">
+
                 <!-- Category  -->
-                <div class="col-4">
+                <div class="col-6">
                   <label for="category" class="col-4 col-form-label"
                     >Category</label
                   >
@@ -252,7 +254,7 @@
                 </div>
 
                 <!--Priority-->
-                <div class="col-4">
+                <div class="col-6">
                   <label for="priority" class="col-4 col-form-label"
                     >Priority</label
                   >
@@ -261,7 +263,6 @@
                     <option>High</option>
                     <option>Moderate</option>
                     <option>Low</option>
-                    <option>Optional</option>
                   </select>
                 </div>
               </div>
@@ -339,9 +340,6 @@
       integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
       crossorigin="anonymous"
     ></script>
-    <!-- <script src="addTask.js"></script> -->
-    <!-- <script src="script2.js"></script> -->
-    <!-- <script src="deleteTask.js"></script> -->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script type="module" src="./parcel/execution.js"></script>
   </body>

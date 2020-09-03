@@ -7,14 +7,14 @@ body {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-h1,
+/* h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
   color: #f68121;
-}
+} */
 nav {
   background-image: linear-gradient(to bottom right, #f68121, #ffdf74);
   /* background-color: #f68121; */
@@ -23,16 +23,12 @@ nav {
   margin-left: 2rem;
 }
 
-main {
-  /* border: black solid 2px; */
-  margin-top: 5rem;
-}
-
 .filter {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 .filter > select {
@@ -118,20 +114,91 @@ main {
   margin-top: 1rem;
 }
 
-/* Summary Sidebar */
-.sidebar {
-  height: 100%;
-  width: 240px;
-  background-color: green;
-}
-#summaryModal {
-  position: fixed;
-  margin: 1rem 1rem 1rem 1rem;
-  width: 240px;
-  height: 80%;
-  background-color: peachpuff;
+/* Welcome Banner */
+.banner {
+  background-image: url("https://images.unsplash.com/photo-1582227869938-cce15c8b1cee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80");
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
 }
 
+.welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  color: white;
+}
+
+.welcome_message {
+  text-align: center;
+  margin-top: 2rem;
+  width: 70%;
+}
+
+.welcome_message > h1 {
+  font-size: 8rem;
+  color: rgba(0, 0, 0, 0.719);
+}
+
+.welcome_message > h3 {
+  color: rgba(0, 0, 0, 0.719);
+}
+
+.welcome_summary_card {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  justify-content: space-evenly;
+}
+
+.summary_card_parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 500px;
+}
+
+.summary_card_parent > h6 {
+  color: #fcbb30;
+  font-weight: 700;
+  font-size: 5rem;
+  text-align: center;
+  position: relative;
+  top: 4rem;
+  z-index: 1;
+}
+
+.summary_card_parent:hover {
+  cursor: pointer;
+}
+
+.summary_card_content {
+  color: rgba(0, 0, 0, 0.719);
+  font-weight: bold;
+  font-size: 80px;
+  text-align: center;
+  position: relative;
+  top: 11rem;
+  z-index: 1;
+  transition: transform 0.5s;
+}
+.summary_card_content:hover {
+  transform: scale(1.55, 1.55);
+}
+
+.summary_card {
+  width: 15rem;
+  height: 15rem;
+  background-color: white;
+  opacity: 50%;
+  border-radius: 10px;
+}
+
+.welcome_button_more {
+  padding-top: 10rem;
+}
 /* Delete Modal  */
 .modal-confirm {
   color: #636363;

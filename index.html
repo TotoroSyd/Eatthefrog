@@ -21,7 +21,7 @@
     <title>Eatthefrog</title>
   </head>
   <body>
-    <nav
+    <!-- <nav
       class="navbar navbar-light navbar-expand-lg fixed-top flex-md-nowrap p-0 shadow"
       role="navigation"
     >
@@ -39,84 +39,118 @@
         />
         Eatthefrog
       </a>
-    </nav>
-    <!-- <div>
-      <div class="sidebar-left">
-        <ul>
-          <li>
-            <a href="#"><i class="far fa-calendar">Today</i></a>
-          </li>
-          <li>
-            <a href="#"><i class="fas fa-bullseye">To Do</i></a>
-          </li>
-        </ul>
-      </div> -->
-      <main role="main-content" class="container">
-        <!--Task details display-->
-        <div class="filter">
+    </nav> -->
+    <!-- Welcome Summary Banner Top -->
+    <div role="banner" class="banner">
+      <div class="welcome">
+        <div class="welcome_message">
+          <h1>Hey!</h1>
           <h3 id="today">Thursday, Sep 3, 2020</h3>
-          <select class="text-center filter_dropDown">
-            <option selected>All</option>
-            <option>To Do</option>
-            <option>In Progress</option>
-            <option>Review</option>
-            <option>Done</option>
-          </select>
         </div>
+        <div class="welcome_summary_card">
+          <div class="summary_card_parent">
+            <h6>Todo</h6>
+            <p class="summary_card_content">10</p>
+            <a href="#accordion"
+              ><div class="summary_card" id="welcome_todo"></div
+            ></a>
+          </div>
 
-        <div id="accordion">
-          <div class="card">
-            <div class="card-header" id="headingOne">
-              <!--Header of Task list table-->
-              <div
-                class="task-header row"
-                data-toggle="collapse"
-                data-target="#collapseOne"
-                aria-expanded="true"
-                aria-controls="collapseOne"
-              >
-                <div class="col-2">
-                  <p class="text-center">Task Name</p>
-                </div>
-                <div class="col-3">
-                  <p class="text-center">Description</p>
-                </div>
-                <div class="col-2">
-                  <p class="text-center">Owner</p>
-                </div>
-                <div class="col-2">
-                  <p class="text-center">Date</p>
-                </div>
-                <div class="col-2">
-                  <p class="text-center">Status</p>
-                </div>
-              </div>
+          <div class="summary_card_parent">
+            <h6>Urgent</h6>
+            <div class="summary_card_content">
+              <p>5</p>
             </div>
+            <a href="#accordion"
+              ><div class="summary_card" id="welcome_urgent"></div
+            ></a>
+          </div>
 
+          <div class="summary_card_parent">
+            <h6>TMR</h6>
+            <div class="summary_card_content">
+              <p>3</p>
+            </div>
+            <a href="#accordion"
+              ><div class="summary_card" id="welcome_tmr"></div
+            ></a>
+          </div>
+        </div>
+        <div class="welcome_button_more">
+          <a href="#"
+            ><img
+              src="image/FrogButtonWhiteBg.svg"
+              width="100px"
+              height="100px"
+          /></a>
+        </div>
+      </div>
+    </div>
+
+    <div role="main-content" class="container">
+      <!--Task details display-->
+      <div class="filter">
+        <select class="text-center filter_dropDown">
+          <option selected>All</option>
+          <option>To Do</option>
+          <option>In Progress</option>
+          <option>Review</option>
+          <option>Done</option>
+        </select>
+      </div>
+
+      <div id="accordion">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <!--Header of Task list table-->
             <div
-              id="collapseOne"
-              class="collapse show"
-              aria-labelledby="headingOne"
-              data-parent="#accordion"
+              class="task-header row"
+              data-toggle="collapse"
+              data-target="#collapseOne"
+              aria-expanded="true"
+              aria-controls="collapseOne"
             >
-              <div class="card-body" id="tasks">
-                <!-- renderTask here -->
+              <div class="col-2">
+                <p class="text-center">Task Name</p>
+              </div>
+              <div class="col-3">
+                <p class="text-center">Description</p>
+              </div>
+              <div class="col-2">
+                <p class="text-center">Owner</p>
+              </div>
+              <div class="col-2">
+                <p class="text-center">Date</p>
+              </div>
+              <div class="col-2">
+                <p class="text-center">Status</p>
               </div>
             </div>
           </div>
 
-          <!--Create button-->
-          <button
-            type="button"
-            class="btn"
-            data-toggle="modal"
-            data-target="#taskModal"
-            id="create_btn"
+          <div
+            id="collapseOne"
+            class="collapse show"
+            aria-labelledby="headingOne"
+            data-parent="#accordion"
           >
-            +
-          </button>
+            <div class="card-body" id="tasks">
+              <!-- renderTask here -->
+            </div>
+          </div>
         </div>
-      </main>
+
+        <!--Create button-->
+        <button
+          type="button"
+          class="btn"
+          data-toggle="modal"
+          data-target="#taskModal"
+          id="create_btn"
+        >
+          +
+        </button>
+      </div>
     </div>
     <!--Create Dialog-->
     <!-- ======================================================= Modal Body============================================== -->
@@ -238,7 +272,6 @@
 
               <!-- Status, Category, Priority row -->
               <div class="row form-group">
-
                 <!-- Category  -->
                 <div class="col-6">
                   <label for="category" class="col-4 col-form-label"

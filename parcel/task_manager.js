@@ -10,6 +10,7 @@ export default class TaskManager {
     this.localStorage = localStorage;
     // refresh id_arr to keep track tasks that were created
     this.id_arr = JSON.parse(this.localStorage.getItem("id_arr"));
+
     /* Method 1 to get input from form field.
     this.name = document.querySelector("#taskName");
       Method 2 to get input from form field. id and name can be interchanged.

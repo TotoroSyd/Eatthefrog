@@ -25,6 +25,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const taskModalSaveButton = document.querySelector("#task_modal_save");
 
   const filter_dropDown = document.querySelector(".filter_dropDown");
+  const welcome_todo = document.querySelector("#welcome_todo");
+
+  //When welcome_todo clicked, show filter only Todo for Today
+  welcome_todo.addEventListener("click", function () {
+    filter_dropDown.value = "To Do";
+    taskManager.filterTask(filter_dropDown.value);
+  });
 
   //Refresh page and display tasks saved in localStorage
   taskManager.refreshPage();

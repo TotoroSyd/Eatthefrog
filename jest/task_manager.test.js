@@ -16,28 +16,6 @@ import TaskManager from "../parcel/task_manager.js";
 import LocalStorage from "./localStorage.js";
 import Task from "../parcel/task.js";
 
-// Add, delete, update, assign
-/*  Add
-        when page refreshes, task from localstorage is displayed fully on DOM
-        when page refreshes, tasks from localstorage is secured ???Necessary to test?
-
-    Update
-        Edit form fields have correct details of a chosen task to edit
-        Update button clicked and tasks details are updated
-        Updated task overrides old task with the same id in localStorage
-        Updated task overrides old task on screen
-        Number of tasks on screen = number of tasks in localStorage
-    Assign
-        Updated assignee is displayed on screen
-        Updated assignee is stored in localStorage
-    Delete
-        Deleted task is not on screen
-        Deleted task is not in the localStorage
-        Numbers of task in localStorage reduce 1
-    Filter
-        // Todo
-*/
-
 describe("Add task", () => {
   it("task object is created", () => {
     let taskManager = new TaskManager();

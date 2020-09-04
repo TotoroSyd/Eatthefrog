@@ -77,19 +77,72 @@
           </div>
         </div>
         <div class="welcome_button_more">
-          <a href="#"
+          <a href="#accordion"
             ><img
-              src="image/FrogButtonWhiteBg.svg"
-              width="100px"
-              height="100px"
+              src="image/FrogButtonWhiteBg_close.svg"
+              width="80px"
+              height="80px"
+              onmouseover="this.src='image/FrogButtonWhiteBg.svg'"
+              onmouseout="this.src='image/FrogButtonWhiteBg_close.svg'"
           /></a>
         </div>
       </div>
     </div>
+    <!-- Hidden Banner Button -->
+    <div class="hidden_banner_button">
+      <a href="#"
+        ><img
+          src="image/FrogButtonWhiteBg_close.svg"
+          width="80px"
+          height="80px"
+          onmouseover="this.src='image/FrogButtonWhiteBg.svg'"
+          onmouseout="this.src='image/FrogButtonWhiteBg_close.svg'"
+      /></a>
+    </div>
 
-    <div role="main-content" class="container">
+    <div role="main-content" class="task_container">
+      <!-- Right Sidebar -->
+      <div class="rightSideBar">
+        <!--Create button-->
+        <div class="sideBarElement">
+          <button
+            type="button"
+            class="btn"
+            data-toggle="modal"
+            data-target="#taskModal"
+            id="create_btn"
+          >
+            +
+          </button>
+        </div>
+        <div class="sideBarElement">
+          <button type="button" class="btn">To Do</button>
+          <div class="sideBarBadge">10</div>
+        </div>
+        <div class="sideBarElement">
+          <button type="button" class="btn">In Progress</button>
+          <div class="sideBarBadge">10</div>
+        </div>
+        <div class="sideBarElement">
+          <button type="button" class="btn">Review</button>
+          <div class="sideBarBadge">10</div>
+        </div>
+        <!-- <div class="sideBarElement">
+          <button type="button" class="btn">Done</button>
+          <div class="sideBarBadge">10</div>
+        </div> -->
+        <div class="sideBarElement">
+          <button type="button" class="btn">Due soon</button>
+          <div class="sideBarBadge">10</div>
+        </div>
+        <div class="sideBarElement">
+          <button type="button" class="btn">Tomorrow</button>
+          <div class="sideBarBadge">10</div>
+        </div>
+      </div>
+
       <!--Task details display-->
-      <div class="filter">
+      <div class="filter" style="display: none">
         <select class="text-center filter_dropDown">
           <option selected>All</option>
           <option>To Do</option>
@@ -139,17 +192,6 @@
             </div>
           </div>
         </div>
-
-        <!--Create button-->
-        <button
-          type="button"
-          class="btn"
-          data-toggle="modal"
-          data-target="#taskModal"
-          id="create_btn"
-        >
-          +
-        </button>
       </div>
     </div>
     <!--Create Dialog-->

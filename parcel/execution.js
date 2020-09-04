@@ -25,16 +25,31 @@ document.addEventListener("DOMContentLoaded", function () {
   const taskModalSaveButton = document.querySelector("#task_modal_save");
 
   const filter_dropDown = document.querySelector(".filter_dropDown");
+  const welcome_button_more = document.querySelector(".welcome_button_more");
   const welcome_todo = document.querySelector("#welcome_todo");
+
+  const hidden_banner_button = document.querySelector(".hidden_banner_button");
+  // When welcome_button_more clicked, hide welcome banner, show content
+  welcome_button_more.addEventListener("click", function () {
+    taskManager.hideWelcomeBanner();
+  });
+
+  // When hidden_banner_button clicked, hide content, show welcome banner
+  hidden_banner_button.addEventListener("click", function () {
+    taskManager.hideContent();
+  });
 
   //When welcome_todo clicked, show filter only Todo for Today
   welcome_todo.addEventListener("click", function () {
+    taskManager.hideWelcomeBanner();
     filter_dropDown.value = "To Do";
     taskManager.filterTask(filter_dropDown.value);
   });
 
-  //Refresh page and display tasks saved in localStorage
+  //Refresh page and display tasks saved in localStorage.
   taskManager.refreshPage();
+  // hide everything except welcome banner
+  taskManager.hideContent();
   // initiate editButtonClicked()
   taskManager.editButtonnClicked();
   // reset status filterTask(status) to All

@@ -74,7 +74,7 @@ nav {
 
 .btn {
   border-radius: 30px;
-  background-color: #f68121;
+  background: linear-gradient(135deg, #f68121 30%, #fcbb30 100%);
   text-decoration: none;
   color: aliceblue;
 }
@@ -168,10 +168,15 @@ nav {
   position: relative;
   top: 4rem;
   z-index: 1;
+  transition: transform 0.5s;
 }
 
 .summary_card_parent:hover {
   cursor: pointer;
+}
+
+.summary_card_parent:hover > .summary_card_content {
+  transform: scale(1.5, 1.5);
 }
 
 .summary_card_content {
@@ -183,9 +188,6 @@ nav {
   top: 11rem;
   z-index: 1;
   transition: transform 0.5s;
-}
-.summary_card_content:hover {
-  transform: scale(1.55, 1.55);
 }
 
 .summary_card {
@@ -199,6 +201,43 @@ nav {
 .welcome_button_more {
   padding-top: 10rem;
 }
+
+/* Hidden Banner Button */
+.hidden_banner_button {
+  text-align: center;
+  margin-top: 1rem;
+  transition: transform 0.5s;
+}
+
+.hidden_banner_button:hover {
+  transform: scale(1.1, 1.1);
+}
+
+/* Task Container  */
+.task_container {
+  margin: 3rem;
+  display: flex;
+}
+
+.rightSideBar {
+  width: 15%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.sideBarElement {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+#accordion {
+  width: 85%;
+}
+
 /* Delete Modal  */
 .modal-confirm {
   color: #636363;

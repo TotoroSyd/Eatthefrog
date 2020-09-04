@@ -235,8 +235,7 @@ nav {
 }
 
 .sideBarBadge {
-  border: thistle solid;
-  align-self: flex-end;
+  color: #f15e5e;
 }
 #accordion {
   width: 90%;

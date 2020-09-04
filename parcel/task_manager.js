@@ -34,11 +34,11 @@ export default class TaskManager {
   hideWelcomeBanner() {
     document.querySelector(".banner").style.display = "none";
     document.querySelector(".hidden_banner_button").style.display = "block";
-    document.querySelector(".task_container").style.display = "block";
+    document.querySelector(".task_container").style.display = "flex";
   }
 
   hideContent() {
-    document.querySelector(".banner").style.display = "block";
+    document.querySelector(".banner").style.display = "flex";
     document.querySelector(".hidden_banner_button").style.display = "none";
     document.querySelector(".task_container").style.display = "none";
   }

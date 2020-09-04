@@ -27,8 +27,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const filter_dropDown = document.querySelector(".filter_dropDown");
   const welcome_button_more = document.querySelector(".welcome_button_more");
   const welcome_todo = document.querySelector("#welcome_todo");
-
+  const welcome_dueSoon = document.querySelector("#welcome_dueSoon");
+  const welcome_tmr = document.querySelector("#welcome_tmr");
   const hidden_banner_button = document.querySelector(".hidden_banner_button");
+
   // When welcome_button_more clicked, hide welcome banner, show content
   welcome_button_more.addEventListener("click", function () {
     taskManager.hideWelcomeBanner();
@@ -38,7 +40,14 @@ document.addEventListener("DOMContentLoaded", function () {
   hidden_banner_button.addEventListener("click", function () {
     taskManager.hideContent();
   });
-
+  // When welcome_dueSoon clicked, show tasks that are due in days from current day
+  welcome_dueSoon.addEventListener("click", function () {
+    taskManager.hideWelcomeBanner();
+  });
+  // When welcome_tmr clicked, show tasks that are due in days from current day
+  welcome_tmr.addEventListener("click", function () {
+    taskManager.hideWelcomeBanner();
+  });
   //When welcome_todo clicked, show filter only Todo for Today
   welcome_todo.addEventListener("click", function () {
     taskManager.hideWelcomeBanner();

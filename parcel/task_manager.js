@@ -10,7 +10,7 @@ export default class TaskManager {
     this.localStorage = localStorage;
     // refresh id_arr to keep track tasks that were created
     this.id_arr = JSON.parse(this.localStorage.getItem("id_arr"));
-
+    this.task_list = this.getTasksFromLocalStorage();
     /* Method 1 to get input from form field.
     this.name = document.querySelector("#taskName");
       Method 2 to get input from form field. id and name can be interchanged.
@@ -30,6 +30,16 @@ export default class TaskManager {
   //   // display today date to HTML
   //   today.innerHTML = nowDate;
   // }
+
+  // Get all tasks from localstorage ONCE when page loads and store in a huge object,
+  // to reduce spending effort to come into localstorage many times
+  getTasksFromLocalStorage() {
+    const task_list_dummy = {};
+    this.id_arr.forEach((task_id) => {
+      task_list_dummy[task_id] = JSON.parse(this.localStorage.getItem(task_id));
+    });
+    return task_list_dummy;
+  }
 
   hideWelcomeBanner() {
     document.querySelector(".banner").style.display = "none";

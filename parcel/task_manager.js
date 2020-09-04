@@ -31,6 +31,18 @@ export default class TaskManager {
   //   today.innerHTML = nowDate;
   // }
 
+  hideWelcomeBanner() {
+    document.querySelector(".banner").style.display = "none";
+    document.querySelector(".hidden_banner_button").style.display = "block";
+    document.querySelector(".task_container").style.display = "block";
+  }
+
+  hideContent() {
+    document.querySelector(".banner").style.display = "block";
+    document.querySelector(".hidden_banner_button").style.display = "none";
+    document.querySelector(".task_container").style.display = "none";
+  }
+
   refreshPage() {
     // clear everything on the page before loading content
     this.taskContainer.innerHTML = "";

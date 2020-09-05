@@ -336,5 +336,28 @@ nav {
   margin: 100px auto;
 }
 
+/* Footer */
+footer {
+  font-family: "Kumbh Sans", sans-serif;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 150px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.719);
+  color: whitesmoke;
+}
+
+.footer_content {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+#contact {
+  padding-left: 30rem;
+  padding-top: 2rem;
+}
+
 /* NOTE:
 https://www.freecodecamp.org/news/how-to-center-anything-with-css-align-a-div-text-and-more/ */

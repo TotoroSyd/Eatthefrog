@@ -67,7 +67,8 @@ export default class TaskManager {
     } else {
       // run through the id_arr's element = key to look for task in local storage. For each id element, go to localStorage and getItem and parse it.
       this.id_arr.forEach((id) => {
-        let postJsonTask = JSON.parse(this.localStorage.getItem(id));
+        // let postJsonTask = JSON.parse(this.localStorage.getItem(id));
+        let postJsonTask = this.task_list[id];
         let html = this.toHTML(postJsonTask);
         this.renderTask(html);
       });
@@ -195,26 +196,22 @@ export default class TaskManager {
   }
 
   filterTask(stt) {
-    let post_json_taskByStatus = [];
-    this.id_arr.forEach(function (id) {
-      post_json_taskByStatus.push(JSON.parse(localStorage.getItem(id)));
-    });
-
     // When filter status = All
     if (stt === "All") {
       // taskByStatus = post_json_taskByStatus;
       this.taskContainer.innerHTML = "";
-      post_json_taskByStatus.forEach((task) => {
-        const html = this.toHTML(task);
+      this.id_arr.forEach((id) => {
+        const html = this.toHTML(this.task_list[id]);
         this.renderTask(html);
       });
     }
     // When filter status = To Do, In Progress, Review, Done
     else {
       this.taskContainer.innerHTML = "";
-      post_json_taskByStatus.forEach((task) => {
-        if (task["status"] === stt) {
-          const html = this.toHTML(task);
+      this.id_arr.forEach((id) => {
+        const taskObjFromTaskList = this.task_list[id];
+        if (taskObjFromTaskList["status"] === stt) {
+          const html = this.toHTML(taskObjFromTaskList);
           this.renderTask(html);
         }
       });

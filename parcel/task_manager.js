@@ -283,5 +283,17 @@ export default class TaskManager {
     // });
   }
 
-  countTaskByStatus() {}
+  countTaskByStatus(stt) {
+    let count = 0;
+    this.id_arr.forEach((id) => {
+      if (this.task_list[id]["status"] === stt) {
+        count++;
+      }
+    });
+    return count;
+  }
+
+  countTaskByDueDate() {
+    //todo
+  }
 }

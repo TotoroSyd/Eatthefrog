@@ -29,6 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const welcome_todo = document.querySelector("#welcome_todo");
   const welcome_dueSoon = document.querySelector("#welcome_dueSoon");
   const welcome_tmr = document.querySelector("#welcome_tmr");
+  const summary_card_content_todo = document.querySelector(
+    "#summary_card_content_todo"
+  );
 
   const hidden_banner_button = document.querySelector(".hidden_banner_button");
 
@@ -36,6 +39,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const sideBarToDo = document.querySelector("#sideBarToDo");
   const sideBarInProgress = document.querySelector("#sideBarInProgress");
   const sideBarReview = document.querySelector("#sideBarReview");
+  const badgeToDo = document.querySelector("#BadgeToDo");
+
+  // Update summary_card_content_todo with # of Todo on the current date
+  summary_card_content_todo.innerHTML = taskManager.countTaskByStatus("To Do");
+
+  // Update BadgeToDo with # of Todo on the current date
+  badgeToDo.innerHTML = taskManager.countTaskByStatus("To Do");
 
   // When welcome_button_more clicked, hide welcome banner, show content
   welcome_button_more.addEventListener("click", function () {

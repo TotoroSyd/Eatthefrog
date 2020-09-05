@@ -1,20 +1,27 @@
 /* Attribute
 Icons made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry</a> 
 from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> */
-
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: sans-serif;
 }
 
-/* h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: #f68121;
-} */
+/* Style Link tag */
+a {
+  color: inherit; /* take on the colour of its parent */
+  text-decoration: none;
+}
+
+a:hover {
+  color: #00a0c6;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 nav {
   background-image: linear-gradient(to bottom right, #f68121, #ffdf74);
   /* background-color: #f68121; */
@@ -36,11 +43,6 @@ nav {
   text-indent: 0;
   font-size: smaller;
 }
-/* .center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
 
 .task-list:hover {
   color: #f68121;
@@ -56,10 +58,6 @@ nav {
   padding-right: 5px;
 }
 
-/* .hide {
-  display: none;
-} */
-
 #taskName,
 #description,
 #assigned-to,
@@ -69,22 +67,27 @@ nav {
 #status,
 #category,
 #priority {
-  background-color: #fcbb30;
+  background-color: #fea768;
 }
 
 .btn {
   border-radius: 30px;
-  background: linear-gradient(135deg, #f68121 30%, #fcbb30 100%);
+  /* background: linear-gradient(135deg, #fea768 30%, #fcbb30 100%); */
+  /* background: #08582a; */
+  /* background: #fcce05; */
+  background: white;
+  border: #085140 solid;
   text-decoration: none;
-  color: aliceblue;
+  color: #085140;
 }
 
-#create_btn {
-  margin: 1rem;
+.btn:hover {
+  background: #085140;
+  color: white;
 }
 
 .card-header {
-  background-color: #f68121;
+  background-color: #fea768;
   height: 4em;
 }
 

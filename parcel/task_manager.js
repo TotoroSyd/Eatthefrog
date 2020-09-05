@@ -45,12 +45,14 @@ export default class TaskManager {
     document.querySelector(".banner").style.display = "none";
     document.querySelector(".hidden_banner_button").style.display = "block";
     document.querySelector(".task_container").style.display = "flex";
+    document.querySelector("footer").style.display = "flex";
   }
 
   hideContent() {
     document.querySelector(".banner").style.display = "flex";
     document.querySelector(".hidden_banner_button").style.display = "none";
     document.querySelector(".task_container").style.display = "none";
+    document.querySelector("footer").style.display = "none";
   }
 
   refreshPage() {
@@ -280,4 +282,6 @@ export default class TaskManager {
     //   this.renderTask(JSON.parse(this.localStorage.getItem(id)));
     // });
   }
+
+  countTaskByStatus() {}
 }

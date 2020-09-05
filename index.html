@@ -16,6 +16,10 @@
       crossorigin="anonymous"
       type="text/css"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" type="text/css" media="all" />
     <link rel="icon" type="image/png" href="image/logo-orangebg.svg" />
     <title>Eatthefrog</title>
@@ -115,6 +119,11 @@
             +
           </button>
         </div>
+        <hr>
+        <div class="sideBarElement">
+          <button type="button" class="btn" id="sideBarAll">All</button>
+          <div class="sideBarBadge">10</div>
+        </div>
         <div class="sideBarElement">
           <button type="button" class="btn" id="sideBarToDo">To Do</button>
           <div class="sideBarBadge">10</div>
@@ -126,25 +135,26 @@
           <div class="sideBarBadge">10</div>
         </div>
         <div class="sideBarElement">
-          <button type="button" class="btn">Review</button>
+          <button type="button" class="btn" id="sideBarReview">Review</button>
           <div class="sideBarBadge">10</div>
         </div>
         <!-- <div class="sideBarElement">
           <button type="button" class="btn">Done</button>
           <div class="sideBarBadge">10</div>
         </div> -->
+        <hr>
         <div class="sideBarElement">
-          <button type="button" class="btn">Due soon</button>
+          <button type="button" class="btn">Tomorrow</button>
           <div class="sideBarBadge">10</div>
         </div>
         <div class="sideBarElement">
-          <button type="button" class="btn">Tomorrow</button>
+          <button type="button" class="btn">Soon</button>
           <div class="sideBarBadge">10</div>
         </div>
       </div>
 
       <!-- Task details display -->
-      <div class="filter" style="display: flex">
+      <!-- <div class="filter" style="display: flex">
         <select class="text-center filter_dropDown">
           <option selected>All</option>
           <option>To Do</option>
@@ -152,7 +162,7 @@
           <option>Review</option>
           <option>Done</option>
         </select>
-      </div>
+      </div> -->
 
       <div id="accordion">
         <div class="card">
@@ -420,4 +430,18 @@
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script type="module" src="./parcel/execution.js"></script>
   </body>
+  <footer>
+    <div class="footer_content container">
+      <div id="signature_line">
+        <p>Hi! Do you like <span style="color:#f15e5e ; font-size:larger">Eatthefrog?</span>
+          <br>Drop me a line.</br>
+        </p>
+        <a href="#">phoebe.ngsyd@gmail.com</a>
+      </div>
+      <div id="contact">
+        <a href="#">twitter</a>
+        <a href="#">GitHub</a>
+      </div>
+    </div>
+  </footer>
 </html>

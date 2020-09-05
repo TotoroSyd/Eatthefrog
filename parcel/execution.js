@@ -30,7 +30,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const welcome_dueSoon = document.querySelector("#welcome_dueSoon");
   const welcome_tmr = document.querySelector("#welcome_tmr");
   const hidden_banner_button = document.querySelector(".hidden_banner_button");
-
+  const sideBarToDo = document.querySelector("#sideBarToDo");
+  const sideBarInProgress = document.querySelector("#sideBarInProgress");
   // When welcome_button_more clicked, hide welcome banner, show content
   welcome_button_more.addEventListener("click", function () {
     taskManager.hideWelcomeBanner();
@@ -51,8 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //When welcome_todo clicked, show filter only Todo for Today
   welcome_todo.addEventListener("click", function () {
     taskManager.hideWelcomeBanner();
-    filter_dropDown.value = "To Do";
-    taskManager.filterTask(filter_dropDown.value);
+    taskManager.filterTask("To Do");
   });
 
   //Refresh page and display tasks saved in localStorage.
@@ -108,8 +108,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  filter_dropDown.addEventListener("click", function () {
-    taskManager.filterTask(filter_dropDown.value);
+  // filter_dropDown.addEventListener("click", function () {
+  //   taskManager.filterTask(filter_dropDown.value);
+  // });
+
+  sideBarToDo.addEventListener("click", function () {
+    taskManager.filterTask("To Do");
+  });
+
+  sideBarInProgress.addEventListener("click", function () {
+    taskManager.filterTask("In Progress");
   });
 
   // initiate deleteButtonnClicked() to show Delete Confirmation Modal

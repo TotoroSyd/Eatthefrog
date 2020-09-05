@@ -58,6 +58,7 @@ export default class TaskManager {
     this.taskContainer.innerHTML = "";
     //display today
     // this.today();
+    // this.hideContent();
     // in case id_arr in the local storage is empty, set it as an empty array. Otherwise, id_arr becomes null => break the program
     if (this.id_arr === null) {
       this.id_arr = [];
@@ -170,8 +171,9 @@ export default class TaskManager {
     const formManager = new FormManager();
     formManager.resetForm();
     const form = document.forms["task-form"];
-    // Get the task object to edit from localStorage
-    const to_edit = JSON.parse(this.localStorage.getItem(id_edit));
+    // Get the task object to edit from this.task_list
+    // const to_edit = JSON.parse(this.localStorage.getItem(id_edit));
+    const to_edit = this.task_list[id_edit];
     // Fetch the task details into the modal
     form.taskName.value = to_edit.name;
     form.description.value = to_edit.description;
@@ -185,8 +187,8 @@ export default class TaskManager {
 
   // Update task to tasklist
   updateTask(id_to_update, name, description, assignee, date, status) {
-    // console.log(id_to_update);
-    const to_update = JSON.parse(this.localStorage.getItem(id_to_update));
+    // const to_update = JSON.parse(this.localStorage.getItem(id_to_update));
+    const to_update = this.task_list[id_to_update];
     to_update["name"] = name;
     to_update["description"] = description;
     to_update["assignee"] = assignee;

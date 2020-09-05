@@ -282,4 +282,6 @@ export default class TaskManager {
     //   this.renderTask(JSON.parse(this.localStorage.getItem(id)));
     // });
   }
+
+  countTaskByStatus() {}
 }

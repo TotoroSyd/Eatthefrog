@@ -285,15 +285,23 @@ export default class TaskManager {
 
   countTaskByStatus(stt) {
     let count = 0;
-    this.id_arr.forEach((id) => {
-      if (this.task_list[id]["status"] === stt) {
-        count++;
-      }
-    });
+    if (stt === "All") {
+      count = this.id_arr.length;
+    } else {
+      this.id_arr.forEach((id) => {
+        if (this.task_list[id]["status"] === stt) {
+          count++;
+        }
+      });
+    }
     return count;
   }
 
   countTaskByDueDate() {
     //todo
+  }
+
+  updateCountTaskDisplay(element, task_count) {
+    element.innerHTML = task_count;
   }
 }

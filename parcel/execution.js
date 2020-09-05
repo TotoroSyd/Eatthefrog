@@ -39,13 +39,26 @@ document.addEventListener("DOMContentLoaded", function () {
   const sideBarToDo = document.querySelector("#sideBarToDo");
   const sideBarInProgress = document.querySelector("#sideBarInProgress");
   const sideBarReview = document.querySelector("#sideBarReview");
-  const badgeToDo = document.querySelector("#BadgeToDo");
+  const badgeToDo = document.querySelector("#badgeToDo");
+  const badgeAll = document.querySelector("#badgeAll");
 
   // Update summary_card_content_todo with # of Todo on the current date
-  summary_card_content_todo.innerHTML = taskManager.countTaskByStatus("To Do");
+  // summary_card_content_todo.innerHTML = taskManager.countTaskByStatus("To Do");
+  taskManager.updateCountTaskDisplay(
+    summary_card_content_todo,
+    taskManager.countTaskByStatus("To Do")
+  );
+  // Update badgeAll with total # of available tasks, all statuses
+  taskManager.updateCountTaskDisplay(
+    badgeAll,
+    taskManager.countTaskByStatus("All")
+  );
 
-  // Update BadgeToDo with # of Todo on the current date
-  badgeToDo.innerHTML = taskManager.countTaskByStatus("To Do");
+  // Update badgeToDo with # of Todo on the current date
+  taskManager.updateCountTaskDisplay(
+    badgeToDo,
+    taskManager.countTaskByStatus("To Do")
+  );
 
   // When welcome_button_more clicked, hide welcome banner, show content
   welcome_button_more.addEventListener("click", function () {
@@ -111,6 +124,8 @@ document.addEventListener("DOMContentLoaded", function () {
         update_status
       );
       taskManager.refreshPage();
+      // Update summary card and sidebar badge
+      taskManager.updateCountTaskDisplay();
     } else {
       const taskObj = taskManager.createTask(
         name.value,

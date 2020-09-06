@@ -35,10 +35,16 @@ export default class TaskManager {
   // to reduce spending effort to come into localstorage many times
   getTasksFromLocalStorage() {
     const task_list_dummy = {};
-    this.id_arr.forEach((task_id) => {
-      task_list_dummy[task_id] = JSON.parse(this.localStorage.getItem(task_id));
-    });
-    return task_list_dummy;
+    if (this.id_arr === null) {
+      return task_list_dummy;
+    } else {
+      this.id_arr.forEach((task_id) => {
+        task_list_dummy[task_id] = JSON.parse(
+          this.localStorage.getItem(task_id)
+        );
+      });
+      return task_list_dummy;
+    }
   }
 
   hideWelcomeBanner() {
@@ -58,14 +64,10 @@ export default class TaskManager {
   refreshPage() {
     // clear everything on the page before loading content
     this.taskContainer.innerHTML = "";
-    //display today
-    // this.today();
-    // this.hideContent();
-    // in case id_arr in the local storage is empty, set it as an empty array. Otherwise, id_arr becomes null => break the program
+    // in case id_arr in the local storage is empty, set it as an empty array.
+    // Otherwise, id_arr becomes null => break the program
     if (this.id_arr === null) {
       this.id_arr = [];
-      // let html_no_task = `<p class="text-center" style="color:gray">Yay! No Task For Now</p>`;
-      // this.renderTask(html_no_task);
       return;
     } else {
       // run through the id_arr's element = key to look for task in local storage. For each id element, go to localStorage and getItem and parse it.
@@ -284,11 +286,12 @@ export default class TaskManager {
 
   countTaskByStatus(stt) {
     let count = 0;
-    if (stt === "All") {
+    if (stt === "All" && this.id_arr !== null) {
       count = this.id_arr.length;
-    } else {
+    } else if (this.id_arr !== null) {
       this.id_arr.forEach((id) => {
-        if (this.task_list[id]["status"] === stt) {
+        let task = this.task_list[id];
+        if (task["status"] === stt) {
           count++;
         }
       });

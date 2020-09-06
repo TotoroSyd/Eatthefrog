@@ -25,10 +25,20 @@ export default class TaskManager {
   // Reference to date-fns https://medium.com/@k2u4yt/momentjs-vs-date-fns-6bddc7bfa21e
   today() {
     // get DOM element
-    let today = document.querySelector("#today");
+    let today = document.querySelectorAll(".today");
     let nowDate = format(new Date(), "EEEE, do MMM yyyy");
     // display today date to HTML
-    today.innerHTML = nowDate;
+
+    // Method 1: Use traditional for loop because document.querySelectorAll(".today")
+    // return HTMLCollection/Nodelist ~ Array but NOT AN ARRAY
+    // for (let i = 0; i < today.length; i++) {
+    //   today[i].innerHTML = nowDate;
+    // }
+
+    // Method 2: convert collection to array then use forEach as usual
+    Array.from(today).forEach((el) => {
+      el.innerHTML = nowDate;
+    });
   }
 
   // Get all tasks from localstorage ONCE when page loads and store in a huge object,

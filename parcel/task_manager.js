@@ -125,7 +125,6 @@ export default class TaskManager {
   toLocalStorage(task) {
     // Push new id to id_arr
     this.id_arr.push(task["id"]);
-    // console.log(this.id_arr);
     // serialize the id_arr into string format to save in localstorage
     let json_id_arr = JSON.stringify(this.id_arr);
     // serialize the taskObj into string format to save in localstorage
@@ -169,7 +168,7 @@ export default class TaskManager {
     // Open and change Modal title to Edit
     $("#taskModal").modal("show");
     modal_title.innerText = "Edit Task";
-    modal_title.value = modal_title.innerText;
+    // modal_title.value = modal_title.innerText;
     const formManager = new FormManager();
     formManager.resetForm();
     const form = document.forms["task-form"];

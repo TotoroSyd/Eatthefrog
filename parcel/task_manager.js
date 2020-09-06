@@ -119,7 +119,8 @@ export default class TaskManager {
       const taskElement = document.createRange().createContextualFragment(html);
       //  const edit = taskElement.querySelector(".edit");
       //  edit.addEventListener("click", editTask);
-      this.taskContainer.appendChild(taskElement);
+      // this.taskContainer.appendChild(taskElement);
+      this.taskContainer.prepend(taskElement);
       // taskContainer.insertAdjacentHTML("beforeend", html);
     }
   }

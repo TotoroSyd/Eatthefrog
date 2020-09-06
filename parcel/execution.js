@@ -116,10 +116,34 @@ document.addEventListener("DOMContentLoaded", function () {
   taskManager.filterTask("All");
 
   taskCreateButton.addEventListener("click", function () {
+    // Check modal title. Change it back to Create if it is still in Edit mode
+    // Reference to understand innertext, value
+    // https://medium.com/better-programming/whats-best-innertext-vs-innerhtml-vs-textcontent-903ebc43a3fc
+    const modal_title = document.querySelector("#modal_title");
+    // console.log("Before clicking");
+    // console.log(modal_title.value);
+    // console.log(modal_title.innerText);
+    // console.log(modal_title.innerHTML);
+    // console.log(modal_title.textContent);
+    if (modal_title.innerText === "Edit Task") {
+      modal_title.innerText = "Create Task";
+    }
+    // console.log("After clicking");
+    // console.log(modal_title.value);
+    // console.log(modal_title.innerText);
+    // console.log(modal_title.innerHTML);
+    // console.log(modal_title.textContent);
     // refresh Save button
     if ((task_modal_save.value = "Update")) {
       task_modal_save.innerText = "Save";
       task_modal_save.value = task_modal_save.innerText;
+    }
+    // Check id data-action is still in Edit state or not.
+    // If yes, removeAttribute "data-action", "id-to-update" from form
+    // Otherwise, when Save button is clicked, Edittask overwrite CreateTask
+    if (form.getAttribute("data-action") === "edit-action") {
+      form.removeAttribute("data-action");
+      form.removeAttribute("id-to-update");
     }
     formManager.disableBtn();
     formManager.resetForm();

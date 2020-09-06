@@ -39,8 +39,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const sideBarToDo = document.querySelector("#sideBarToDo");
   const sideBarInProgress = document.querySelector("#sideBarInProgress");
   const sideBarReview = document.querySelector("#sideBarReview");
-  const badgeToDo = document.querySelector("#badgeToDo");
+  const sideBarDone = document.querySelector("#sideBarDone");
+
   const badgeAll = document.querySelector("#badgeAll");
+  const badgeToDo = document.querySelector("#badgeToDo");
+  const badgeInProgress = document.querySelector("#badgeInProgress");
+  const badgeReview = document.querySelector("#badgeReview");
+  const badgeDone = document.querySelector("#badgeDone");
 
   // Update summary_card_content_todo with # of Todo on the current date
   // summary_card_content_todo.innerHTML = taskManager.countTaskByStatus("To Do");
@@ -48,16 +53,31 @@ document.addEventListener("DOMContentLoaded", function () {
     summary_card_content_todo,
     taskManager.countTaskByStatus("To Do")
   );
-  // Update badgeAll with total # of available tasks, all statuses
+
+  // // Update sidebar badge
   taskManager.updateCountTaskDisplay(
     badgeAll,
     taskManager.countTaskByStatus("All")
   );
 
-  // Update badgeToDo with # of Todo on the current date
   taskManager.updateCountTaskDisplay(
     badgeToDo,
     taskManager.countTaskByStatus("To Do")
+  );
+
+  taskManager.updateCountTaskDisplay(
+    badgeInProgress,
+    taskManager.countTaskByStatus("In Progress")
+  );
+
+  taskManager.updateCountTaskDisplay(
+    badgeReview,
+    taskManager.countTaskByStatus("Review")
+  );
+
+  taskManager.updateCountTaskDisplay(
+    badgeDone,
+    taskManager.countTaskByStatus("Done")
   );
 
   // When welcome_button_more clicked, hide welcome banner, show content
@@ -124,8 +144,37 @@ document.addEventListener("DOMContentLoaded", function () {
         update_status
       );
       taskManager.refreshPage();
-      // Update summary card and sidebar badge
-      taskManager.updateCountTaskDisplay();
+      // Update sidebar badge
+      taskManager.updateCountTaskDisplay(
+        badgeAll,
+        taskManager.countTaskByStatus("All")
+      );
+
+      taskManager.updateCountTaskDisplay(
+        badgeToDo,
+        taskManager.countTaskByStatus("To Do")
+      );
+
+      taskManager.updateCountTaskDisplay(
+        badgeInProgress,
+        taskManager.countTaskByStatus("In Progress")
+      );
+
+      taskManager.updateCountTaskDisplay(
+        badgeReview,
+        taskManager.countTaskByStatus("Review")
+      );
+
+      taskManager.updateCountTaskDisplay(
+        badgeDone,
+        taskManager.countTaskByStatus("Done")
+      );
+
+      // Update summary card
+      taskManager.updateCountTaskDisplay(
+        summary_card_content_todo,
+        taskManager.countTaskByStatus("To Do")
+      );
     } else {
       const taskObj = taskManager.createTask(
         name.value,
@@ -134,10 +183,48 @@ document.addEventListener("DOMContentLoaded", function () {
         date.value,
         status.value
       );
+      // Render the task to page
       const html = taskManager.toHTML(taskObj);
+      taskManager.refreshPage();
       taskManager.renderTask(html);
+      // Update the task to localStorage
       taskManager.toLocalStorage(taskObj);
-      // console.log(taskManager.id_arr);
+      // Update this.task_list in taskManager class so countTaskByStatus can use the lastest tasklist
+      // taskManager.id_arr = JSON.parse(
+      //   taskManager.localStorage.getItem("id_arr")
+      // );
+      taskManager.task_list = taskManager.getTasksFromLocalStorage();
+      // Update sidebar badge
+      taskManager.updateCountTaskDisplay(
+        badgeAll,
+        taskManager.countTaskByStatus("All")
+      );
+
+      taskManager.updateCountTaskDisplay(
+        badgeToDo,
+        taskManager.countTaskByStatus("To Do")
+      );
+
+      taskManager.updateCountTaskDisplay(
+        badgeInProgress,
+        taskManager.countTaskByStatus("In Progress")
+      );
+
+      taskManager.updateCountTaskDisplay(
+        badgeReview,
+        taskManager.countTaskByStatus("Review")
+      );
+
+      taskManager.updateCountTaskDisplay(
+        badgeDone,
+        taskManager.countTaskByStatus("Done")
+      );
+
+      // Update summary card
+      taskManager.updateCountTaskDisplay(
+        summary_card_content_todo,
+        taskManager.countTaskByStatus("To Do")
+      );
     }
   });
 
@@ -158,6 +245,10 @@ document.addEventListener("DOMContentLoaded", function () {
     taskManager.filterTask("Review");
   });
 
+  sideBarDone.addEventListener("click", function () {
+    taskManager.filterTask("Done");
+  });
+
   // initiate deleteButtonnClicked() to show Delete Confirmation Modal
   taskManager.deleteButtonnClicked();
   const confirmToDeleteButton = document.querySelector(
@@ -168,5 +259,35 @@ document.addEventListener("DOMContentLoaded", function () {
   confirmToDeleteButton.addEventListener("click", function () {
     const id_del = taskManager.confirmToDeleteButtonClicked();
     taskManager.deleteTask(id_del);
+    // Update sidebar badge
+    taskManager.updateCountTaskDisplay(
+      badgeAll,
+      taskManager.countTaskByStatus("All")
+    );
+
+    taskManager.updateCountTaskDisplay(
+      badgeToDo,
+      taskManager.countTaskByStatus("To Do")
+    );
+
+    taskManager.updateCountTaskDisplay(
+      badgeInProgress,
+      taskManager.countTaskByStatus("In Progress")
+    );
+
+    taskManager.updateCountTaskDisplay(
+      badgeReview,
+      taskManager.countTaskByStatus("Review")
+    );
+
+    taskManager.updateCountTaskDisplay(
+      badgeDone,
+      taskManager.countTaskByStatus("Done")
+    );
+    // Update summary card
+    taskManager.updateCountTaskDisplay(
+      summary_card_content_todo,
+      taskManager.countTaskByStatus("To Do")
+    );
   });
 });

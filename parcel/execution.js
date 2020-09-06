@@ -1,7 +1,6 @@
 "use strict";
 import TaskManager from "./task_manager.js";
 import FormManager from "./form_manager.js";
-import Task from "./task.js";
 
 // Execution
 // use "DOMContentLoaded" for safety, to ensure all the neccessary content is loaded.

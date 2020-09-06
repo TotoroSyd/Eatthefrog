@@ -1,7 +1,7 @@
 "use strict";
 import Task from "../parcel/task.js";
 import FormManager from "./form_manager.js";
-// import { format } from "date-fns";
+import { format } from "date-fns";
 
 export default class TaskManager {
   constructor(name, description, assignee, date, status) {
@@ -23,13 +23,13 @@ export default class TaskManager {
     this.taskContainer = document.querySelector("#tasks");
   }
   // Reference to date-fns https://medium.com/@k2u4yt/momentjs-vs-date-fns-6bddc7bfa21e
-  // today() {
-  //   // get DOM element
-  //   let today = document.querySelector("#today");
-  //   let nowDate = format(new Date(), "EEEE, do MMM yyyy");
-  //   // display today date to HTML
-  //   today.innerHTML = nowDate;
-  // }
+  today() {
+    // get DOM element
+    let today = document.querySelector("#today");
+    let nowDate = format(new Date(), "EEEE, do MMM yyyy");
+    // display today date to HTML
+    today.innerHTML = nowDate;
+  }
 
   // Get all tasks from localstorage ONCE when page loads and store in a huge object,
   // to reduce spending effort to come into localstorage many times
@@ -64,6 +64,8 @@ export default class TaskManager {
   refreshPage() {
     // clear everything on the page before loading content
     this.taskContainer.innerHTML = "";
+    // update today date
+    this.today();
     // in case id_arr in the local storage is empty, set it as an empty array.
     // Otherwise, id_arr becomes null => break the program
     if (this.id_arr === null) {

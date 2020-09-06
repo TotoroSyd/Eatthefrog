@@ -25,25 +25,7 @@
     <title>Eatthefrog</title>
   </head>
   <body>
-    <!-- <nav
-      class="navbar navbar-light navbar-expand-lg fixed-top flex-md-nowrap p-0 shadow"
-      role="navigation"
-    >
-      <a
-        href="#"
-        class="navbar-brand"
-        style="color: aliceblue; font-weight: 500"
-      >
-        <img
-          src="image/frog.svg"
-          alt="frog black and white icon"
-          width="40"
-          height="40"
-          class="d-inline-block align-top"
-        />
-        Eatthefrog
-      </a>
-    </nav> -->
+
     <!-- Welcome Summary Banner Top -->
     <div role="banner" class="banner">
       <div class="welcome">
@@ -132,16 +114,16 @@
           <button type="button" class="btn" id="sideBarInProgress">
             In Progress
           </button>
-          <div class="sideBarBadge">10</div>
+          <div class="sideBarBadge" id="badgeInProgress">10</div>
         </div>
         <div class="sideBarElement">
           <button type="button" class="btn" id="sideBarReview">Review</button>
-          <div class="sideBarBadge">10</div>
+          <div class="sideBarBadge" id="badgeReview">10</div>
         </div>
-        <!-- <div class="sideBarElement">
-          <button type="button" class="btn">Done</button>
-          <div class="sideBarBadge">10</div>
-        </div> -->
+        <div class="sideBarElement">
+          <button type="button" class="btn" id="sideBarDone">Done</button>
+          <div class="sideBarBadge" id="badgeDone">10</div>
+        </div>
         <hr>
         <div class="sideBarElement">
           <button type="button" class="btn">Tomorrow</button>
@@ -153,17 +135,7 @@
         </div>
       </div>
 
-      <!-- Task details display -->
-      <!-- <div class="filter" style="display: flex">
-        <select class="text-center filter_dropDown">
-          <option selected>All</option>
-          <option>To Do</option>
-          <option>In Progress</option>
-          <option>Review</option>
-          <option>Done</option>
-        </select>
-      </div> -->
-
+      <!-- Task List Display -->
       <div id="accordion">
         <h3 id="today">Thursday, Sep 3, 2020</h3>
         <div class="card">
@@ -207,6 +179,7 @@
         </div>
       </div>
     </div>
+
     <!--Create Dialog-->
     <!-- ======================================================= Modal Body============================================== -->
     <div class="modal fade" id="taskModal">
@@ -295,26 +268,12 @@
                   </div>
                 </div>
 
-                <!-- Time 
-                <div class="col-5">
-                  <label for="time" class="col-4 col-form-label">Time</label>
-                  <div>
-                    <input
-                      class="form-control"
-                      type="time"
-                      value="13:45:00"
-                      id="time"
-                    />
-                  </div>
-                </div> -->
-
                 <!-- Status  -->
                 <div class="col-5">
                   <label for="status" class="col-4 col-form-label"
                     >Status</label
                   >
                   <select id="status" class="form-control">
-                    <!-- <option selected>Choose...</option> -->
                     <option>To Do</option>
                     <option>In Progress</option>
                     <option>Review</option>
@@ -333,11 +292,9 @@
                     >Category</label
                   >
                   <select id="category" class="form-control">
-                    <!-- <option selected>Choose...</option> -->
                     <option>Personal</option>
                     <option>Work</option>
                     <option>Family</option>
-                    <!-- <option>Create...</option> -->
                   </select>
                 </div>
 
@@ -347,7 +304,6 @@
                     >Priority</label
                   >
                   <select id="priority" class="form-control">
-                    <!-- <option selected>Choose...</option> -->
                     <option>High</option>
                     <option>Moderate</option>
                     <option>Low</option>
@@ -357,7 +313,6 @@
             </form>
           </div>
           <div class="modal-footer">
-            <!-- <button class="btn btn-secondary" data-dismiss="modal">Cancel</button> -->
             <button
               class="btn"
               data-dismiss="modal"
@@ -376,10 +331,6 @@
       <div class="modal-dialog modal-confirm">
         <div class="modal-content">
           <div class="modal-header">
-            <!-- <div class="icon-box">
-              <i class="material-icons">&#xE5CD;</i>
-              <img  class="material-icons" src="image/trash.svg" alt="delete-button" width="30" height="30"/>
-            </div>				 -->
             <h4 class="modal-title">Are you sure?</h4>
             <button
               type="button"
@@ -428,7 +379,7 @@
       integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
       crossorigin="anonymous"
     ></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!-- <script src="https://kit.fontawesome.com/a076d05399.js"></script> -->
     <script type="module" src="./parcel/execution.js"></script>
   </body>
   <footer>

@@ -31,6 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const summary_card_content_todo = document.querySelector(
     "#summary_card_content_todo"
   );
+  const summary_card_content_tmr = document.querySelector(
+    "#summary_card_content_tmr"
+  );
 
   const hidden_banner_button = document.querySelector(".hidden_banner_button");
 
@@ -39,18 +42,27 @@ document.addEventListener("DOMContentLoaded", function () {
   const sideBarInProgress = document.querySelector("#sideBarInProgress");
   const sideBarReview = document.querySelector("#sideBarReview");
   const sideBarDone = document.querySelector("#sideBarDone");
+  const sideBarTomorrow = document.querySelector("#sideBarTomorrow");
+  const sideBarSoon = document.querySelector("#sideBarSoon");
 
   const badgeAll = document.querySelector("#badgeAll");
   const badgeToDo = document.querySelector("#badgeToDo");
   const badgeInProgress = document.querySelector("#badgeInProgress");
   const badgeReview = document.querySelector("#badgeReview");
   const badgeDone = document.querySelector("#badgeDone");
+  const badgeTomorrow = document.querySelector("#badgeTomorrow");
+  const badgeSoon = document.querySelector("#badgeSoon");
 
   // Update summary_card_content_todo with # of Todo on the current date
   // summary_card_content_todo.innerHTML = taskManager.countTaskByStatus("To Do");
   taskManager.updateCountTaskDisplay(
     summary_card_content_todo,
     taskManager.countTaskByStatus("To Do")
+  );
+
+  taskManager.updateCountTaskDisplay(
+    summary_card_content_tmr,
+    taskManager.countTaskByDueDate("Tomorrow")
   );
 
   // // Update sidebar badge
@@ -77,6 +89,11 @@ document.addEventListener("DOMContentLoaded", function () {
   taskManager.updateCountTaskDisplay(
     badgeDone,
     taskManager.countTaskByStatus("Done")
+  );
+
+  taskManager.updateCountTaskDisplay(
+    badgeTomorrow,
+    taskManager.countTaskByDueDate("Tomorrow")
   );
 
   // When welcome_button_more clicked, hide welcome banner, show content
@@ -193,10 +210,20 @@ document.addEventListener("DOMContentLoaded", function () {
         taskManager.countTaskByStatus("Done")
       );
 
+      taskManager.updateCountTaskDisplay(
+        badgeTomorrow,
+        taskManager.countTaskByDueDate("Tomorrow")
+      );
+
       // Update summary card
       taskManager.updateCountTaskDisplay(
         summary_card_content_todo,
         taskManager.countTaskByStatus("To Do")
+      );
+
+      taskManager.updateCountTaskDisplay(
+        summary_card_content_tmr,
+        taskManager.countTaskByDueDate("Tomorrow")
       );
     } else {
       const taskObj = taskManager.createTask(
@@ -243,10 +270,20 @@ document.addEventListener("DOMContentLoaded", function () {
         taskManager.countTaskByStatus("Done")
       );
 
+      taskManager.updateCountTaskDisplay(
+        badgeTomorrow,
+        taskManager.countTaskByDueDate("Tomorrow")
+      );
+
       // Update summary card
       taskManager.updateCountTaskDisplay(
         summary_card_content_todo,
         taskManager.countTaskByStatus("To Do")
+      );
+
+      taskManager.updateCountTaskDisplay(
+        summary_card_content_tmr,
+        taskManager.countTaskByDueDate("Tomorrow")
       );
     }
   });
@@ -270,6 +307,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   sideBarDone.addEventListener("click", function () {
     taskManager.filterTask("Done");
+  });
+
+  sideBarTomorrow.addEventListener("click", function () {
+    taskManager.isTmr();
+  });
+
+  sideBarSoon.addEventListener("click", function () {
+    let date = new Date();
+    taskManager.filterTaskByDate(date);
   });
 
   // initiate deleteButtonnClicked() to show Delete Confirmation Modal
@@ -307,10 +353,21 @@ document.addEventListener("DOMContentLoaded", function () {
       badgeDone,
       taskManager.countTaskByStatus("Done")
     );
+
+    taskManager.updateCountTaskDisplay(
+      badgeTomorrow,
+      taskManager.countTaskByDueDate("Tomorrow")
+    );
+
     // Update summary card
     taskManager.updateCountTaskDisplay(
       summary_card_content_todo,
       taskManager.countTaskByStatus("To Do")
+    );
+
+    taskManager.updateCountTaskDisplay(
+      summary_card_content_tmr,
+      taskManager.countTaskByDueDate("Tomorrow")
     );
   });
 });

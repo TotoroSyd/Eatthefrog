@@ -1,4 +1,5 @@
 "use strict";
+import { format } from "date-fns";
 
 export default class Task {
   constructor(name, description, assignee, date, status) {
@@ -6,7 +7,8 @@ export default class Task {
     this.name = name;
     this.description = description;
     this.assignee = assignee;
-    this.date = date;
+    this.dateNum = Date.parse(date);
+    this.date = format(this.dateNum, "dd-MM-yyyy");
     this.status = status;
   }
 }

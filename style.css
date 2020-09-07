@@ -190,7 +190,7 @@ nav {
   font-size: 80px;
   text-align: center;
   position: relative;
-  top: 11rem;
+  top: 12rem;
   z-index: 1;
   transition: transform 0.5s;
 }

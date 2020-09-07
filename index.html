@@ -44,9 +44,7 @@
 
           <div class="summary_card_parent">
             <h6>TMR</h6>
-            <div class="summary_card_content">
-              <p>0</p>
-            </div>
+            <p class="summary_card_content" id="summary_card_content_tmr">0</p>
             <a href="#accordion"
               ><div class="summary_card" id="welcome_tmr"></div
             ></a>
@@ -54,9 +52,7 @@
 
           <div class="summary_card_parent">
             <h6>Soon</h6>
-            <div class="summary_card_content">
-              <p>0</p>
-            </div>
+            <p class="summary_card_content" id="summary_card_content_soon">0</p>
             <a href="#accordion"
               ><div class="summary_card" id="welcome_dueSoon"></div
             ></a>
@@ -104,7 +100,7 @@
         <hr>
         <div class="sideBarElement">
           <button type="button" class="btn" id="sideBarAll">All</button>
-          <div class="sideBarBadge" id="badgeAll">10</div>
+          <div class="sideBarBadge" id="badgeAll">0</div>
         </div>
         <div class="sideBarElement">
           <button type="button" class="btn" id="sideBarToDo">To Do</button>
@@ -114,24 +110,24 @@
           <button type="button" class="btn" id="sideBarInProgress">
             In Progress
           </button>
-          <div class="sideBarBadge" id="badgeInProgress">10</div>
+          <div class="sideBarBadge" id="badgeInProgress">0</div>
         </div>
         <div class="sideBarElement">
           <button type="button" class="btn" id="sideBarReview">Review</button>
-          <div class="sideBarBadge" id="badgeReview">10</div>
+          <div class="sideBarBadge" id="badgeReview">0</div>
         </div>
         <div class="sideBarElement">
           <button type="button" class="btn" id="sideBarDone">Done</button>
-          <div class="sideBarBadge" id="badgeDone">10</div>
+          <div class="sideBarBadge" id="badgeDone">0</div>
         </div>
         <hr>
         <div class="sideBarElement">
-          <button type="button" class="btn">Tomorrow</button>
-          <div class="sideBarBadge">10</div>
+          <button type="button" class="btn" id="sideBarTomorrow">Tomorrow</button>
+          <div class="sideBarBadge"  id="badgeTomorrow">0</div>
         </div>
         <div class="sideBarElement">
-          <button type="button" class="btn">Soon</button>
-          <div class="sideBarBadge">10</div>
+          <button type="button" class="btn" id="sideBarSoon">Soon</button>
+          <div class="sideBarBadge" id="badgeSoon">0</div>
         </div>
       </div>
 
@@ -255,7 +251,6 @@
                     <input
                       class="form-control form-group"
                       type="date"
-                      value="20/07/2020"
                       id="date"
                     />
                     <p id="err"></p>

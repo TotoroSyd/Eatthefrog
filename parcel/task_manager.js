@@ -1,7 +1,7 @@
 "use strict";
 import Task from "../parcel/task.js";
 import FormManager from "./form_manager.js";
-import { format } from "date-fns";
+import { format, isTomorrow } from "date-fns";
 
 export default class TaskManager {
   constructor(name, description, assignee, date, status) {
@@ -93,11 +93,6 @@ export default class TaskManager {
   }
 
   createTask(name, description, assignee, date, status) {
-    // const name = this.name;
-    // const description = this.description;
-    // const assignee = this.assignee;
-    // const date = this.date;
-    // const status = this.status;
     const task = new Task(name, description, assignee, date, status);
     // return a task object which will be an input for toHTML(), renderTask()
     return task;
@@ -236,6 +231,31 @@ export default class TaskManager {
     }
   }
 
+  isTmr() {
+    this.taskContainer.innerHTML = "";
+    this.id_arr.forEach((id) => {
+      const taskObjFromTaskList1 = this.task_list[id];
+      let isTmr = isTomorrow(taskObjFromTaskList1["dateNum"]);
+      if (isTmr === true) {
+        const html = this.toHTML(taskObjFromTaskList1);
+        this.renderTask(html);
+      }
+    });
+  }
+
+  // filterTaskByDate(date) {
+  //   let parseDate = Date.parse(date);
+  //   let formatedParseDate = format(parseDate, "dd-MM-yyyy");
+  //   this.taskContainer.innerHTML = "";
+  //   this.id_arr.forEach((id) => {
+  //     const taskObjFromTaskList1 = this.task_list[id];
+  //     if (taskObjFromTaskList1["date"] === formatedParseDate) {
+  //       const html = this.toHTML(taskObjFromTaskList1);
+  //       this.renderTask(html);
+  //     }
+  //   })
+  // }
+
   deleteButtonnClicked() {
     /* Because the Delete Icon doesnt exist in HTML so we have to capture the event 
     (which is created by clicking to the Delete icon) 
@@ -312,8 +332,20 @@ export default class TaskManager {
     return count;
   }
 
-  countTaskByDueDate() {
-    //todo
+  countTaskByDueDate(date) {
+    let count = 0;
+    if (this.id_arr !== null) {
+      if ((date = "Tomorrow")) {
+        this.id_arr.forEach((id) => {
+          const taskObjFromTaskList2 = this.task_list[id];
+          let isTmr = isTomorrow(taskObjFromTaskList2["dateNum"]);
+          if (isTmr === true && taskObjFromTaskList2["status"] !== "Done") {
+            count++;
+          }
+        });
+      }
+    }
+    return count;
   }
 
   updateCountTaskDisplay(element, task_count) {

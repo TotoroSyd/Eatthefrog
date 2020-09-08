@@ -31,10 +31,11 @@
       <div class="welcome">
         <div class="welcome_message">
           <h1>Hey!</h1>
-          <h3 class="today">Thursday, Sep 3, 2020</h3>
+          <h3 class="today">Today</h3>
+          <h5>Your task summary for <br>Today, Tomorrow and in three days!</br></h5>
         </div>
         <div class="welcome_summary_card">
-          <div class="summary_card_parent">
+          <div class="summary_card_parent todo">
             <h6>Todo</h6>
             <p class="summary_card_content" id="summary_card_content_todo">0</p>
             <a href="#accordion">
@@ -42,7 +43,7 @@
             </a>
           </div>
 
-          <div class="summary_card_parent">
+          <div class="summary_card_parent tmr">
             <h6>TMR</h6>
             <p class="summary_card_content" id="summary_card_content_tmr">0</p>
             <a href="#accordion"
@@ -50,7 +51,7 @@
             ></a>
           </div>
 
-          <div class="summary_card_parent">
+          <div class="summary_card_parent soon">
             <h6>Soon</h6>
             <p class="summary_card_content" id="summary_card_content_soon">0</p>
             <a href="#accordion"
@@ -105,6 +106,10 @@
         <div class="sideBarElement">
           <button type="button" class="btn" id="sideBarToDo">To Do</button>
           <div class="sideBarBadge" id="badgeToDo">0</div>
+        </div>
+        <div class="sideBarElement">
+          <button type="button" class="sub_btn" id="sideBarToDoToDay">Today</button>
+          <div class="sideBarSubBadge" id="badgeToDoToDay">0</div>
         </div>
         <div class="sideBarElement">
           <button type="button" class="btn" id="sideBarInProgress">
@@ -181,6 +186,7 @@
     <div class="modal fade" id="taskModal">
       <div class="modal-dialog">
         <div class="modal-content">
+
           <div class="modal-header">
             <h5 class="modal-title" id="modal_title">Create Task</h5>
             <button class="close" data-dismiss="modal">
@@ -231,7 +237,7 @@
                   type="text"
                   class="form-control"
                   id="assignee"
-                  placeholder="Mohammad"
+                  placeholder="Phoebe"
                 />
                 <!-- <div class="valid-feedback">
                   Looks good!
@@ -242,9 +248,8 @@
                 <p id="err"></p>
               </div>
 
-              <!-- Date and Time row -->
+              <!-- Date row -->
               <div class="row form-group">
-                <!-- Date  -->
                 <div class="col-7">
                   <label for="date" class="col-4 col-form-label">Date</label>
                   <div>
@@ -278,44 +283,18 @@
                   <div class="invalid-feedback">Select a status!</div>
                 </div>
               </div>
-
-              <!-- Status, Category, Priority row -->
-              <div class="row form-group">
-                <!-- Category  -->
-                <div class="col-6">
-                  <label for="category" class="col-4 col-form-label"
-                    >Category</label
-                  >
-                  <select id="category" class="form-control">
-                    <option>Personal</option>
-                    <option>Work</option>
-                    <option>Family</option>
-                  </select>
-                </div>
-
-                <!--Priority-->
-                <div class="col-6">
-                  <label for="priority" class="col-4 col-form-label"
-                    >Priority</label
-                  >
-                  <select id="priority" class="form-control">
-                    <option>High</option>
-                    <option>Moderate</option>
-                    <option>Low</option>
-                  </select>
-                </div>
               </div>
             </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              class="btn"
-              data-dismiss="modal"
-              id="task_modal_save"
-              type="submit"
-            >
-              Save
-            </button>
+            <div class="modal-footer">
+              <button
+                class="btn"
+                data-dismiss="modal"
+                id="task_modal_save"
+                type="submit"
+              >
+                Save
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -358,6 +337,30 @@
       </div>
     </div>
 
+    <!-- Onload message if there is no task  -->
+    <div id="askToCreateTask" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-hidden="true"
+            >
+              &times;
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Click "+" to create your first task
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <!-- JS, Popper.js, and jQuery -->
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -380,14 +383,14 @@
   <footer>
     <div class="footer_content container">
       <div id="signature_line">
-        <p>Hi! Do you like <span style="color:#f15e5e ; font-size:larger">Eatthefrog?</span>
-          <br>Drop me a line.</br>
+        <p>Hi! <span style="color:#f15e5e ; font-size:larger">Eatthefrog</span> is my first web app.
+          <br>Do you have any feedback?</br>
+          <a href="mailto:phoebe.ngsyd@gmail.com">Drop me a line</a>
         </p>
-        <a href="#">phoebe.ngsyd@gmail.com</a>
       </div>
       <div id="contact">
-        <a href="#">twitter</a>
-        <a href="#">GitHub</a>
+        <a href="https://twitter.com/PhoebeNgg" target="_blank"><image src="image/twitter_before.svg" width="30px" height="30px" onmouseover="this.src='image/twitter_after.svg'" onmouseout="this.src='image/twitter_before.svg'"></image></a>
+        <a href="https://github.com/TotoroSyd/Eatthefrog" target="_blank"><image src="image/github_before.svg" width="30px" height="30px" onmouseover="this.src='image/github_after.svg'" onmouseout="this.src='image/github_before.svg'"></image></a>
       </div>
     </div>
   </footer>

@@ -1,6 +1,7 @@
 "use strict";
 import TaskManager from "./task_manager.js";
 import FormManager from "./form_manager.js";
+// import Message from "./message.js";
 
 // Execution
 // use "DOMContentLoaded" for safety, to ensure all the neccessary content is loaded.
@@ -19,82 +20,52 @@ document.addEventListener("DOMContentLoaded", function () {
     date,
     status
   );
+
   const formManager = new FormManager();
   const taskCreateButton = document.querySelector("#create_btn");
   const taskModalSaveButton = document.querySelector("#task_modal_save");
 
   // const filter_dropDown = document.querySelector(".filter_dropDown");
   const welcome_button_more = document.querySelector(".welcome_button_more");
-  const welcome_todo = document.querySelector("#welcome_todo");
-  const welcome_dueSoon = document.querySelector("#welcome_dueSoon");
-  const welcome_tmr = document.querySelector("#welcome_tmr");
-  const summary_card_content_todo = document.querySelector(
-    "#summary_card_content_todo"
-  );
-  const summary_card_content_tmr = document.querySelector(
-    "#summary_card_content_tmr"
-  );
+  const todo = document.querySelector(".todo");
+  const dueSoon = document.querySelector(".soon");
+  const tmr = document.querySelector(".tmr");
 
   const hidden_banner_button = document.querySelector(".hidden_banner_button");
 
   const sideBarAll = document.querySelector("#sideBarAll");
   const sideBarToDo = document.querySelector("#sideBarToDo");
+  const sideBarToDoToDay = document.querySelector("#sideBarToDoToDay");
   const sideBarInProgress = document.querySelector("#sideBarInProgress");
   const sideBarReview = document.querySelector("#sideBarReview");
   const sideBarDone = document.querySelector("#sideBarDone");
   const sideBarTomorrow = document.querySelector("#sideBarTomorrow");
   const sideBarSoon = document.querySelector("#sideBarSoon");
 
-  const badgeAll = document.querySelector("#badgeAll");
-  const badgeToDo = document.querySelector("#badgeToDo");
-  const badgeInProgress = document.querySelector("#badgeInProgress");
-  const badgeReview = document.querySelector("#badgeReview");
-  const badgeDone = document.querySelector("#badgeDone");
-  const badgeTomorrow = document.querySelector("#badgeTomorrow");
-  const badgeSoon = document.querySelector("#badgeSoon");
+  // Update summary_card_content_
+  taskManager.updateSummaryCardContent();
+  // Update sidebar badge
+  taskManager.updateSideBarBadge();
 
-  // Update summary_card_content_todo with # of Todo on the current date
-  // summary_card_content_todo.innerHTML = taskManager.countTaskByStatus("To Do");
-  taskManager.updateCountTaskDisplay(
-    summary_card_content_todo,
-    taskManager.countTaskByStatus("To Do")
-  );
+  // When todo clicked, show filter only Todo for Today
+  todo.addEventListener("click", function () {
+    taskManager.hideWelcomeBanner();
+    taskManager.filterTaskByStatus("To Do", true);
+  });
 
-  taskManager.updateCountTaskDisplay(
-    summary_card_content_tmr,
-    taskManager.countTaskByDueDate("Tomorrow")
-  );
+  // When tmr clicked, show tasks that are due Tomorrow
+  tmr.addEventListener("click", function () {
+    taskManager.hideWelcomeBanner();
+    taskManager.isTmr();
+  });
 
-  // // Update sidebar badge
-  taskManager.updateCountTaskDisplay(
-    badgeAll,
-    taskManager.countTaskByStatus("All")
-  );
-
-  taskManager.updateCountTaskDisplay(
-    badgeToDo,
-    taskManager.countTaskByStatus("To Do")
-  );
-
-  taskManager.updateCountTaskDisplay(
-    badgeInProgress,
-    taskManager.countTaskByStatus("In Progress")
-  );
-
-  taskManager.updateCountTaskDisplay(
-    badgeReview,
-    taskManager.countTaskByStatus("Review")
-  );
-
-  taskManager.updateCountTaskDisplay(
-    badgeDone,
-    taskManager.countTaskByStatus("Done")
-  );
-
-  taskManager.updateCountTaskDisplay(
-    badgeTomorrow,
-    taskManager.countTaskByDueDate("Tomorrow")
-  );
+  // When dueSoon clicked, show tasks that are due in 3 days from Today
+  dueSoon.addEventListener("click", function () {
+    taskManager.hideWelcomeBanner();
+    let start_date = new Date();
+    let period = 3;
+    taskManager.filterTaskByDate(start_date, period);
+  });
 
   // When welcome_button_more clicked, hide welcome banner, show content
   welcome_button_more.addEventListener("click", function () {
@@ -106,56 +77,34 @@ document.addEventListener("DOMContentLoaded", function () {
     taskManager.hideContent();
   });
 
-  // When welcome_dueSoon clicked, show tasks that are due in days from current day
-  welcome_dueSoon.addEventListener("click", function () {
-    taskManager.hideWelcomeBanner();
-  });
-
-  // When welcome_tmr clicked, show tasks that are due in days from current day
-  welcome_tmr.addEventListener("click", function () {
-    taskManager.hideWelcomeBanner();
-  });
-
-  //When welcome_todo clicked, show filter only Todo for Today
-  welcome_todo.addEventListener("click", function () {
-    taskManager.hideWelcomeBanner();
-    taskManager.filterTask("To Do");
-  });
-
   //Refresh page and display tasks saved in localStorage.
   taskManager.refreshPage();
   // hide everything except welcome banner
   taskManager.hideContent();
   // initiate editButtonClicked()
   taskManager.editButtonnClicked();
-  // reset status filterTask(status) to All
-  taskManager.filterTask("All");
+  // reset status filterTaskByStatus(status) to All
+  taskManager.filterTaskByStatus("All");
 
   taskCreateButton.addEventListener("click", function () {
     // Check modal title. Change it back to Create if it is still in Edit mode
     // Reference to understand innertext, value
     // https://medium.com/better-programming/whats-best-innertext-vs-innerhtml-vs-textcontent-903ebc43a3fc
     const modal_title = document.querySelector("#modal_title");
-    // console.log("Before clicking");
-    // console.log(modal_title.value);
-    // console.log(modal_title.innerText);
-    // console.log(modal_title.innerHTML);
-    // console.log(modal_title.textContent);
+
+    // Change modal_title back to Create Task
     if (modal_title.innerText === "Edit Task") {
       modal_title.innerText = "Create Task";
     }
-    // console.log("After clicking");
-    // console.log(modal_title.value);
-    // console.log(modal_title.innerText);
-    // console.log(modal_title.innerHTML);
-    // console.log(modal_title.textContent);
+
     // refresh Save button
     if ((task_modal_save.value = "Update")) {
       task_modal_save.innerText = "Save";
       task_modal_save.value = task_modal_save.innerText;
     }
+
     // Check id data-action is still in Edit state or not.
-    // If yes, removeAttribute "data-action", "id-to-update" from form
+    // If yes, removeAttribute "data-action", "id-to-update" from <form>
     // Otherwise, when Save button is clicked, Edittask overwrite CreateTask
     if (form.getAttribute("data-action") === "edit-action") {
       form.removeAttribute("data-action");
@@ -184,48 +133,13 @@ document.addEventListener("DOMContentLoaded", function () {
         update_status
       );
       taskManager.refreshPage();
+      // Update summary_card_content_
+      taskManager.updateSummaryCardContent();
       // Update sidebar badge
-      taskManager.updateCountTaskDisplay(
-        badgeAll,
-        taskManager.countTaskByStatus("All")
-      );
-
-      taskManager.updateCountTaskDisplay(
-        badgeToDo,
-        taskManager.countTaskByStatus("To Do")
-      );
-
-      taskManager.updateCountTaskDisplay(
-        badgeInProgress,
-        taskManager.countTaskByStatus("In Progress")
-      );
-
-      taskManager.updateCountTaskDisplay(
-        badgeReview,
-        taskManager.countTaskByStatus("Review")
-      );
-
-      taskManager.updateCountTaskDisplay(
-        badgeDone,
-        taskManager.countTaskByStatus("Done")
-      );
-
-      taskManager.updateCountTaskDisplay(
-        badgeTomorrow,
-        taskManager.countTaskByDueDate("Tomorrow")
-      );
-
-      // Update summary card
-      taskManager.updateCountTaskDisplay(
-        summary_card_content_todo,
-        taskManager.countTaskByStatus("To Do")
-      );
-
-      taskManager.updateCountTaskDisplay(
-        summary_card_content_tmr,
-        taskManager.countTaskByDueDate("Tomorrow")
-      );
-    } else {
+      taskManager.updateSideBarBadge();
+    }
+    // check if the data-action attribute in form is not edit-action.
+    else {
       const taskObj = taskManager.createTask(
         name.value,
         description.value,
@@ -234,8 +148,8 @@ document.addEventListener("DOMContentLoaded", function () {
         status.value
       );
       // Render the task to page
-      const html = taskManager.toHTML(taskObj);
       taskManager.refreshPage();
+      const html = taskManager.toHTML(taskObj);
       taskManager.renderTask(html);
       // Update the task to localStorage
       taskManager.toLocalStorage(taskObj);
@@ -244,69 +158,36 @@ document.addEventListener("DOMContentLoaded", function () {
       //   taskManager.localStorage.getItem("id_arr")
       // );
       taskManager.task_list = taskManager.getTasksFromLocalStorage();
+      // Update summary_card_content_
+      taskManager.updateSummaryCardContent();
       // Update sidebar badge
-      taskManager.updateCountTaskDisplay(
-        badgeAll,
-        taskManager.countTaskByStatus("All")
-      );
-
-      taskManager.updateCountTaskDisplay(
-        badgeToDo,
-        taskManager.countTaskByStatus("To Do")
-      );
-
-      taskManager.updateCountTaskDisplay(
-        badgeInProgress,
-        taskManager.countTaskByStatus("In Progress")
-      );
-
-      taskManager.updateCountTaskDisplay(
-        badgeReview,
-        taskManager.countTaskByStatus("Review")
-      );
-
-      taskManager.updateCountTaskDisplay(
-        badgeDone,
-        taskManager.countTaskByStatus("Done")
-      );
-
-      taskManager.updateCountTaskDisplay(
-        badgeTomorrow,
-        taskManager.countTaskByDueDate("Tomorrow")
-      );
-
-      // Update summary card
-      taskManager.updateCountTaskDisplay(
-        summary_card_content_todo,
-        taskManager.countTaskByStatus("To Do")
-      );
-
-      taskManager.updateCountTaskDisplay(
-        summary_card_content_tmr,
-        taskManager.countTaskByDueDate("Tomorrow")
-      );
+      taskManager.updateSideBarBadge();
     }
   });
 
-  // filter button clicked
+  // filter sidebar button clicked
   sideBarAll.addEventListener("click", () => {
-    taskManager.filterTask("All");
+    taskManager.filterTaskByStatus("All");
   });
 
   sideBarToDo.addEventListener("click", function () {
-    taskManager.filterTask("To Do");
+    taskManager.filterTaskByStatus("To Do");
+  });
+
+  sideBarToDoToDay.addEventListener("click", function () {
+    taskManager.filterTaskByStatus("To Do", true);
   });
 
   sideBarInProgress.addEventListener("click", function () {
-    taskManager.filterTask("In Progress");
+    taskManager.filterTaskByStatus("In Progress");
   });
 
   sideBarReview.addEventListener("click", function () {
-    taskManager.filterTask("Review");
+    taskManager.filterTaskByStatus("Review");
   });
 
   sideBarDone.addEventListener("click", function () {
-    taskManager.filterTask("Done");
+    taskManager.filterTaskByStatus("Done");
   });
 
   sideBarTomorrow.addEventListener("click", function () {
@@ -314,8 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   sideBarSoon.addEventListener("click", function () {
-    let date = new Date();
-    taskManager.filterTaskByDate(date);
+    taskManager.filterTaskByDate(new Date(), 3);
   });
 
   // initiate deleteButtonnClicked() to show Delete Confirmation Modal
@@ -323,51 +203,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const confirmToDeleteButton = document.querySelector(
     "#confirm-to-delete-btn"
   );
+
   // "Delete" button in the Delete Confirmation Modal triggers confirmToDeleteButtonClicked()
   // confirmToDeleteButtonClicked() will run deleteTask()
   confirmToDeleteButton.addEventListener("click", function () {
     const id_del = taskManager.confirmToDeleteButtonClicked();
     taskManager.deleteTask(id_del);
+    // Update summary_card_content_
+    taskManager.updateSummaryCardContent();
     // Update sidebar badge
-    taskManager.updateCountTaskDisplay(
-      badgeAll,
-      taskManager.countTaskByStatus("All")
-    );
-
-    taskManager.updateCountTaskDisplay(
-      badgeToDo,
-      taskManager.countTaskByStatus("To Do")
-    );
-
-    taskManager.updateCountTaskDisplay(
-      badgeInProgress,
-      taskManager.countTaskByStatus("In Progress")
-    );
-
-    taskManager.updateCountTaskDisplay(
-      badgeReview,
-      taskManager.countTaskByStatus("Review")
-    );
-
-    taskManager.updateCountTaskDisplay(
-      badgeDone,
-      taskManager.countTaskByStatus("Done")
-    );
-
-    taskManager.updateCountTaskDisplay(
-      badgeTomorrow,
-      taskManager.countTaskByDueDate("Tomorrow")
-    );
-
-    // Update summary card
-    taskManager.updateCountTaskDisplay(
-      summary_card_content_todo,
-      taskManager.countTaskByStatus("To Do")
-    );
-
-    taskManager.updateCountTaskDisplay(
-      summary_card_content_tmr,
-      taskManager.countTaskByDueDate("Tomorrow")
-    );
+    taskManager.updateSideBarBadge();
   });
 });

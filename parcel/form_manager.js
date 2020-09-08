@@ -49,11 +49,11 @@ export default class FormManager {
       }
 
       // =============================Description validation========================
-      if (descriptionInput == "" || descriptionInput.length < 15) {
-        error(description, "Enter task description with 15 or more char");
-      } else {
-        submit(description);
-      }
+      // if (descriptionInput == "" || descriptionInput.length < 15) {
+      //   error(description, "Enter task description with 15 or more char");
+      // } else {
+      //   submit(description);
+      // }
 
       // =============================Assignee validation========================
       if (assigne == "" || assigne.length < 4) {

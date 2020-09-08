@@ -1,7 +1,14 @@
 "use strict";
 import Task from "../parcel/task.js";
 import FormManager from "./form_manager.js";
-import { format, isTomorrow } from "date-fns";
+// Reference to date-fns https://medium.com/@k2u4yt/momentjs-vs-date-fns-6bddc7bfa21e
+import {
+  format,
+  isTomorrow,
+  addDays,
+  isWithinInterval,
+  isToday,
+} from "date-fns";
 
 export default class TaskManager {
   constructor(name, description, assignee, date, status) {
@@ -22,10 +29,11 @@ export default class TaskManager {
     this.status = status;
     this.taskContainer = document.querySelector("#tasks");
   }
-  // Reference to date-fns https://medium.com/@k2u4yt/momentjs-vs-date-fns-6bddc7bfa21e
+
   today() {
     // get DOM element
     let today = document.querySelectorAll(".today");
+    // format Date into " Tuesday, 8th Sep 2020"
     let nowDate = format(new Date(), "EEEE, do MMM yyyy");
     // display today date to HTML
 
@@ -41,7 +49,7 @@ export default class TaskManager {
     });
   }
 
-  // Get all tasks from localstorage ONCE when page loads and store in a huge object,
+  // Get all tasks from localstorage ONCE when page loads and store in an object,
   // to reduce spending effort to come into localstorage many times
   getTasksFromLocalStorage() {
     const task_list_dummy = {};
@@ -82,11 +90,14 @@ export default class TaskManager {
       this.id_arr = [];
       return;
     } else {
-      // run through the id_arr's element = key to look for task in local storage. For each id element, go to localStorage and getItem and parse it.
+      // iterate the id_arr's element = key to look for task in this.task_list object.
+      // For each id element, get task from this.task_list object
       this.id_arr.forEach((id) => {
         // let postJsonTask = JSON.parse(this.localStorage.getItem(id));
         let postJsonTask = this.task_list[id];
+        // make HTML element
         let html = this.toHTML(postJsonTask);
+        // render task in HTML format to screen
         this.renderTask(html);
       });
     }
@@ -119,6 +130,7 @@ export default class TaskManager {
       return html;
     }
   }
+
   renderTask(html) {
     if (html === undefined) {
       return;
@@ -161,12 +173,10 @@ export default class TaskManager {
       The closest() method traverses the Element and its parents (heading toward the document root)
       until it finds a node that matches the provided selector string.
       Will return itself or the matching ancestor. If no such element exists, it returns null. */
-
       const edit_btn = event.target.closest(".edit-btn");
 
       /* If there is a edit-btn, wrap the attribute called "data-task-id" = id of the particular task.
       "data-task-id" = input to run editTask() */
-
       if (edit_btn) {
         const id_edit = edit_btn.getAttribute("data-task-id");
         this.editTask(id_edit);
@@ -178,7 +188,7 @@ export default class TaskManager {
     // Open and change Modal title to Edit
     $("#taskModal").modal("show");
     modal_title.innerText = "Edit Task";
-    // modal_title.value = modal_title.innerText;
+
     const formManager = new FormManager();
     formManager.resetForm();
     const form = document.forms["task-form"];
@@ -189,7 +199,7 @@ export default class TaskManager {
     form.taskName.value = to_edit.name;
     form.description.value = to_edit.description;
     form.assignee.value = to_edit.assignee;
-    form.date.value = to_edit.date;
+    form.date.value = format(to_edit.dateNum, "yyyy-MM-dd");
     form.status.value = to_edit.status;
     //Set attribute for form as edit so when the Save button is clicked, it knows which function to call (create or update)
     form.setAttribute("data-action", "edit-action");
@@ -203,19 +213,33 @@ export default class TaskManager {
     to_update["name"] = name;
     to_update["description"] = description;
     to_update["assignee"] = assignee;
-    to_update["date"] = date;
+    to_update["dateNum"] = Date.parse(date);
+    to_update["date"] = format(to_update["dateNum"], "dd-MM-yyyy");
     to_update["status"] = status;
     this.localStorage.setItem(id_to_update, JSON.stringify(to_update));
   }
 
-  filterTask(stt) {
+  filterTaskByStatus(stt, todo_clicked) {
     // When filter status = All
     if (stt === "All") {
-      // taskByStatus = post_json_taskByStatus;
       this.taskContainer.innerHTML = "";
       this.id_arr.forEach((id) => {
         const html = this.toHTML(this.task_list[id]);
         this.renderTask(html);
+      });
+    }
+    // When filter status = To Do and it is Today
+    else if (stt === "To Do" && todo_clicked === true) {
+      this.taskContainer.innerHTML = "";
+      this.id_arr.forEach((id) => {
+        const taskObjFromTaskList = this.task_list[id];
+        if (
+          taskObjFromTaskList["status"] === stt &&
+          this.isToday(taskObjFromTaskList["dateNum"]) === true
+        ) {
+          const html = this.toHTML(taskObjFromTaskList);
+          this.renderTask(html);
+        }
       });
     }
     // When filter status = To Do, In Progress, Review, Done
@@ -231,30 +255,55 @@ export default class TaskManager {
     }
   }
 
+  filterTaskByDate(start_date, period) {
+    // parse start date
+    let start = Date.parse(start_date);
+    // find the end date (today + period)
+    let end = this.findDate(start, period);
+    // iterate each task.dateNum in task list to check if the task.dateNum is in the range of today and end date
+    let foundDate = {};
+    this.taskContainer.innerHTML = "";
+    this.id_arr.forEach((id) => {
+      let dateToCheck = this.task_list[id]["dateNum"];
+      let statusToCheck = this.task_list[id]["status"];
+      let withinInterval = this.dateIsWithinInterval(dateToCheck, start, end);
+      if (withinInterval === true && statusToCheck !== "Done") {
+        foundDate = this.task_list[id];
+        const html = this.toHTML(foundDate);
+        this.renderTask(html);
+      }
+    });
+  }
+
   isTmr() {
     this.taskContainer.innerHTML = "";
     this.id_arr.forEach((id) => {
       const taskObjFromTaskList1 = this.task_list[id];
       let isTmr = isTomorrow(taskObjFromTaskList1["dateNum"]);
-      if (isTmr === true) {
+      if (isTmr === true && taskObjFromTaskList1["status"] !== "Done") {
         const html = this.toHTML(taskObjFromTaskList1);
         this.renderTask(html);
       }
     });
   }
 
-  // filterTaskByDate(date) {
-  //   let parseDate = Date.parse(date);
-  //   let formatedParseDate = format(parseDate, "dd-MM-yyyy");
-  //   this.taskContainer.innerHTML = "";
-  //   this.id_arr.forEach((id) => {
-  //     const taskObjFromTaskList1 = this.task_list[id];
-  //     if (taskObjFromTaskList1["date"] === formatedParseDate) {
-  //       const html = this.toHTML(taskObjFromTaskList1);
-  //       this.renderTask(html);
-  //     }
-  //   })
-  // }
+  isToday(dateCheck) {
+    let is_today = isToday(dateCheck);
+    return is_today;
+  }
+
+  dateIsWithinInterval(dateToCheck, start, end) {
+    let withinInterval = isWithinInterval(dateToCheck, {
+      start: start,
+      end: end,
+    });
+    return withinInterval;
+  }
+
+  findDate(start_date, period) {
+    let result = Date.parse(addDays(start_date, period));
+    return result;
+  }
 
   deleteButtonnClicked() {
     /* Because the Delete Icon doesnt exist in HTML so we have to capture the event 
@@ -317,11 +366,23 @@ export default class TaskManager {
     // });
   }
 
-  countTaskByStatus(stt) {
+  countTaskByStatus(stt, sideBarToDoToDay_clicked) {
     let count = 0;
+    // Count all tasks regardless of status
     if (stt === "All" && this.id_arr !== null) {
       count = this.id_arr.length;
-    } else if (this.id_arr !== null) {
+    }
+    // Count tasks with specific status in Today
+    else if (this.id_arr !== null && sideBarToDoToDay_clicked === true) {
+      this.id_arr.forEach((id) => {
+        let task = this.task_list[id];
+        if (task["status"] === stt && this.isToday(task["dateNum"]) === true) {
+          count++;
+        }
+      });
+    }
+    // Count tasks with specific status regardless of date
+    else if (this.id_arr !== null) {
       this.id_arr.forEach((id) => {
         let task = this.task_list[id];
         if (task["status"] === stt) {
@@ -335,11 +396,25 @@ export default class TaskManager {
   countTaskByDueDate(date) {
     let count = 0;
     if (this.id_arr !== null) {
-      if ((date = "Tomorrow")) {
+      // Tomorrow
+      if (date === "Tomorrow") {
         this.id_arr.forEach((id) => {
           const taskObjFromTaskList2 = this.task_list[id];
           let isTmr = isTomorrow(taskObjFromTaskList2["dateNum"]);
           if (isTmr === true && taskObjFromTaskList2["status"] !== "Done") {
+            count++;
+          }
+        });
+      }
+      // Soon
+      else if (date === "Soon") {
+        let start = Date.parse(new Date());
+        let end = this.findDate(start, 3);
+        this.id_arr.forEach((id) => {
+          const taskToCheckSoon = this.task_list[id];
+          let dateToCheck = taskToCheckSoon["dateNum"];
+          let isSoon = this.dateIsWithinInterval(dateToCheck, start, end);
+          if (isSoon === true && taskToCheckSoon["status"] !== "Done") {
             count++;
           }
         });
@@ -350,5 +425,71 @@ export default class TaskManager {
 
   updateCountTaskDisplay(element, task_count) {
     element.innerHTML = task_count;
+  }
+
+  updateSummaryCardContent() {
+    const summary_card_content_todo = document.querySelector(
+      "#summary_card_content_todo"
+    );
+    const summary_card_content_tmr = document.querySelector(
+      "#summary_card_content_tmr"
+    );
+    const summary_card_content_soon = document.querySelector(
+      "#summary_card_content_soon"
+    );
+
+    this.updateCountTaskDisplay(
+      summary_card_content_todo,
+      // Only count Today's Todo
+      this.countTaskByStatus("To Do", true)
+    );
+
+    this.updateCountTaskDisplay(
+      summary_card_content_tmr,
+      // Only count Tomorrow's Todo, In Progress, Review
+      this.countTaskByDueDate("Tomorrow")
+    );
+
+    this.updateCountTaskDisplay(
+      summary_card_content_soon,
+      // Only count Todo, In Progress, Review in 3 days from Today
+      this.countTaskByDueDate("Soon")
+    );
+  }
+
+  updateSideBarBadge() {
+    const badgeAll = document.querySelector("#badgeAll");
+    const badgeToDo = document.querySelector("#badgeToDo");
+    const badgeToDoToDay = document.querySelector("#badgeToDoToDay");
+    const badgeInProgress = document.querySelector("#badgeInProgress");
+    const badgeReview = document.querySelector("#badgeReview");
+    const badgeDone = document.querySelector("#badgeDone");
+    const badgeTomorrow = document.querySelector("#badgeTomorrow");
+    const badgeSoon = document.querySelector("#badgeSoon");
+
+    this.updateCountTaskDisplay(badgeAll, this.countTaskByStatus("All"));
+    // Count all To Dos
+    this.updateCountTaskDisplay(badgeToDo, this.countTaskByStatus("To Do"));
+    // Only count Today's Todo
+    this.updateCountTaskDisplay(
+      badgeToDoToDay,
+      this.countTaskByStatus("To Do", true)
+    );
+
+    this.updateCountTaskDisplay(
+      badgeInProgress,
+      this.countTaskByStatus("In Progress")
+    );
+
+    this.updateCountTaskDisplay(badgeReview, this.countTaskByStatus("Review"));
+
+    this.updateCountTaskDisplay(badgeDone, this.countTaskByStatus("Done"));
+
+    this.updateCountTaskDisplay(
+      badgeTomorrow,
+      this.countTaskByDueDate("Tomorrow")
+    );
+
+    this.updateCountTaskDisplay(badgeSoon, this.countTaskByDueDate("Soon"));
   }
 }

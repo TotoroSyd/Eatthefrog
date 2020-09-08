@@ -13,7 +13,7 @@ body {
 /* Style Link tag */
 a {
   color: inherit; /* take on the colour of its parent */
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 a:hover {
@@ -82,7 +82,22 @@ nav {
 
 .btn:hover {
   background: #085140;
-  color: white;
+  color: rgb(233, 219, 219);
+}
+
+.sub_btn {
+  border-radius: 30px;
+  /* background: linear-gradient(135deg, #fea768 30%, #fcbb30 100%); */
+  /* background: #08582a; */
+  /* background: #fcce05; */
+  background: white;
+  border: white;
+  color: #fea768;
+  padding-left: 1.5rem;
+}
+
+.sub_btn:hover {
+  text-decoration: underline;
 }
 
 .card-header {
@@ -146,8 +161,13 @@ nav {
   color: rgba(0, 0, 0, 0.719);
 }
 
-.welcome_message > h3 {
+.welcome_message > h3,
+h5 {
   color: rgba(0, 0, 0, 0.719);
+}
+
+.welcome_message > h5 {
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .welcome_summary_card {
@@ -356,21 +376,16 @@ footer {
   position: fixed;
   left: 0;
   bottom: 0;
-  height: 150px;
+  height: 200px;
   width: 100%;
   background: rgba(0, 0, 0, 0.719);
   color: whitesmoke;
 }
 
 .footer_content {
-  margin-top: 1rem;
+  margin-top: 3rem;
   display: flex;
-  justify-content: flex-start;
-}
-
-#contact {
-  padding-left: 30rem;
-  padding-top: 2rem;
+  flex-direction: column;
 }
 
 /* NOTE:

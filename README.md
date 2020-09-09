@@ -57,7 +57,7 @@ To fix a bug or enhance an existing module, follow these steps:
   <li>Make program more responsive for Laptop, Mobile, Ipad viewport</li>
 </ul>
 
-<Acknowledgement
+<h1>Acknowledgement</h1>
 <ul>
   <li><a href="https://github.com/elwin013/parcel-plugin-static-files-copy?fbclid=IwAR3Zr8gXCuBAYbl1TBYN57-Yb6c5EwgEyK72u1DeTLUr06FrlGXCUukFWlQ">parcel-plugin-static-files-copy</a></li>
   <li><a href="https://date-fns.org/">date-fns</a></li>

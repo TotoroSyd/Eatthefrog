@@ -28,7 +28,11 @@
 </p>
 
 <h1>Built with</h1>
-<a href="https://getbootstrap.com/">Bootstrap</a>
+<ul>
+  <li><a href="https://getbootstrap.com/">Bootstrap</a></li>
+  <li><a href="https://parceljs.org/">Parcel</a></li>
+  <li><a href="https://nodejs.org/en/">Nodejs</a></li>
+</ul>
 
 <h1>Contribute</h1>
 To fix a bug or enhance an existing module, follow these steps:

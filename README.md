@@ -4,12 +4,14 @@
 </p>
 <p align="center">A web app task planner</p>
 <p align="center">Current version is best displayed on large desktop screen</p>
+<p align="center">This is my graduation project from Generation Australia's Web Developer Program</p>
+<p align="center"><a href="https://eatthefrog.netlify.app/">Eatthefrog on Netlify</a></p>
 <p align="center">
   <a href="https://github.com/TotoroSyd/Eatthefrog/issues/new" target="_blank">Report a bug</a>
   |
   <a href="https://github.com/TotoroSyd/Eatthefrog/issues/new" target="_blank">Request new feature</a>
 </p>
-<p align="center"><a href="https://eatthefrog.netlify.app/">Eatthefrog on Netlify</a></p>
+
 
 <h1>Features</h1>
 <ul>

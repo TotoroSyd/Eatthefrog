@@ -2,7 +2,7 @@
 <p align="center">
   <img src="/image/logo-orangebg.jpg" width="200" alt="logo">
 </p>
-<p align="center">A task planner program to keep track of your tasks</p>
+<p align="center">A web app task planner</p>
 <p align="center">Current version is best displayed on large desktop screen</p>
 <p align="center">
   <a href="https://github.com/TotoroSyd/Eatthefrog/issues/new" target="_blank">Report a bug</a>

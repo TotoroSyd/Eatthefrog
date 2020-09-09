@@ -71,6 +71,7 @@ To fix a bug or enhance an existing module, follow these steps:
   <li><a href="https://testing-library.com/docs/intro">Testing Library</a></li>
   <li><a href="https://github.com/testing-library/jest-dom">testing-library/jest-dom </a></li>
   <li><a href="https://www.npmjs.com/package/jest-localstorage-mock">jest-localstorage-mock</a></li>
+  <li><a href="https://github.com/othneildrew/Best-README-Template/blob/master/README.md">README Practice</a></li>
 </ul>
 
 <h1>License</h1>

@@ -72,6 +72,7 @@ To fix a bug or enhance an existing module, follow these steps:
   <li><a href="https://github.com/testing-library/jest-dom">testing-library/jest-dom </a></li>
   <li><a href="https://www.npmjs.com/package/jest-localstorage-mock">jest-localstorage-mock</a></li>
   <li><a href="https://github.com/othneildrew/Best-README-Template/blob/master/README.md">README Practice</a></li>
+  <li><a href="https://github.com/parcel-bundler/parcel/issues/1401">Solution for Module type=module cause "parcelRequire is not defined" error</a></li>
 </ul>
 
 <h1>License</h1>

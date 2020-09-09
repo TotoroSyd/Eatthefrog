@@ -2,6 +2,7 @@
 <p>Description what my program does including Features, Functions..</p>
 <h1>Visuals</h1>
 <p>Add GIF, photos</p>
+<h1>Table of content</h1>
 <h1>Installation</h1>
 Library needs to install?
 <h1>Built with</h1>
@@ -24,6 +25,7 @@ If you'd like to request a new function, feel free to do so by opening an issue 
 <h1>Feedback and Support</h1>
 <p>My email</p>
 <h1>License</h1>
+[MIT](https://choosealicense.com/licenses/mit/)
 <h1>Project status</h1>
 
 

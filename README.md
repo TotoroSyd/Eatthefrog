@@ -29,7 +29,7 @@
 
 <h1>Built with</h1>
 <a href="https://getbootstrap.com/">Bootstrap</a>
-<a
+
 <h1>Contribute</h1>
 To fix a bug or enhance an existing module, follow these steps:
 

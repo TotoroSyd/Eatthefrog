@@ -9,7 +9,7 @@
   |
   <a href="https://github.com/TotoroSyd/Eatthefrog/issues/new" target="_blank">Request new feature</a>
 </p>
-<p align="centerr"><a href="https://eatthefrog.netlify.app/">Eatthefrog on Netlify</a></p>
+<p align="center"><a href="https://eatthefrog.netlify.app/">Eatthefrog on Netlify</a></p>
 
 <h1>Features</h1>
 <ul>

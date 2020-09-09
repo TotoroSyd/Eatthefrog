@@ -1,9 +1,10 @@
 <h1 align="center">Eatthefrog</h1>
 <p align="center">
-  <img src="/image/logo-orangebg.jpg" width="300" alt="logo">
+  <img src="/image/logo-orangebg.jpg" width="200" alt="logo">
 </p>
-
-<p>A task planner program to keep track of your tasks</p>
+<p align="center">A task planner program to keep track of your tasks</p>
+<h3 align="center"><a href="https://github.com/TotoroSyd/Eatthefrog/issues/new" target="_blank">Report a bug</a></h3>
+<h3 align="center"><a href="https://github.com/TotoroSyd/Eatthefrog/issues/new" target="_blank">Request new feature</a></h3>
 <h2>Features</h2>
 <ul>
   <li>Welcome task summary view with 3 cards: Todo for Today, Tomorrow tasks, Soon (Tasks due in 3 days from today)</li>

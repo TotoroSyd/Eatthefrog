@@ -20,7 +20,8 @@
       href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" media="all" href="min1200px.css" type="text/css" />
+    <link rel="stylesheet" media='all' href="style/min1200px.css" type="text/css" />
+    <!-- <link rel="stylesheet" media='screen and (min-width: 992px)' href="style/min992px.css" type="text/css" /> -->
     <link rel="icon" type="image/png" href="image/logo-orangebg.svg" />
     <title>Eatthefrog</title>
   </head>
@@ -28,7 +29,7 @@
 
     <!-- Welcome Summary Banner Top -->
     <div role="banner" class="banner">
-      <div class="welcome">
+      <div class="welcome container">
         <div class="welcome_message">
           <h1>Hey!</h1>
           <h3 class="today">Today</h3>
@@ -61,10 +62,8 @@
         </div>
         <div class="welcome_button_more">
           <a href="#accordion"
-            ><img
+            ><img class="frogButton"
               src="image/FrogButtonWhiteBg_close.svg"
-              width="80px"
-              height="80px"
               onmouseover="this.src='image/FrogButtonWhiteBg.svg'"
               onmouseout="this.src='image/FrogButtonWhiteBg_close.svg'"
           /></a>
@@ -74,10 +73,8 @@
     <!-- Hidden Banner Button -->
     <div class="hidden_banner_button">
       <a href="#"
-        ><img
+        ><img class="frogButton"
           src="image/FrogButtonWhiteBg_close.svg"
-          width="80px"
-          height="80px"
           onmouseover="this.src='image/FrogButtonWhiteBg.svg'"
           onmouseout="this.src='image/FrogButtonWhiteBg_close.svg'"
       /></a>
@@ -389,8 +386,8 @@
         </p>
       </div>
       <div id="contact">
-        <a href="https://twitter.com/PhoebeNgg" target="_blank"><image src="image/twitter_before.svg" width="30px" height="30px" onmouseover="this.src='image/twitter_after.svg'" onmouseout="this.src='image/twitter_before.svg'"></image></a>
-        <a href="https://github.com/TotoroSyd/Eatthefrog" target="_blank"><image src="image/github_before.svg" width="30px" height="30px" onmouseover="this.src='image/github_after.svg'" onmouseout="this.src='image/github_before.svg'"></image></a>
+        <a href="https://twitter.com/PhoebeNgg" target="_blank"><image class="mediaButton" src="image/twitter_before.svg" onmouseover="this.src='image/twitter_after.svg'" onmouseout="this.src='image/twitter_before.svg'"></image></a>
+        <a href="https://github.com/TotoroSyd/Eatthefrog" target="_blank"><image class="mediaButton" src="image/github_before.svg" onmouseover="this.src='image/github_after.svg'" onmouseout="this.src='image/github_before.svg'"></image></a>
       </div>
     </div>
   </footer>

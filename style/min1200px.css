@@ -1,0 +1,396 @@
+/* Retina Screen large laptops and desktops*/
+@media only screen and (min-width: 1200px) {
+  /* Attribute
+  Icons made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry</a> 
+  from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> */
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  html,
+  body {
+    font-family: sans-serif;
+    height: 100vh;
+    /* display: flex;
+    flex-direction: column; */
+  }
+
+  /* Normal button */
+  .btn {
+    border-radius: 30px;
+    /* background: linear-gradient(135deg, #fea768 30%, #fcbb30 100%); */
+    /* background: #08582a; */
+    /* background: #fcce05; */
+    background: white;
+    border: #085140 solid;
+    text-decoration: none;
+    color: #085140;
+  }
+
+  .btn:hover {
+    background: #085140;
+    color: rgb(233, 219, 219);
+  }
+
+  .sub_btn {
+    border-radius: 30px;
+    /* background: linear-gradient(135deg, #fea768 30%, #fcbb30 100%); */
+    /* background: #08582a; */
+    /* background: #fcce05; */
+    background: white;
+    border: white;
+    color: #fea768;
+    padding-left: 1.5rem;
+  }
+
+  .sub_btn:hover {
+    text-decoration: underline;
+  }
+
+  .delete-btn {
+    padding-left: 1rem;
+  }
+
+  /* Image button */
+  .frogButton {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .mediaButton {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .delete-btn > img {
+    transition: transform 0.5s;
+  }
+  .delete-btn > img:hover {
+    transform: scale(1.5, 1.5);
+  }
+
+  .edit-btn > img {
+    transition: transform 0.5s;
+  }
+  .edit-btn > img:hover {
+    transform: scale(1.5, 1.5);
+  }
+
+  /* Style Link tag */
+  a {
+    color: inherit; /* take on the colour of its parent */
+    text-decoration: underline;
+  }
+
+  a:hover {
+    color: #00a0c6;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* Welcome Banner */
+  .banner {
+    background-image: url("https://images.unsplash.com/photo-1582227869938-cce15c8b1cee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80");
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+  }
+
+  .welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    color: white;
+    padding: 0;
+  }
+
+  .welcome_message {
+    text-align: center;
+    margin-top: 1rem;
+    width: 100%;
+    padding-top: 2rem;
+  }
+
+  .welcome_message > h1 {
+    font-size: 6rem;
+    padding: 0;
+    color: rgba(0, 0, 0, 0.719);
+  }
+
+  .welcome_message > h3,
+  h5 {
+    color: rgba(0, 0, 0, 0.719);
+    padding: 0;
+  }
+
+  .welcome_message > h5 {
+    color: #fcbb30;
+  }
+
+  .welcome_summary_card {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+
+  .summary_card_parent {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .summary_card_parent > h6 {
+    color: #fcbb30;
+    font-weight: 700;
+    font-size: 5rem;
+    text-align: center;
+    position: relative;
+    top: 2rem;
+    /* z-index: 1; */
+    transition: transform 0.5s;
+  }
+
+  .summary_card_parent:hover {
+    cursor: pointer;
+  }
+
+  .summary_card_parent:hover > .summary_card_content {
+    transform: scale(1.25, 1.25);
+  }
+
+  .summary_card_content {
+    color: #b55525;
+    font-weight: bold;
+    font-size: 5rem;
+    text-align: center;
+    padding-top: 3rem;
+    /* style when using blurry card under */
+    /* position: relative; */
+    /* top: 9rem; */
+    /* z-index: 1; */
+    transition: transform 0.5s;
+  }
+  /* style when using blurry card under */
+  /* .summary_card {
+    width: 8rem;
+    height: 8rem;
+    background-color: white;
+    opacity: 50%;
+    border-radius: 10px;
+  } */
+
+  .welcome_button_more {
+    padding-top: 2rem;
+  }
+
+  /* Hidden Banner Button */
+  .hidden_banner_button {
+    text-align: center;
+    padding-top: 0.5rem;
+    transition: transform 0.5s;
+  }
+
+  .hidden_banner_button:hover {
+    transform: scale(1.1, 1.1);
+  }
+
+  /* Task Container  */
+  .task_container {
+    padding: 1rem;
+    display: flex;
+    align-items: flex-start;
+    max-height: max-content;
+  }
+  /* Right SideBar */
+  .rightSideBar {
+    width: 20%;
+    margin-right: 3rem;
+    margin-left: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .sideBarElement {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    padding: 0.2rem;
+    font-size: smaller;
+  }
+
+  .sideBarBadge {
+    color: #f15e5e;
+  }
+
+  /* Task Card detail */
+  .card {
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+      0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+      0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+      0 100px 80px rgba(0, 0, 0, 0.12);
+    overflow: auto;
+    /* z-index: 1; */
+    height: 50vh;
+  }
+
+  #accordion {
+    width: 90%;
+    margin-right: 3rem;
+  }
+
+  .task-list:hover {
+    color: #f68121;
+  }
+  .task-header {
+    text-align: center;
+    color: aliceblue;
+    font-weight: 500;
+    font-size: 1.25rem;
+  }
+  #edit {
+    padding-right: 5px;
+  }
+
+  #taskName,
+  #description,
+  #assigned-to,
+  #date,
+  #assigned,
+  #status {
+    background-color: #fea768;
+  }
+
+  .card-header {
+    background-color: #fea768;
+    height: 4em;
+    position: sticky;
+    top: 0;
+    /* z-index: 1; */
+  }
+
+  .card-header > h5 {
+    color: aliceblue;
+  }
+
+  .task-list {
+    margin-top: 1rem;
+  }
+  /* Delete Modal  */
+  .modal-confirm {
+    color: #636363;
+    width: 400px;
+    margin: 30px auto;
+  }
+  .modal-confirm .modal-content {
+    padding: 20px;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    font-size: 14px;
+  }
+  .modal-confirm .modal-header {
+    border-bottom: none;
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .modal-confirm h4 {
+    text-align: center;
+    font-size: 26px;
+    margin: 30px 0 -10px;
+  }
+  .modal-confirm .close {
+    position: absolute;
+    top: -5px;
+    right: -2px;
+  }
+  .modal-confirm .modal-body {
+    color: #999;
+  }
+  .modal-confirm .modal-footer {
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 13px;
+    padding: 10px 15px 25px;
+    display: flex;
+    justify-content: center;
+  }
+  .modal-confirm .modal-footer a {
+    color: #999;
+  }
+  .modal-confirm .icon-box {
+    width: 80px;
+    height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    z-index: 9;
+    text-align: center;
+    /* border: 3px solid #f15e5e; */
+  }
+  .modal-confirm .icon-box i {
+    color: #f15e5e;
+    font-size: 46px;
+    display: inline-block;
+    margin-top: 13px;
+  }
+  .modal-confirm .btn {
+    color: #fff;
+    border-radius: 4px;
+    background: #60c7c1;
+    text-decoration: none;
+    transition: all 0.4s;
+    line-height: normal;
+    min-width: 120px;
+    border: none;
+    min-height: 40px;
+    border-radius: 3px;
+    margin: 0 3px;
+    outline: none !important;
+  }
+  .modal-confirm .btn-info {
+    background: #c1c1c1;
+  }
+  .modal-confirm .btn-info:hover,
+  .modal-confirm .btn-info:focus {
+    background: #a8a8a8;
+  }
+  .modal-confirm .btn-danger {
+    background: #f15e5e;
+  }
+  .modal-confirm .btn-danger:hover,
+  .modal-confirm .btn-danger:focus {
+    background: #ee3535;
+  }
+  .trigger-btn {
+    display: inline-block;
+    margin: 100px auto;
+  }
+
+  /* Footer */
+  footer {
+    font-family: "Kumbh Sans", sans-serif;
+    font-size: 0.7rem;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.719);
+    color: whitesmoke;
+    align-items: flex-end;
+    /* Keep footer at the bottom at all time */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+
+  .footer_content {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* NOTE:
+https://www.freecodecamp.org/news/how-to-center-anything-with-css-align-a-div-text-and-more/ */
+}

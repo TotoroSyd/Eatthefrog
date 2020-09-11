@@ -42,6 +42,10 @@
       {
         "staticPath": "image",
         "staticOutDir": "image"
+      },
+      {
+        "staticPath": "style",
+        "staticOutDir": "style"
       }
     ]
   }

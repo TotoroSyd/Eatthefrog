@@ -56,6 +56,7 @@ To fix a bug or enhance an existing module, follow these steps:
 
 <h1>Project status</h1>
 <p>Released v1.1: There are 5 functions: Create Task, Edit Task, Delete Task, Filter Task by Status, Filter Task by Date</p>
+<p>Released v1.2: Work on laptop's major browsers</p>
 
 <h1>Todo</h1>
 <ul>

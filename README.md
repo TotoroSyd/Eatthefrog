@@ -60,7 +60,7 @@ To fix a bug or enhance an existing module, follow these steps:
 <h1>Todo</h1>
 <ul>
   <li>Improve view transition (getting smoother)</li>
-  <li>Make program more responsive for Laptop, Mobile, Ipad viewport</li>
+  <li>Make program responsive for Mobile, Ipad viewport</li>
 </ul>
 
 <h1>Acknowledgement</h1>
@@ -73,6 +73,7 @@ To fix a bug or enhance an existing module, follow these steps:
   <li><a href="https://www.npmjs.com/package/jest-localstorage-mock">jest-localstorage-mock</a></li>
   <li><a href="https://github.com/othneildrew/Best-README-Template/blob/master/README.md">README Practice</a></li>
   <li><a href="https://github.com/parcel-bundler/parcel/issues/1401">Solution for Module type=module cause "parcelRequire is not defined" error</a></li>
+  <li><a href="https://github.com/necolas/normalize.css">Normalize.css to reset CSS</a></li>
 </ul>
 
 <h1>License</h1>

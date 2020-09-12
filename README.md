@@ -3,7 +3,6 @@
   <img src="/image/logo-orangebg.jpg" width="200" alt="logo">
 </p>
 <p align="center">A web app task planner</p>
-<p align="center">Current version is best displayed on large desktop screen</p>
 <p align="center">This is my graduation project from Generation Australia's Web Developer Program</p>
 <p align="center"><a href="https://eatthefrog.netlify.app/">Eatthefrog on Netlify</a></p>
 <p align="center">

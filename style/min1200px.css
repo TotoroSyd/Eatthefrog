@@ -1,4 +1,3 @@
-/* Retina Screen large laptops and desktops*/
 /* Attribute
   Icons made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry</a> 
   from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> */
@@ -10,8 +9,7 @@ html,
 body {
   font-family: sans-serif;
   height: 100vh;
-  /* display: flex;
-    flex-direction: column; */
+  font-size: 14px;
 }
 
 /* Normal button */
@@ -166,19 +164,19 @@ h5 {
   text-align: center;
   padding-top: 3rem;
   /* style when using blurry card under */
-  /* position: relative; */
-  /* top: 9rem; */
-  /* z-index: 1; */
+  /* position: relative;
+  top: 9rem;
+  z-index: 1; */
   transition: transform 0.5s;
 }
 /* style when using blurry card under */
 /* .summary_card {
-    width: 8rem;
-    height: 8rem;
-    background-color: white;
-    opacity: 50%;
-    border-radius: 10px;
-  } */
+  width: 8rem;
+  height: 8rem;
+  background-color: white;
+  opacity: 50%;
+  border-radius: 10px;
+} */
 
 .welcome_button_more {
   padding-top: 2rem;
@@ -249,9 +247,9 @@ h5 {
   font-weight: 500;
   font-size: 1.25rem;
 }
-#edit {
-  padding-right: 5px;
-}
+/* #edit {
+  padding-right: 1rem;
+} */
 
 #taskName,
 #description,
@@ -264,7 +262,7 @@ h5 {
 
 .card-header {
   background-color: #fea768;
-  height: 4em;
+  height: 4rem;
   position: sticky;
   top: 0;
   /* z-index: 1; */

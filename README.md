@@ -51,7 +51,7 @@ To fix a bug or enhance an existing module, follow these steps:
 </ul>
 
 <h1>Feedback and Support</h1>
-<p>I would love to know your feedback. Drop me a line at my <a href="phoebe.ngsyd@gmail.com">email</a> or my <a href="https://twitter.com/PhoebeNgg">Twitter</a></p>
+<p>I would love to know your feedback. Drop me a line at my <a href="mailto:phoebe.ngsyd@gmail.com" >email</a> or my <a href="https://twitter.com/PhoebeNgg">Twitter</a></p>
 
 <h1>Project status</h1>
 <p>Released v1.1: There are 5 functions: Create Task, Edit Task, Delete Task, Filter Task by Status, Filter Task by Date</p>

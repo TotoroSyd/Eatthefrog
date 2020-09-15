@@ -1,5 +1,5 @@
 "use strict";
-import Task from "../parcel/task.js";
+import Task from "./task";
 import FormManager from "./form_manager.js";
 // Reference to date-fns https://medium.com/@k2u4yt/momentjs-vs-date-fns-6bddc7bfa21e
 import {

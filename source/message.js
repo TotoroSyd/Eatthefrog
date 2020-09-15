@@ -1,6 +1,6 @@
 "use strict";
 
-import TaskManager from "../parcel/task_manager";
+import TaskManager from "./task_manager";
 
 export default class Message {
   constructor() {

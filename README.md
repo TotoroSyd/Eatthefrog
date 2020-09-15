@@ -2,8 +2,7 @@
 <p align="center">
   <img src="/image/logo-orangebg.jpg" width="200" alt="logo">
 </p>
-<p align="center">A web app task planner</p>
-<p align="center">Current version is best displayed on large desktop screen</p>
+<p align="center">A task planning web app</p>
 <p align="center">This is my graduation project from Generation Australia's Web Developer Program</p>
 <p align="center"><a href="https://eatthefrog.netlify.app/">Eatthefrog on Netlify</a></p>
 <p align="center">
@@ -52,10 +51,11 @@ To fix a bug or enhance an existing module, follow these steps:
 </ul>
 
 <h1>Feedback and Support</h1>
-<p>I would love to know your feedback. Drop me a line at my <a href="phoebe.ngsyd@gmail.com">email</a> or my <a href="https://twitter.com/PhoebeNgg">Twitter</a></p>
+<p>I would love to know your feedback. Drop me a line at my <a href="mailto:phoebe.ngsyd@gmail.com" >email</a> or my <a href="https://twitter.com/PhoebeNgg">Twitter</a></p>
 
 <h1>Project status</h1>
 <p>Released v1.1: There are 5 functions: Create Task, Edit Task, Delete Task, Filter Task by Status, Filter Task by Date</p>
+<p>Released v1.2: Work on laptop's major browsers</p>
 
 <h1>Todo</h1>
 <ul>

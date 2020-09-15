@@ -60,6 +60,11 @@ body {
 .frogButton {
   width: 4rem;
   height: 4rem;
+  transition: transform 0.5s;
+}
+
+.frogButton:hover {
+  transform: scale(1.1, 1.1);
 }
 
 .mediaButton {
@@ -196,11 +201,6 @@ h5 {
 .hidden_banner_button {
   text-align: center;
   padding-top: 0.5rem;
-  transition: transform 0.5s;
-}
-
-.hidden_banner_button:hover {
-  transform: scale(1.1, 1.1);
 }
 
 /* Task Container  */

@@ -24,7 +24,7 @@
 
 <h1>Site</h1>
 <p align="center">
- 
+ <img src="/README media/Welcome View.png" width="450" alt="welcomeView">
   <img src="/README media/TaskView.png" width="450" alt="taskView">
 </p>
 

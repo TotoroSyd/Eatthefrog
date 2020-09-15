@@ -22,6 +22,8 @@ body {
   border: #085140 solid;
   text-decoration: none;
   color: #085140;
+  font-size: 1.25rem;
+  width: 9rem;
 }
 
 .btn:hover {
@@ -38,11 +40,16 @@ body {
   background: white;
   border: white;
   color: #fea768;
-  padding-left: 1.5rem;
+  padding-left: 3rem;
 }
 
 .sub_btn:hover {
   text-decoration: underline;
+}
+
+#create_btn {
+  background: #ff7235;
+  border: none;
 }
 
 .delete-btn {
@@ -218,7 +225,7 @@ h5 {
   justify-content: space-between;
   text-align: center;
   padding: 0.2rem;
-  font-size: smaller;
+  font-size: 1.2rem;
 }
 
 .sideBarBadge {

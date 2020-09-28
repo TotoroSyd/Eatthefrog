@@ -68,8 +68,8 @@ body {
 }
 
 .mediaButton {
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .delete-btn > img {
@@ -395,7 +395,11 @@ footer {
   padding-top: 1rem;
   padding-bottom: 1rem;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
+}
+
+#contact {
+  padding-left: 2rem;
 }
 
 /* NOTE:
